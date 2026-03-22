@@ -1,0 +1,301 @@
+/* pick it up — Chart Search
+ * Loads ../data/songs.json, applies filters, renders results.
+ */
+
+// ── State ───────────────────────────────────────────────────────────────
+
+let allSongs = [];
+let lastResults = [];
+
+// ── Init ────────────────────────────────────────────────────────────────
+
+async function init() {
+  try {
+    const res = await fetch('../data/songs.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const db = await res.json();
+
+    allSongs = db.songs ?? [];
+
+    populateVersionFilter(allSongs);
+    updateDbMeta(db);
+    bindEvents();
+  } catch (err) {
+    document.getElementById('results-body').innerHTML =
+      `<p class="state-msg">⚠️ Could not load songs.json: ${err.message}<br>
+       Make sure you are serving from the project root (e.g. <code>npx serve .</code>).</p>`;
+  }
+}
+
+// ── Populate version dropdown ────────────────────────────────────────────
+
+const VERSION_LABELS = {
+  phoenix: 'Phoenix',
+  xx:      'XX',
+  prime2:  'Prime 2',
+  prime:   'Prime',
+  fiesta2: 'Fiesta 2',
+  fiesta:  'Fiesta',
+  exceed2: 'Exceed 2',
+  exceed:  'Exceed',
+  zero:    'Zero',
+  nxc:     'NXC',
+  nx2:     'NX2',
+  nx:      'NX',
+};
+
+function labelFor(v) {
+  return VERSION_LABELS[v?.toLowerCase?.()] ?? v ?? '(unknown)';
+}
+
+const VERSION_ORDER = Object.keys(VERSION_LABELS);
+
+function populateVersionFilter(songs) {
+  const versions = [...new Set(songs.map(s => s.version).filter(Boolean))];
+  versions.sort((a, b) => {
+    const ai = VERSION_ORDER.indexOf(a?.toLowerCase());
+    const bi = VERSION_ORDER.indexOf(b?.toLowerCase());
+    const av = ai < 0 ? 999 : ai;
+    const bv = bi < 0 ? 999 : bi;
+    return av - bv;
+  });
+
+  const sel = document.getElementById('f-version');
+  versions.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v;
+    opt.textContent = labelFor(v);
+    sel.appendChild(opt);
+  });
+}
+
+function updateDbMeta(db) {
+  const el = document.getElementById('db-meta');
+  const songs  = db.totalSongs  ?? allSongs.length;
+  const charts = db.totalCharts ?? allSongs.reduce((s, sg) => s + sg.charts.length, 0);
+  const patch  = db.lastPatchApplied ? ` · last patch: ${db.lastPatchApplied}` : '';
+  el.textContent = `Database: ${songs} songs · ${charts} charts${patch}`;
+}
+
+// ── Events ───────────────────────────────────────────────────────────────
+
+function bindEvents() {
+  document.getElementById('btn-search').addEventListener('click', runSearch);
+  document.getElementById('btn-reset').addEventListener('click', resetFilters);
+  document.getElementById('sort-select').addEventListener('change', () => renderResults(lastResults));
+
+  // Enter key fires search from any filter input
+  document.querySelectorAll('.filter-panel input, .filter-panel select').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+  });
+}
+
+function getFilters() {
+  return {
+    title:    document.getElementById('f-title').value.trim().toLowerCase(),
+    artist:   document.getElementById('f-artist').value.trim().toLowerCase(),
+    type:     document.querySelector('input[name="type"]:checked')?.value ?? 'all',
+    levelMin: parseInt(document.getElementById('f-level-min').value) || 1,
+    levelMax: parseInt(document.getElementById('f-level-max').value) || 28,
+    mode:     document.getElementById('f-mode').value,
+    version:  document.getElementById('f-version').value,
+    bpmMin:   parseInt(document.getElementById('f-bpm-min').value) || null,
+    bpmMax:   parseInt(document.getElementById('f-bpm-max').value) || null,
+  };
+}
+
+function resetFilters() {
+  document.getElementById('f-title').value  = '';
+  document.getElementById('f-artist').value = '';
+  document.getElementById('f-level-min').value = '';
+  document.getElementById('f-level-max').value = '';
+  document.getElementById('f-mode').value    = '';
+  document.getElementById('f-version').value = '';
+  document.getElementById('f-bpm-min').value = '';
+  document.getElementById('f-bpm-max').value = '';
+  document.querySelector('input[name="type"][value="all"]').checked = true;
+
+  lastResults = [];
+  document.getElementById('results-count').textContent = '';
+  document.getElementById('sort-bar').style.display = 'none';
+  document.getElementById('results-body').innerHTML =
+    '<p class="state-msg">Use the filters on the left and press <strong>Search</strong>.</p>';
+}
+
+// ── Search ───────────────────────────────────────────────────────────────
+
+function runSearch() {
+  const f = getFilters();
+
+  const results = [];
+
+  for (const song of allSongs) {
+    // Title match
+    if (f.title && !song.title.toLowerCase().includes(f.title)) continue;
+
+    // Artist match (song artist or step artist)
+    if (f.artist) {
+      const sa = (song.songArtist ?? '').toLowerCase();
+      const st = (song.stepArtist ?? '').toLowerCase();
+      if (!sa.includes(f.artist) && !st.includes(f.artist)) continue;
+    }
+
+    // Version match (at song level)
+    if (f.version && song.version?.toLowerCase() !== f.version.toLowerCase()) continue;
+
+    // BPM match (skip songs with null bpm when bpm filter is active)
+    if (f.bpmMin !== null || f.bpmMax !== null) {
+      if (song.bpm == null) continue;
+      if (f.bpmMin !== null && song.bpm < f.bpmMin) continue;
+      if (f.bpmMax !== null && song.bpm > f.bpmMax) continue;
+    }
+
+    // Filter charts
+    const matchedCharts = song.charts.filter(c => {
+      if (f.type !== 'all' && c.type !== f.type) return false;
+      if (c.level < f.levelMin || c.level > f.levelMax)  return false;
+      if (f.mode && c.mode !== f.mode) return false;
+      return true;
+    });
+
+    if (matchedCharts.length === 0) continue;
+
+    results.push({ song, matchedCharts });
+  }
+
+  lastResults = results;
+  renderResults(results);
+}
+
+// ── Render ───────────────────────────────────────────────────────────────
+
+function renderResults(results) {
+  const sortKey = document.getElementById('sort-select').value;
+  const sorted  = sortResults([...results], sortKey);
+
+  const body  = document.getElementById('results-body');
+  const count = document.getElementById('results-count');
+  const sortBar = document.getElementById('sort-bar');
+
+  const totalCharts = results.reduce((n, r) => n + r.matchedCharts.length, 0);
+
+  if (results.length === 0) {
+    sortBar.style.display = 'none';
+    count.textContent = '';
+    body.innerHTML = '<p class="state-msg">No songs match the current filters.</p>';
+    return;
+  }
+
+  sortBar.style.display = '';
+  count.innerHTML = `<strong>${results.length}</strong> song${results.length !== 1 ? 's' : ''}, <strong>${totalCharts}</strong> chart${totalCharts !== 1 ? 's' : ''}`;
+
+  body.innerHTML = '';
+  const list = document.createElement('div');
+  list.className = 'song-list';
+
+  for (const { song, matchedCharts } of sorted) {
+    list.appendChild(buildCard(song, matchedCharts));
+  }
+
+  body.appendChild(list);
+}
+
+function sortResults(results, key) {
+  switch (key) {
+    case 'title-asc':    return results.sort((a, b) => a.song.title.localeCompare(b.song.title));
+    case 'title-desc':   return results.sort((a, b) => b.song.title.localeCompare(a.song.title));
+    case 'bpm-asc':      return results.sort((a, b) => (a.song.bpm ?? 0) - (b.song.bpm ?? 0));
+    case 'bpm-desc':     return results.sort((a, b) => (b.song.bpm ?? 0) - (a.song.bpm ?? 0));
+    case 'charts-desc':  return results.sort((a, b) => b.matchedCharts.length - a.matchedCharts.length);
+    default:             return results;
+  }
+}
+
+// ── Card builder ──────────────────────────────────────────────────────────
+
+function buildCard(song, matchedCharts) {
+  const card = document.createElement('div');
+  card.className = 'song-card';
+
+  // Header row
+  const header = document.createElement('div');
+  header.className = 'song-card-header';
+
+  const titleEl = document.createElement('span');
+  titleEl.className = 'song-title';
+  titleEl.textContent = song.title;
+  header.appendChild(titleEl);
+
+  card.appendChild(header);
+
+  // Meta row
+  const meta = document.createElement('div');
+  meta.className = 'song-meta';
+
+  const parts = [];
+  if (song.songArtist) parts.push(song.songArtist);
+  if (song.bpm)        parts.push(`${song.bpm} BPM`);
+
+  parts.forEach((p, i) => {
+    const sp = document.createElement('span');
+    sp.textContent = p;
+    meta.appendChild(sp);
+    if (i < parts.length - 1) {
+      const sep = document.createElement('span');
+      sep.className = 'sep';
+      sep.textContent = '·';
+      meta.appendChild(sep);
+    }
+  });
+
+  if (song.version) {
+    const pill = document.createElement('span');
+    pill.className = 'version-pill';
+    pill.textContent = labelFor(song.version);
+    meta.appendChild(pill);
+  }
+
+  card.appendChild(meta);
+
+  // Charts row — sorted: S before D, then by level asc
+  const chartsRow = document.createElement('div');
+  chartsRow.className = 'charts-row';
+
+  const sorted = [...matchedCharts].sort((a, b) =>
+    b.type.localeCompare(a.type) || a.level - b.level
+  );
+
+  for (const chart of sorted) {
+    const badge = document.createElement('span');
+    badge.className = `chart-badge type-${chart.type}`;
+
+    const typeIndicator = document.createElement('span');
+    typeIndicator.className = 'type-indicator';
+    typeIndicator.textContent = chart.type;
+
+    const levelEl = document.createElement('span');
+    levelEl.textContent = chart.level;
+
+    badge.appendChild(typeIndicator);
+    badge.appendChild(levelEl);
+
+    if (chart.mode && chart.mode !== 'arcade') {
+      const modeTag = document.createElement('span');
+      modeTag.className = 'mode-tag';
+      modeTag.textContent = chart.mode === 'shortcut' ? 'SC'
+        : chart.mode === 'fullsong' ? 'FS'
+        : chart.mode === 'remix'    ? 'RMX'
+        : chart.mode;
+      badge.appendChild(modeTag);
+    }
+
+    chartsRow.appendChild(badge);
+  }
+
+  card.appendChild(chartsRow);
+  return card;
+}
+
+// ── Boot ─────────────────────────────────────────────────────────────────
+
+init();

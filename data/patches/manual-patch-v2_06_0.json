@@ -1,0 +1,117 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2024-12-26",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "_notes": "E.O.N is a premium mode exclusive. Teddy Bear is fullsong mode. DISTRICT V is remix mode. Jupin is shortcut mode. New Steps CO-OP (Horang Pungryuga, Discord, Energy Synergy Matrix) ignored. Moonlight D24 applied as chart addition to existing song.",
+  "songs": [
+    { "title": "E.O.N",
+      "songArtist": "HiTECH NINJA", "bpm": 165,
+      "charts": [
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 13, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Festival of Death Moon",
+      "songArtist": "SHK", "bpm": 204,
+      "charts": [
+        { "type": "S", "level": 3,  "mode": "arcade" },
+        { "type": "S", "level": 5,  "mode": "arcade" },
+        { "type": "S", "level": 11, "mode": "arcade" },
+        { "type": "S", "level": 14, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 11, "mode": "arcade" },
+        { "type": "D", "level": 15, "mode": "arcade" },
+        { "type": "D", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Imaginarized City",
+      "songArtist": "Reku Mochizuki", "bpm": 156,
+      "charts": [
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 14, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Break Through Myself feat. Risa Yuzuki",
+      "songArtist": "DJ Myosuke & Laur", "bpm": 200,
+      "charts": [
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 17, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "EMOMOMO",
+      "songArtist": "Ras", "bpm": 145,
+      "charts": [
+        { "type": "S", "level": 3,  "mode": "arcade" },
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 10, "mode": "arcade" },
+        { "type": "S", "level": 14, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 12, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" }
+      ]
+    },
+    { "title": "Teddy Bear - FULL SONG -",
+      "songArtist": "STAYC", "bpm": 119,
+      "charts": [
+        { "type": "S", "level": 12, "mode": "fullsong" },
+        { "type": "S", "level": 20, "mode": "fullsong" },
+        { "type": "D", "level": 22, "mode": "fullsong" }
+      ]
+    },
+    { "title": "DISTRICT V",
+      "songArtist": "Zekk vs MAX", "bpm": 178,
+      "charts": [
+        { "type": "S", "level": 13, "mode": "remix" },
+        { "type": "S", "level": 18, "mode": "remix" },
+        { "type": "S", "level": 22, "mode": "remix" },
+        { "type": "D", "level": 20, "mode": "remix" },
+        { "type": "D", "level": 24, "mode": "remix" }
+      ]
+    },
+    { "title": "Jupin - SHORT CUT -",
+      "songArtist": "Sobrem", "bpm": 173,
+      "charts": [
+        { "type": "S", "level": 12, "mode": "shortcut" },
+        { "type": "S", "level": 13, "mode": "shortcut" },
+        { "type": "S", "level": 14, "mode": "shortcut" },
+        { "type": "S", "level": 21, "mode": "shortcut" },
+        { "type": "S", "level": 22, "mode": "shortcut" },
+        { "type": "S", "level": 23, "mode": "shortcut" },
+        { "type": "D", "level": 16, "mode": "shortcut" },
+        { "type": "D", "level": 19, "mode": "shortcut" },
+        { "type": "D", "level": 20, "mode": "shortcut" },
+        { "type": "D", "level": 23, "mode": "shortcut" },
+        { "type": "D", "level": 24, "mode": "shortcut" }
+      ]
+    },
+    { "title": "Moonlight",
+      "charts": [ { "type": "D", "level": 24, "mode": "arcade" } ]
+    }
+  ]
+}

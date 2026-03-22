@@ -1,0 +1,135 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2025-04-03",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "_notes": "1948 D?? omitted (unknown level). Neo Catharsis bpm omitted (variable 120~300). CO-OP charts ignored. 1948 and Super Akuma Emperor are premium mode exclusives.",
+  "songs": [
+    { "title": "1948",
+      "songArtist": "SLAM", "bpm": 240,
+      "charts": [
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "S", "level": 24, "mode": "arcade" },
+        { "type": "S", "level": 26, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 27, "mode": "arcade" }
+      ]
+    },
+    { "title": "Super Akuma Emperor",
+      "songArtist": "REDALiCE", "bpm": 240,
+      "charts": [
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "S", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 26, "mode": "arcade" }
+      ]
+    },
+    { "title": "Deca Dance",
+      "songArtist": "Yooh", "bpm": 160,
+      "charts": [
+        { "type": "S", "level": 9,  "mode": "arcade" },
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 17, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Burn Out",
+      "songArtist": "WyvernP", "bpm": 190,
+      "charts": [
+        { "type": "S", "level": 11, "mode": "arcade" },
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 13, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Ultimate Eyes",
+      "songArtist": "HyuN", "bpm": 185,
+      "charts": [
+        { "type": "S", "level": 4,  "mode": "arcade" },
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 11, "mode": "arcade" },
+        { "type": "S", "level": 14, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 13, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Rush-Hour",
+      "songArtist": "litmus*", "bpm": 112,
+      "charts": [
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 17, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Human Extinction (PIU Edit.)",
+      "songArtist": "MonstDeath", "bpm": 199,
+      "charts": [
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "S", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "Neo Catharsis - SHORT CUT -",
+      "songArtist": "TAG underground overlay", "bpm": null,
+      "charts": [
+        { "type": "S", "level": 19, "mode": "shortcut" },
+        { "type": "S", "level": 21, "mode": "shortcut" },
+        { "type": "S", "level": 23, "mode": "shortcut" },
+        { "type": "D", "level": 23, "mode": "shortcut" },
+        { "type": "D", "level": 25, "mode": "shortcut" }
+      ]
+    },
+    { "title": "Hymn of Golden Glory - SHORT CUT -",
+      "songArtist": "Essbee", "bpm": 244,
+      "charts": [
+        { "type": "S", "level": 15, "mode": "shortcut" },
+        { "type": "S", "level": 18, "mode": "shortcut" },
+        { "type": "S", "level": 20, "mode": "shortcut" },
+        { "type": "S", "level": 23, "mode": "shortcut" },
+        { "type": "D", "level": 17, "mode": "shortcut" },
+        { "type": "D", "level": 20, "mode": "shortcut" },
+        { "type": "D", "level": 22, "mode": "shortcut" },
+        { "type": "D", "level": 24, "mode": "shortcut" }
+      ]
+    },
+    { "title": "Silver Beat feat. ChisaUezono",
+      "charts": [ { "type": "D", "level": 22, "mode": "arcade" } ]
+    },
+    { "title": "Slapstick Parfait",
+      "charts": [ { "type": "D", "level": 23, "mode": "arcade" } ]
+    },
+    { "title": "Danger & Danger",
+      "charts": [ { "type": "S", "level": 21, "mode": "arcade" } ]
+    },
+    { "title": "Halloween Party ~Multiverse~",
+      "charts": [ { "type": "D", "level": 23, "mode": "arcade" } ]
+    },
+    { "title": "After LIKE",
+      "charts": [ { "type": "D", "level": 23, "mode": "arcade" } ]
+    }
+  ]
+}

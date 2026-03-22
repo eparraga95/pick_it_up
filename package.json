@@ -1,0 +1,17 @@
+{
+  "name": "pick-it-up",
+  "version": "0.1.0",
+  "description": "PIU song database builder & CBPIU song list manager",
+  "type": "module",
+  "scripts": {
+    "scrape": "node scraper/index.js",
+    "scrape:details": "node scraper/index.js --details",
+    "scrape:resume": "node scraper/index.js --resume",
+    "merge": "node scraper/merge.js",
+    "merge:apply": "node scraper/merge.js --apply",
+    "serve": "npx serve . -l 3000"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

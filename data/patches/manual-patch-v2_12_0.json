@@ -1,0 +1,88 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2025-12-23",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "_notes": "CO-OP charts ignored (SWEET WONDERLAND CO-OP X2, Odin CO-OP X2, Le Nozze di Figaro CO-OP X2, Murdoch vs Otada CO-OP X3, Doppelganger CO-OP X2). All I Want For X-mas title preserved as-is from patch notes.",
+  "songs": [
+    { "title": "Heliosphere",
+      "songArtist": "BlackY", "bpm": 182,
+      "charts": [
+        { "type": "S", "level": 14, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "SWEET WONDERLAND",
+      "songArtist": "MAX feat. ankimo", "bpm": 170,
+      "charts": [
+        { "type": "S", "level": 3,  "mode": "arcade" },
+        { "type": "S", "level": 5,  "mode": "arcade" },
+        { "type": "S", "level": 8,  "mode": "arcade" },
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 14, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" }
+      ]
+    },
+    { "title": "Black Dragon",
+      "charts": [ { "type": "D", "level": 23, "mode": "arcade" } ]
+    },
+    { "title": "Magical Vacation",
+      "charts": [ { "type": "D", "level": 21, "mode": "arcade" } ]
+    },
+    { "title": "All I Want For X-mas",
+      "charts": [
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "D", "level": 16, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" }
+      ]
+    },
+    { "title": "Passacaglia",
+      "charts": [ { "type": "D", "level": 25, "mode": "arcade" } ]
+    },
+    { "title": "Katkoi",
+      "charts": [
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Moment Day",
+      "charts": [ { "type": "D", "level": 23, "mode": "arcade" } ]
+    },
+    { "title": "Yoropiku Pikuyoro !",
+      "charts": [
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "La Cinquantaine",
+      "charts": [
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Conflict",
+      "charts": [
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 26, "mode": "arcade" }
+      ]
+    },
+    { "title": "Rage of Fire",
+      "charts": [
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" }
+      ]
+    },
+    { "title": "Euphorianic",
+      "charts": [ { "type": "D", "level": 23, "mode": "arcade" } ]
+    }
+  ]
+}

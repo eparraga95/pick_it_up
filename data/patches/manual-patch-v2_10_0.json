@@ -1,0 +1,121 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2025-07-24",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "songs": [
+    { "title": "4NT",
+      "songArtist": "PODA", "bpm": 180,
+      "charts": [
+        { "type": "S", "level": 9,  "mode": "arcade" },
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 14, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "The Apocalypse",
+      "songArtist": "HyuN feat. Elika", "bpm": 171,
+      "charts": [
+        { "type": "S", "level": 4,  "mode": "arcade" },
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 11, "mode": "arcade" },
+        { "type": "S", "level": 14, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 13, "mode": "arcade" },
+        { "type": "D", "level": 16, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Glimmer Gleam",
+      "songArtist": "Doin", "bpm": 85,
+      "charts": [
+        { "type": "S", "level": 8,  "mode": "arcade" },
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 14, "mode": "arcade" },
+        { "type": "D", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Demon of Laplace",
+      "songArtist": "Quree", "bpm": 144,
+      "charts": [
+        { "type": "S", "level": 6,  "mode": "arcade" },
+        { "type": "S", "level": 10, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 15, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "†DOOF†SENC†",
+      "songArtist": "Kobaryo", "bpm": 200,
+      "charts": [
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 16, "mode": "arcade" },
+        { "type": "D", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "That Kitty (PIU Edit.)",
+      "songArtist": "MonstDeath", "bpm": 190,
+      "charts": [
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 15, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Spooky Macaron",
+      "songArtist": "Sobrem", "bpm": 201,
+      "charts": [
+        { "type": "S", "level": 14, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 16, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "PRiMA MATERiA - SHORT CUT -",
+      "songArtist": "xi", "bpm": 187,
+      "charts": [
+        { "type": "S", "level": 18, "mode": "shortcut" },
+        { "type": "S", "level": 21, "mode": "shortcut" },
+        { "type": "S", "level": 23, "mode": "shortcut" },
+        { "type": "D", "level": 22, "mode": "shortcut" },
+        { "type": "D", "level": 24, "mode": "shortcut" }
+      ]
+    },
+    { "title": "DUEL - SHORT CUT -",
+      "songArtist": "Cashew & D_AAN", "bpm": 155,
+      "charts": [
+        { "type": "S", "level": 16, "mode": "shortcut" },
+        { "type": "S", "level": 19, "mode": "shortcut" },
+        { "type": "S", "level": 21, "mode": "shortcut" },
+        { "type": "D", "level": 18, "mode": "shortcut" },
+        { "type": "D", "level": 21, "mode": "shortcut" },
+        { "type": "D", "level": 23, "mode": "shortcut" }
+      ]
+    }
+  ]
+}

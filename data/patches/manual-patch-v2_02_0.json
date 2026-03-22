@@ -1,0 +1,75 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2024-08-22",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "_notes": "Appassionata is a premium mode exclusive with variable BPM (160~210), stored as null. Appassionata CO-OP X4 ignored. More Updates (skins, BGA fix, step fix) ignored.",
+  "songs": [
+    { "title": "DO or DIE",
+      "songArtist": "xikers", "bpm": 170,
+      "charts": [
+        { "type": "S", "level": 2,  "mode": "arcade" },
+        { "type": "S", "level": 5,  "mode": "arcade" },
+        { "type": "S", "level": 8,  "mode": "arcade" },
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 14, "mode": "arcade" },
+        { "type": "D", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" }
+      ]
+    },
+    { "title": "Appassionata",
+      "songArtist": "Cashew x D_AAN x Jehezukiel", "bpm": null,
+      "charts": [
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "S", "level": 25, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" },
+        { "type": "D", "level": 27, "mode": "arcade" }
+      ]
+    },
+    { "title": "Murdoch vs Otada",
+      "songArtist": "ESPITZ vs WONDERTRAVELER Project", "bpm": 180,
+      "charts": [
+        { "type": "S", "level": 9,  "mode": "arcade" },
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 17, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "Dancing",
+      "songArtist": "Said", "bpm": 151,
+      "charts": [
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 13, "mode": "arcade" },
+        { "type": "D", "level": 17, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Mahika",
+      "songArtist": "The Musical Ghost", "bpm": 188,
+      "charts": [
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 15, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    }
+  ]
+}

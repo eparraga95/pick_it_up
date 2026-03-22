@@ -1,0 +1,64 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2025-09-30",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "_notes": "Dead End is a premium mode exclusive. Alice in Misanthrope bpm is variable (154~174).",
+  "songs": [
+    { "title": "Dead End",
+      "songArtist": "Cosmograph", "bpm": 212,
+      "charts": [
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "S", "level": 25, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 26, "mode": "arcade" },
+        { "type": "D", "level": 28, "mode": "arcade" }
+      ]
+    },
+    { "title": "Binary star",
+      "songArtist": "SYNTHWULF", "bpm": 170,
+      "charts": [
+        { "type": "S", "level": 5,  "mode": "arcade" },
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 15, "mode": "arcade" },
+        { "type": "D", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Alice in Misanthrope",
+      "songArtist": "LeaF", "bpm": null,
+      "charts": [
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 13, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "Solve My Hurt - SHORT CUT -",
+      "songArtist": "Doin", "bpm": 234,
+      "charts": [
+        { "type": "S", "level": 20, "mode": "shortcut" },
+        { "type": "S", "level": 23, "mode": "shortcut" },
+        { "type": "D", "level": 26, "mode": "shortcut" }
+      ]
+    },
+    { "title": "Murdoch vs Otada - SHORT CUT -",
+      "songArtist": "ESPITZ vs WONDERTRAVELER Project", "bpm": 180,
+      "charts": [
+        { "type": "S", "level": 15, "mode": "shortcut" },
+        { "type": "S", "level": 18, "mode": "shortcut" },
+        { "type": "S", "level": 21, "mode": "shortcut" },
+        { "type": "D", "level": 20, "mode": "shortcut" },
+        { "type": "D", "level": 24, "mode": "shortcut" }
+      ]
+    }
+  ]
+}

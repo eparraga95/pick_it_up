@@ -1,0 +1,76 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2024-11-28",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "_notes": "Extreme Music School 2nd period is a premium mode exclusive. Nyan-turne CO-OP X2 ignored. BPM 202.1 stored as 202.",
+  "songs": [
+    { "title": "Nyan-turne (feat. KuTiNA)",
+      "songArtist": "Cashew & Castellia", "bpm": 202,
+      "charts": [
+        { "type": "S", "level": 4,  "mode": "arcade" },
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 11, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 12, "mode": "arcade" },
+        { "type": "D", "level": 17, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" }
+      ]
+    },
+    { "title": "Doppelganger",
+      "songArtist": "MonstDeath", "bpm": 210,
+      "charts": [
+        { "type": "S", "level": 9,  "mode": "arcade" },
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "S", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 15, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 26, "mode": "arcade" }
+      ]
+    },
+    { "title": "SONIC BOOM",
+      "songArtist": "USAO", "bpm": 205,
+      "charts": [
+        { "type": "S", "level": 4,  "mode": "arcade" },
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 10, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 14, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "Extreme Music School 1st period feat. Nanahira",
+      "songArtist": "Massive New Krew & RoughSketch", "bpm": 210,
+      "charts": [
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "Extreme Music School 2nd period feat. Nanahira",
+      "songArtist": "Massive New Krew & RoughSketch", "bpm": 210,
+      "charts": [
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 18, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "S", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 19, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 26, "mode": "arcade" }
+      ]
+    }
+  ]
+}

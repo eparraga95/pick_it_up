@@ -1,0 +1,78 @@
+{
+  "version": "phoenix",
+  "releaseDate": "2024-09-26",
+  "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
+  "_notes": "Hymn of Golden Glory is a premium mode exclusive. '* this game does not exist *' has variable BPM (40~240), stored as null. B1G ONE event info is cosmetic only — ignored.",
+  "songs": [
+    { "title": "Nostalgia",
+      "songArtist": "Woody", "bpm": 100,
+      "charts": [
+        { "type": "S", "level": 3,  "mode": "arcade" },
+        { "type": "S", "level": 5,  "mode": "arcade" },
+        { "type": "S", "level": 8,  "mode": "arcade" },
+        { "type": "S", "level": 14, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 10, "mode": "arcade" },
+        { "type": "D", "level": 15, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" }
+      ]
+    },
+    { "title": "Stardream -Eurobeat Remix-",
+      "songArtist": "MAX x Cashew x Dave Rodgers", "bpm": 160,
+      "charts": [
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 17, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 13, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 20, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" }
+      ]
+    },
+    { "title": "Hymn of Golden Glory",
+      "songArtist": "Essbee", "bpm": 244,
+      "charts": [
+        { "type": "S", "level": 15, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "S", "level": 25, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 23, "mode": "arcade" },
+        { "type": "D", "level": 25, "mode": "arcade" }
+      ]
+    },
+    { "title": "Perpetual",
+      "songArtist": "Qu-ail", "bpm": 180,
+      "charts": [
+        { "type": "S", "level": 4,  "mode": "arcade" },
+        { "type": "S", "level": 7,  "mode": "arcade" },
+        { "type": "S", "level": 12, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 19, "mode": "arcade" },
+        { "type": "S", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 14, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 21, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" }
+      ]
+    },
+    { "title": "* this game does not exist *",
+      "songArtist": "litmus* x Ester", "bpm": null,
+      "charts": [
+        { "type": "S", "level": 13, "mode": "arcade" },
+        { "type": "S", "level": 16, "mode": "arcade" },
+        { "type": "S", "level": 20, "mode": "arcade" },
+        { "type": "S", "level": 22, "mode": "arcade" },
+        { "type": "S", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 18, "mode": "arcade" },
+        { "type": "D", "level": 22, "mode": "arcade" },
+        { "type": "D", "level": 24, "mode": "arcade" },
+        { "type": "D", "level": 26, "mode": "arcade" }
+      ]
+    }
+  ]
+}

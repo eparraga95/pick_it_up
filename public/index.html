@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pick it up — PIU Chart Search</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-wrap">
+
+    <header>
+      <h1>pick it up</h1>
+      <p class="subtitle">Pump it Up · Chart Search</p>
+    </header>
+
+    <div class="content">
+
+      <!-- ── Filter Panel ───────────────────────────── -->
+      <aside class="filter-panel">
+        <h2>Filters</h2>
+
+        <div class="filter-grid">
+
+          <div class="filter-group full-width">
+            <label for="f-title">Song title</label>
+            <input type="text" id="f-title" placeholder="e.g. Ignis Fatuus" autocomplete="off" />
+          </div>
+
+          <div class="filter-group full-width">
+            <label for="f-artist">Song artist</label>
+            <input type="text" id="f-artist" placeholder="e.g. SHK" autocomplete="off" />
+          </div>
+
+          <div class="filter-group full-width">
+            <label>Chart type</label>
+            <div class="type-toggle">
+              <input type="radio" name="type" id="type-all" value="all" checked />
+              <label for="type-all">All</label>
+
+              <input type="radio" name="type" id="type-s" value="S" />
+              <label for="type-s">S — Single</label>
+
+              <input type="radio" name="type" id="type-d" value="D" />
+              <label for="type-d">D — Double</label>
+            </div>
+          </div>
+
+          <div class="filter-group full-width">
+            <label>Level range</label>
+            <div class="range-row">
+              <input type="number" id="f-level-min" min="1" max="29" placeholder="1" />
+              <span class="range-sep">to</span>
+              <input type="number" id="f-level-max" min="1" max="29" placeholder="29" />
+            </div>
+          </div>
+
+          <div class="filter-group full-width">
+            <label for="f-mode">Mode</label>
+            <select id="f-mode">
+              <option value="">All modes</option>
+              <option value="arcade">Arcade</option>
+              <option value="shortcut">Shortcut</option>
+              <option value="remix">Remix</option>
+              <option value="fullsong">Full Song</option>
+            </select>
+          </div>
+
+          <div class="filter-group full-width">
+            <label for="f-version">Version</label>
+            <select id="f-version">
+              <option value="">All versions</option>
+              <!-- populated by JS -->
+            </select>
+          </div>
+
+          <div class="filter-group full-width">
+            <label>BPM range</label>
+            <div class="range-row">
+              <input type="number" id="f-bpm-min" min="1" placeholder="min" />
+              <span class="range-sep">to</span>
+              <input type="number" id="f-bpm-max" min="1" placeholder="max" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="filter-actions">
+          <button class="btn-primary" id="btn-search">Search</button>
+          <button class="btn-ghost"   id="btn-reset">Reset</button>
+        </div>
+      </aside>
+
+      <!-- ── Results Panel ──────────────────────────── -->
+      <main class="results-panel">
+        <div class="results-header">
+          <h2>Results</h2>
+          <span class="results-count" id="results-count"></span>
+        </div>
+
+        <div class="sort-bar" id="sort-bar" style="display:none">
+          <label for="sort-select">Sort by</label>
+          <select id="sort-select">
+            <option value="title-asc">Title A→Z</option>
+            <option value="title-desc">Title Z→A</option>
+            <option value="bpm-asc">BPM ↑</option>
+            <option value="bpm-desc">BPM ↓</option>
+            <option value="charts-desc">Most charts first</option>
+          </select>
+        </div>
+
+        <div id="results-body">
+          <p class="state-msg">Use the filters on the left and press <strong>Search</strong>.</p>
+        </div>
+      </main>
+
+    </div>
+
+    <footer>
+      <p>Feito com ❤️ por <a href="https://github.com/eparraga95">eparraga95</a></p>
+      <p class="footer-note" id="db-meta"></p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
