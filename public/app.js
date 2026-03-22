@@ -11,7 +11,7 @@ let lastResults = [];
 
 async function init() {
   try {
-    const res = await fetch('../data/songs.json');
+    const res = await fetch('/data/songs.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const db = await res.json();
 
