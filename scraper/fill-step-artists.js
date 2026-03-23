@@ -10,11 +10,12 @@
  *   (Get a free key at https://console.cloud.google.com → YouTube Data API v3)
  *
  * Usage:
- *   node scraper/fill-step-artists.js           -- dry run (prints what would change)
- *   node scraper/fill-step-artists.js --apply   -- writes songs.json
+ *   node scraper/fill-step-artists.js                    -- dry run (all missing)
+ *   node scraper/fill-step-artists.js --apply            -- apply all missing
+ *   node scraper/fill-step-artists.js --apply --limit 90 -- apply first 90 (safe for quota)
  *
- * API cost estimate: ~100 units per search + 1 unit per 50 videos ≈ 3,840 units
- * (Free tier quota: 10,000 units/day)
+ * API cost: 100 units/search. Free tier = 10,000 units/day → max 99 songs/day.
+ * With 118 missing, run --limit 90 today and the rest tomorrow.
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';
@@ -32,6 +33,10 @@ if (existsSync(envPath)) {
 const APPLY   = process.argv.includes('--apply');
 const DB_PATH = new URL('../data/songs.json', import.meta.url).pathname;
 const API_KEY = process.env.YOUTUBE_API_KEY;
+
+// Optional --limit N: process at most N songs (to stay within daily quota)
+const limitArg = process.argv.indexOf('--limit');
+const LIMIT    = limitArg >= 0 ? parseInt(process.argv[limitArg + 1], 10) : Infinity;
 
 // Official "펌프잇업공식 PUMP IT UP Official" channel ID.
 // (forHandle resolution via channels.list returned a different channel, so hardcoded.)
@@ -136,8 +141,12 @@ async function main() {
   const db    = JSON.parse(readFileSync(DB_PATH, 'utf8'));
   const songs = db.songs;
 
-  const targets = songs.filter(s => !s.stepArtist);
-  console.log(`Songs missing stepArtist: ${targets.length} / ${songs.length}\n`);
+  const allTargets = songs.filter(s => !s.stepArtist);
+  const targets    = allTargets.slice(0, LIMIT);
+
+  console.log(`Songs missing stepArtist: ${allTargets.length} / ${songs.length}`);
+  if (LIMIT < Infinity) console.log(`Processing: first ${targets.length} (--limit ${LIMIT})`);
+  console.log();
 
   if (targets.length === 0) {
     console.log('Nothing to do!');

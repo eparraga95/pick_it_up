@@ -11,7 +11,7 @@ let lastResults = [];
 
 async function init() {
   try {
-    const res = await fetch('/data/songs.json');
+    const res = await fetch("/data/songs.json");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const db = await res.json();
 
@@ -21,7 +21,7 @@ async function init() {
     updateDbMeta(db);
     bindEvents();
   } catch (err) {
-    document.getElementById('results-body').innerHTML =
+    document.getElementById("results-body").innerHTML =
       `<p class="state-msg">⚠️ Could not load songs.json: ${err.message}<br>
        Make sure you are serving from the project root (e.g. <code>npx serve .</code>).</p>`;
   }
@@ -30,28 +30,29 @@ async function init() {
 // ── Populate version dropdown ────────────────────────────────────────────
 
 const VERSION_LABELS = {
-  phoenix: 'Phoenix',
-  xx:      'XX',
-  prime2:  'Prime 2',
-  prime:   'Prime',
-  fiesta2: 'Fiesta 2',
-  fiesta:  'Fiesta',
-  exceed2: 'Exceed 2',
-  exceed:  'Exceed',
-  zero:    'Zero',
-  nxc:     'NXC',
-  nx2:     'NX2',
-  nx:      'NX',
+  phoenix: "Phoenix",
+  xx: "XX",
+  prime2: "Prime 2",
+  prime: "Prime",
+  fiesta2: "Fiesta 2",
+  fiesta: "Fiesta",
+  "nx~nx2": "NX to NX2",
+  "1st~3rd": "1st to 3rd",
+  "s.e.~extra": "S.E. to Extra",
+  fiestaex: "Fiesta EX",
+  "exceed~zero": "Exceed to Zero",
+  "rebirth~prex3": "Rebirth to Prex 3",
+  nxabsolute: "NX Absolute",
 };
 
 function labelFor(v) {
-  return VERSION_LABELS[v?.toLowerCase?.()] ?? v ?? '(unknown)';
+  return VERSION_LABELS[v?.toLowerCase?.()] ?? v ?? "(unknown)";
 }
 
 const VERSION_ORDER = Object.keys(VERSION_LABELS);
 
 function populateVersionFilter(songs) {
-  const versions = [...new Set(songs.map(s => s.version).filter(Boolean))];
+  const versions = [...new Set(songs.map((s) => s.version).filter(Boolean))];
   versions.sort((a, b) => {
     const ai = VERSION_ORDER.indexOf(a?.toLowerCase());
     const bi = VERSION_ORDER.indexOf(b?.toLowerCase());
@@ -60,9 +61,9 @@ function populateVersionFilter(songs) {
     return av - bv;
   });
 
-  const sel = document.getElementById('f-version');
-  versions.forEach(v => {
-    const opt = document.createElement('option');
+  const sel = document.getElementById("f-version");
+  versions.forEach((v) => {
+    const opt = document.createElement("option");
     opt.value = v;
     opt.textContent = labelFor(v);
     sel.appendChild(opt);
@@ -70,57 +71,69 @@ function populateVersionFilter(songs) {
 }
 
 function updateDbMeta(db) {
-  const el = document.getElementById('db-meta');
-  const songs  = db.totalSongs  ?? allSongs.length;
-  const charts = db.totalCharts ?? allSongs.reduce((s, sg) => s + sg.charts.length, 0);
-  const patch  = db.lastPatchApplied ? ` · last patch: ${db.lastPatchApplied}` : '';
+  const el = document.getElementById("db-meta");
+  const songs = db.totalSongs ?? allSongs.length;
+  const charts =
+    db.totalCharts ?? allSongs.reduce((s, sg) => s + sg.charts.length, 0);
+  const patch = db.lastPatchApplied
+    ? ` · last patch: ${db.lastPatchApplied}`
+    : "";
   el.textContent = `Database: ${songs} songs · ${charts} charts${patch}`;
 }
 
 // ── Events ───────────────────────────────────────────────────────────────
 
 function bindEvents() {
-  document.getElementById('btn-search').addEventListener('click', runSearch);
-  document.getElementById('btn-reset').addEventListener('click', resetFilters);
-  document.getElementById('sort-select').addEventListener('change', () => renderResults(lastResults));
+  document.getElementById("btn-search").addEventListener("click", runSearch);
+  document.getElementById("btn-reset").addEventListener("click", resetFilters);
+  document
+    .getElementById("sort-select")
+    .addEventListener("change", () => renderResults(lastResults));
 
   // Enter key fires search from any filter input
-  document.querySelectorAll('.filter-panel input, .filter-panel select').forEach(el => {
-    el.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
-  });
+  document
+    .querySelectorAll(".filter-panel input, .filter-panel select")
+    .forEach((el) => {
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") runSearch();
+      });
+    });
 }
 
 function getFilters() {
   return {
-    title:      document.getElementById('f-title').value.trim().toLowerCase(),
-    artist:     document.getElementById('f-artist').value.trim().toLowerCase(),
-    stepArtist: document.getElementById('f-step-artist').value.trim().toLowerCase(),
-    type:     document.querySelector('input[name="type"]:checked')?.value ?? 'all',
-    levelMin: parseInt(document.getElementById('f-level-min').value) || 1,
-    levelMax: parseInt(document.getElementById('f-level-max').value) || 28,
-    mode:     document.getElementById('f-mode').value,
-    version:  document.getElementById('f-version').value,
-    bpmMin:   parseInt(document.getElementById('f-bpm-min').value) || null,
-    bpmMax:   parseInt(document.getElementById('f-bpm-max').value) || null,
+    title: document.getElementById("f-title").value.trim().toLowerCase(),
+    artist: document.getElementById("f-artist").value.trim().toLowerCase(),
+    stepArtist: document
+      .getElementById("f-step-artist")
+      .value.trim()
+      .toLowerCase(),
+    type: document.querySelector('input[name="type"]:checked')?.value ?? "all",
+    levelMin: parseInt(document.getElementById("f-level-min").value) || 1,
+    levelMax: parseInt(document.getElementById("f-level-max").value) || 28,
+    mode: document.getElementById("f-mode").value,
+    version: document.getElementById("f-version").value,
+    bpmMin: parseInt(document.getElementById("f-bpm-min").value) || null,
+    bpmMax: parseInt(document.getElementById("f-bpm-max").value) || null,
   };
 }
 
 function resetFilters() {
-  document.getElementById('f-title').value  = '';
-  document.getElementById('f-artist').value      = '';
-  document.getElementById('f-step-artist').value = '';
-  document.getElementById('f-level-min').value = '';
-  document.getElementById('f-level-max').value = '';
-  document.getElementById('f-mode').value    = '';
-  document.getElementById('f-version').value = '';
-  document.getElementById('f-bpm-min').value = '';
-  document.getElementById('f-bpm-max').value = '';
+  document.getElementById("f-title").value = "";
+  document.getElementById("f-artist").value = "";
+  document.getElementById("f-step-artist").value = "";
+  document.getElementById("f-level-min").value = "";
+  document.getElementById("f-level-max").value = "";
+  document.getElementById("f-mode").value = "";
+  document.getElementById("f-version").value = "";
+  document.getElementById("f-bpm-min").value = "";
+  document.getElementById("f-bpm-max").value = "";
   document.querySelector('input[name="type"][value="all"]').checked = true;
 
   lastResults = [];
-  document.getElementById('results-count').textContent = '';
-  document.getElementById('sort-bar').style.display = 'none';
-  document.getElementById('results-body').innerHTML =
+  document.getElementById("results-count").textContent = "";
+  document.getElementById("sort-bar").style.display = "none";
+  document.getElementById("results-body").innerHTML =
     '<p class="state-msg">Use the filters on the left and press <strong>Search</strong>.</p>';
 }
 
@@ -137,18 +150,19 @@ function runSearch() {
 
     // Song artist match
     if (f.artist) {
-      const sa = (song.songArtist ?? '').toLowerCase();
+      const sa = (song.songArtist ?? "").toLowerCase();
       if (!sa.includes(f.artist)) continue;
     }
 
     // Step artist match
     if (f.stepArtist) {
-      const st = (song.stepArtist ?? '').toLowerCase();
+      const st = (song.stepArtist ?? "").toLowerCase();
       if (!st.includes(f.stepArtist)) continue;
     }
 
     // Version match (at song level)
-    if (f.version && song.version?.toLowerCase() !== f.version.toLowerCase()) continue;
+    if (f.version && song.version?.toLowerCase() !== f.version.toLowerCase())
+      continue;
 
     // BPM match (skip songs with null bpm when bpm filter is active)
     if (f.bpmMin !== null || f.bpmMax !== null) {
@@ -158,9 +172,9 @@ function runSearch() {
     }
 
     // Filter charts
-    const matchedCharts = song.charts.filter(c => {
-      if (f.type !== 'all' && c.type !== f.type) return false;
-      if (c.level < f.levelMin || c.level > f.levelMax)  return false;
+    const matchedCharts = song.charts.filter((c) => {
+      if (f.type !== "all" && c.type !== f.type) return false;
+      if (c.level < f.levelMin || c.level > f.levelMax) return false;
       if (f.mode && c.mode !== f.mode) return false;
       return true;
     });
@@ -177,28 +191,29 @@ function runSearch() {
 // ── Render ───────────────────────────────────────────────────────────────
 
 function renderResults(results) {
-  const sortKey = document.getElementById('sort-select').value;
-  const sorted  = sortResults([...results], sortKey);
+  const sortKey = document.getElementById("sort-select").value;
+  const sorted = sortResults([...results], sortKey);
 
-  const body  = document.getElementById('results-body');
-  const count = document.getElementById('results-count');
-  const sortBar = document.getElementById('sort-bar');
+  const body = document.getElementById("results-body");
+  const count = document.getElementById("results-count");
+  const sortBar = document.getElementById("sort-bar");
 
   const totalCharts = results.reduce((n, r) => n + r.matchedCharts.length, 0);
 
   if (results.length === 0) {
-    sortBar.style.display = 'none';
-    count.textContent = '';
-    body.innerHTML = '<p class="state-msg">No songs match the current filters.</p>';
+    sortBar.style.display = "none";
+    count.textContent = "";
+    body.innerHTML =
+      '<p class="state-msg">No songs match the current filters.</p>';
     return;
   }
 
-  sortBar.style.display = '';
-  count.innerHTML = `<strong>${results.length}</strong> song${results.length !== 1 ? 's' : ''}, <strong>${totalCharts}</strong> chart${totalCharts !== 1 ? 's' : ''}`;
+  sortBar.style.display = "";
+  count.innerHTML = `<strong>${results.length}</strong> song${results.length !== 1 ? "s" : ""}, <strong>${totalCharts}</strong> chart${totalCharts !== 1 ? "s" : ""}`;
 
-  body.innerHTML = '';
-  const list = document.createElement('div');
-  list.className = 'song-list';
+  body.innerHTML = "";
+  const list = document.createElement("div");
+  list.className = "song-list";
 
   for (const { song, matchedCharts } of sorted) {
     list.appendChild(buildCard(song, matchedCharts));
@@ -209,100 +224,112 @@ function renderResults(results) {
 
 function sortResults(results, key) {
   switch (key) {
-    case 'title-asc':    return results.sort((a, b) => a.song.title.localeCompare(b.song.title));
-    case 'title-desc':   return results.sort((a, b) => b.song.title.localeCompare(a.song.title));
-    case 'bpm-asc':      return results.sort((a, b) => (a.song.bpm ?? 0) - (b.song.bpm ?? 0));
-    case 'bpm-desc':     return results.sort((a, b) => (b.song.bpm ?? 0) - (a.song.bpm ?? 0));
-    case 'charts-desc':  return results.sort((a, b) => b.matchedCharts.length - a.matchedCharts.length);
-    default:             return results;
+    case "title-asc":
+      return results.sort((a, b) => a.song.title.localeCompare(b.song.title));
+    case "title-desc":
+      return results.sort((a, b) => b.song.title.localeCompare(a.song.title));
+    case "bpm-asc":
+      return results.sort((a, b) => (a.song.bpm ?? 0) - (b.song.bpm ?? 0));
+    case "bpm-desc":
+      return results.sort((a, b) => (b.song.bpm ?? 0) - (a.song.bpm ?? 0));
+    case "charts-desc":
+      return results.sort(
+        (a, b) => b.matchedCharts.length - a.matchedCharts.length,
+      );
+    default:
+      return results;
   }
 }
 
 // ── Card builder ──────────────────────────────────────────────────────────
 
 function buildCard(song, matchedCharts) {
-  const card = document.createElement('div');
-  card.className = 'song-card';
+  const card = document.createElement("div");
+  card.className = "song-card";
 
   // Header row
-  const header = document.createElement('div');
-  header.className = 'song-card-header';
+  const header = document.createElement("div");
+  header.className = "song-card-header";
 
-  const titleEl = document.createElement('span');
-  titleEl.className = 'song-title';
+  const titleEl = document.createElement("span");
+  titleEl.className = "song-title";
   titleEl.textContent = song.title;
   header.appendChild(titleEl);
 
   card.appendChild(header);
 
   // Meta row
-  const meta = document.createElement('div');
-  meta.className = 'song-meta';
+  const meta = document.createElement("div");
+  meta.className = "song-meta";
 
   function metaRow(label, value) {
-    const row = document.createElement('div');
-    row.className = 'meta-row';
-    const k = document.createElement('span');
-    k.className = 'meta-key';
+    const row = document.createElement("div");
+    row.className = "meta-row";
+    const k = document.createElement("span");
+    k.className = "meta-key";
     k.textContent = label;
-    const v = document.createElement('span');
-    v.className = value ? 'meta-val' : 'meta-val meta-val--missing';
-    v.textContent = value ?? 'unknown';
+    const v = document.createElement("span");
+    v.className = value ? "meta-val" : "meta-val meta-val--missing";
+    v.textContent = value ?? "unknown";
     row.appendChild(k);
     row.appendChild(v);
     return row;
   }
 
-  const infoRow = document.createElement('div');
-  infoRow.className = 'meta-row meta-row--info';
+  const infoRow = document.createElement("div");
+  infoRow.className = "meta-row meta-row--info";
   if (song.bpm) {
-    const bpmEl = document.createElement('span');
-    bpmEl.className = 'meta-bpm';
+    const bpmEl = document.createElement("span");
+    bpmEl.className = "meta-bpm";
     bpmEl.textContent = `${song.bpm} BPM`;
     infoRow.appendChild(bpmEl);
   }
   if (song.version) {
-    const pill = document.createElement('span');
-    pill.className = 'version-pill';
+    const pill = document.createElement("span");
+    pill.className = "version-pill";
     pill.textContent = labelFor(song.version);
     infoRow.appendChild(pill);
   }
   if (infoRow.children.length) meta.appendChild(infoRow);
 
-  meta.appendChild(metaRow('Song', song.songArtist));
-  meta.appendChild(metaRow('Steps', song.stepArtist));
+  meta.appendChild(metaRow("Song", song.songArtist));
+  meta.appendChild(metaRow("Steps", song.stepArtist));
 
   card.appendChild(meta);
 
   // Charts row — sorted: S before D, then by level asc
-  const chartsRow = document.createElement('div');
-  chartsRow.className = 'charts-row';
+  const chartsRow = document.createElement("div");
+  chartsRow.className = "charts-row";
 
-  const sorted = [...matchedCharts].sort((a, b) =>
-    b.type.localeCompare(a.type) || a.level - b.level
+  const sorted = [...matchedCharts].sort(
+    (a, b) => b.type.localeCompare(a.type) || a.level - b.level,
   );
 
   for (const chart of sorted) {
-    const badge = document.createElement('span');
+    const badge = document.createElement("span");
     badge.className = `chart-badge type-${chart.type}`;
 
-    const typeIndicator = document.createElement('span');
-    typeIndicator.className = 'type-indicator';
+    const typeIndicator = document.createElement("span");
+    typeIndicator.className = "type-indicator";
     typeIndicator.textContent = chart.type;
 
-    const levelEl = document.createElement('span');
+    const levelEl = document.createElement("span");
     levelEl.textContent = chart.level;
 
     badge.appendChild(typeIndicator);
     badge.appendChild(levelEl);
 
-    if (chart.mode && chart.mode !== 'arcade') {
-      const modeTag = document.createElement('span');
-      modeTag.className = 'mode-tag';
-      modeTag.textContent = chart.mode === 'shortcut' ? 'SC'
-        : chart.mode === 'fullsong' ? 'FS'
-        : chart.mode === 'remix'    ? 'RMX'
-        : chart.mode;
+    if (chart.mode && chart.mode !== "arcade") {
+      const modeTag = document.createElement("span");
+      modeTag.className = "mode-tag";
+      modeTag.textContent =
+        chart.mode === "shortcut"
+          ? "SC"
+          : chart.mode === "fullsong"
+            ? "FS"
+            : chart.mode === "remix"
+              ? "RMX"
+              : chart.mode;
       badge.appendChild(modeTag);
     }
 

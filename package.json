@@ -13,6 +13,7 @@
     "fill-artists:apply": "node scraper/fill-song-artists.js --apply",
     "fill-step-artists": "node scraper/fill-step-artists.js",
     "fill-step-artists:apply": "node scraper/fill-step-artists.js --apply",
+    "fill-step-artists:batch": "node scraper/fill-step-artists.js --apply --limit 90",
     "split-modes": "node scraper/split-mixed-modes.js",
     "split-modes:apply": "node scraper/split-mixed-modes.js --apply",
     "serve": "npx serve . -l 3000"
