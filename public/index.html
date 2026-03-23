@@ -16,8 +16,14 @@
       <div class="content">
         <!-- ── Filter Panel ───────────────────────────── -->
         <aside class="filter-panel">
-          <h2>Filters</h2>
+          <!-- ── Tabs ──────────────────────────────────── -->
+          <div class="panel-tabs">
+            <button class="panel-tab active" data-tab="filters">Filters</button>
+            <button class="panel-tab" data-tab="overlap">Overlap</button>
+          </div>
 
+          <!-- ── Filters tab ───────────────────────────── -->
+          <div class="tab-panel" id="panel-filters">
           <div class="filter-grid">
             <div class="filter-group full-width">
               <label for="f-title">Song title</label>
@@ -77,6 +83,7 @@
                   id="f-level-min"
                   min="1"
                   max="29"
+                  step="1"
                   placeholder="1"
                 />
                 <span class="range-sep">to</span>
@@ -85,6 +92,7 @@
                   id="f-level-max"
                   min="1"
                   max="29"
+                  step="1"
                   placeholder="29"
                 />
               </div>
@@ -112,9 +120,9 @@
             <div class="filter-group full-width">
               <label>BPM range</label>
               <div class="range-row">
-                <input type="number" id="f-bpm-min" min="1" placeholder="min" />
+                <input type="number" id="f-bpm-min" min="1" step="1" placeholder="min" />
                 <span class="range-sep">to</span>
-                <input type="number" id="f-bpm-max" min="1" placeholder="max" />
+                <input type="number" id="f-bpm-max" min="1" step="1" placeholder="max" />
               </div>
             </div>
           </div>
@@ -123,6 +131,40 @@
             <button class="btn-primary" id="btn-search">Search</button>
             <button class="btn-ghost" id="btn-reset">Reset</button>
           </div>
+          </div><!-- /panel-filters -->
+
+          <!-- ── Overlap tab ────────────────────────────── -->
+          <div class="tab-panel" id="panel-overlap" style="display:none">
+            <p class="overlap-desc">Find songs that have charts at <em>both</em> levels simultaneously.</p>
+
+            <div class="filter-grid">
+              <div class="filter-group full-width">
+                <label>Chart type</label>
+                <div class="type-toggle">
+                  <input type="radio" name="ov-type" id="ov-type-all" value="all" checked />
+                  <label for="ov-type-all">All</label>
+                  <input type="radio" name="ov-type" id="ov-type-s" value="S" />
+                  <label for="ov-type-s">Single</label>
+                  <input type="radio" name="ov-type" id="ov-type-d" value="D" />
+                  <label for="ov-type-d">Double</label>
+                </div>
+              </div>
+
+              <div class="filter-group full-width">
+                <label>Both levels present</label>
+                <div class="range-row">
+                  <input type="number" id="ov-level-a" min="1" max="29" step="1" placeholder="e.g. 18" />
+                  <span class="range-sep">&amp;</span>
+                  <input type="number" id="ov-level-b" min="1" max="29" step="1" placeholder="e.g. 21" />
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-actions">
+              <button class="btn-primary" id="btn-overlap-search">Search</button>
+              <button class="btn-ghost" id="btn-overlap-reset">Reset</button>
+            </div>
+          </div><!-- /panel-overlap -->
         </aside>
 
         <!-- ── Results Panel ──────────────────────────── -->

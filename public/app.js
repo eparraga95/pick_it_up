@@ -90,14 +90,41 @@ function bindEvents() {
     .getElementById("sort-select")
     .addEventListener("change", () => renderResults(lastResults));
 
+  // Overlap tab
+  document.getElementById("btn-overlap-search").addEventListener("click", runOverlapSearch);
+  document.getElementById("btn-overlap-reset").addEventListener("click", resetOverlap);
+
+  // Tab switching
+  document.querySelectorAll(".panel-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".panel-tab").forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      const target = tab.dataset.tab;
+      document.getElementById("panel-filters").style.display = target === "filters" ? "flex" : "none";
+      document.getElementById("panel-overlap").style.display = target === "overlap" ? "flex" : "none";
+    });
+  });
+
   // Enter key fires search from any filter input
   document
     .querySelectorAll(".filter-panel input, .filter-panel select")
     .forEach((el) => {
       el.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") runSearch();
+        if (e.key === "Enter") {
+          const inOverlap = el.closest("#panel-overlap");
+          if (inOverlap) runOverlapSearch(); else runSearch();
+        }
       });
     });
+
+  // Sanitise number inputs: no negatives, integers only
+  document.querySelectorAll('.filter-panel input[type="number"]').forEach((el) => {
+    el.addEventListener("input", () => {
+      if (el.value === "") return;
+      const clean = el.value.replace(/[^0-9]/g, "");
+      el.value = clean === "" ? "" : String(parseInt(clean, 10));
+    });
+  });
 }
 
 function getFilters() {
@@ -135,6 +162,56 @@ function resetFilters() {
   document.getElementById("sort-bar").style.display = "none";
   document.getElementById("results-body").innerHTML =
     '<p class="state-msg">Use the filters on the left and press <strong>Search</strong>.</p>';
+}
+
+// ── Overlap Search ────────────────────────────────────────────────────────────
+
+function resetOverlap() {
+  document.getElementById("ov-level-a").value = "";
+  document.getElementById("ov-level-b").value = "";
+  document.querySelector('input[name="ov-type"][value="all"]').checked = true;
+
+  lastResults = [];
+  document.getElementById("results-count").textContent = "";
+  document.getElementById("sort-bar").style.display = "none";
+  document.getElementById("results-body").innerHTML =
+    '<p class="state-msg">Enter two levels and press <strong>Search</strong>.</p>';
+}
+
+function runOverlapSearch() {
+  const levelA = parseInt(document.getElementById("ov-level-a").value);
+  const levelB = parseInt(document.getElementById("ov-level-b").value);
+  const type   = document.querySelector('input[name="ov-type"]:checked')?.value ?? "all";
+
+  if (isNaN(levelA) || isNaN(levelB)) {
+    document.getElementById("results-body").innerHTML =
+      '<p class="state-msg">Please enter both levels.</p>';
+    document.getElementById("results-count").textContent = "";
+    document.getElementById("sort-bar").style.display = "none";
+    return;
+  }
+
+  const results = [];
+
+  for (const song of allSongs) {
+    // Candidate charts that match the type filter
+    const candidates = type === "all" ? song.charts : song.charts.filter((c) => c.type === type);
+
+    const hasA = candidates.some((c) => c.level === levelA);
+    const hasB = candidates.some((c) => c.level === levelB);
+
+    if (!hasA || !hasB) continue;
+
+    // Show only the two overlapping charts (or all if A === B)
+    const matchedCharts = candidates.filter(
+      (c) => c.level === levelA || c.level === levelB
+    );
+
+    results.push({ song, matchedCharts });
+  }
+
+  lastResults = results;
+  renderResults(results);
 }
 
 // ── Search ───────────────────────────────────────────────────────────────
