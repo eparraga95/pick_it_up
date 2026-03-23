@@ -137,7 +137,7 @@ function getFilters() {
       .toLowerCase(),
     type: document.querySelector('input[name="type"]:checked')?.value ?? "all",
     levelMin: parseInt(document.getElementById("f-level-min").value) || 1,
-    levelMax: parseInt(document.getElementById("f-level-max").value) || 28,
+    levelMax: parseInt(document.getElementById("f-level-max").value) || 29,
     mode: document.getElementById("f-mode").value,
     version: document.getElementById("f-version").value,
     bpmMin: parseInt(document.getElementById("f-bpm-min").value) || null,
