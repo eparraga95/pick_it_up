@@ -335,14 +335,47 @@ h1 {
 
 .song-meta {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 3px;
   margin-bottom: 10px;
   font-size: 0.75rem;
-  color: var(--text-muted);
 }
 
-.song-meta .sep { opacity: 0.4; }
+.meta-row {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
+.meta-row--info {
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.meta-key {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.meta-val {
+  color: var(--text-color);
+}
+
+.meta-val--missing {
+  color: #555;
+  font-style: italic;
+}
+
+.meta-bpm {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
 
 .version-pill {
   display: inline-block;

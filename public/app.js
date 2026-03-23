@@ -232,28 +232,38 @@ function buildCard(song, matchedCharts) {
   const meta = document.createElement('div');
   meta.className = 'song-meta';
 
-  const parts = [];
-  if (song.songArtist) parts.push(song.songArtist);
-  if (song.bpm)        parts.push(`${song.bpm} BPM`);
+  function metaRow(label, value) {
+    const row = document.createElement('div');
+    row.className = 'meta-row';
+    const k = document.createElement('span');
+    k.className = 'meta-key';
+    k.textContent = label;
+    const v = document.createElement('span');
+    v.className = value ? 'meta-val' : 'meta-val meta-val--missing';
+    v.textContent = value ?? 'unknown';
+    row.appendChild(k);
+    row.appendChild(v);
+    return row;
+  }
 
-  parts.forEach((p, i) => {
-    const sp = document.createElement('span');
-    sp.textContent = p;
-    meta.appendChild(sp);
-    if (i < parts.length - 1) {
-      const sep = document.createElement('span');
-      sep.className = 'sep';
-      sep.textContent = '·';
-      meta.appendChild(sep);
-    }
-  });
-
+  const infoRow = document.createElement('div');
+  infoRow.className = 'meta-row meta-row--info';
+  if (song.bpm) {
+    const bpmEl = document.createElement('span');
+    bpmEl.className = 'meta-bpm';
+    bpmEl.textContent = `${song.bpm} BPM`;
+    infoRow.appendChild(bpmEl);
+  }
   if (song.version) {
     const pill = document.createElement('span');
     pill.className = 'version-pill';
     pill.textContent = labelFor(song.version);
-    meta.appendChild(pill);
+    infoRow.appendChild(pill);
   }
+  if (infoRow.children.length) meta.appendChild(infoRow);
+
+  meta.appendChild(metaRow('Song', song.songArtist));
+  meta.appendChild(metaRow('Steps', song.stepArtist));
 
   card.appendChild(meta);
 
