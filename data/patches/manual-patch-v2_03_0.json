@@ -1,5 +1,6 @@
 {
   "version": "phoenix",
+  "version_tag": "2.03.0",
   "releaseDate": "2024-09-26",
   "sourceUrl": "https://piugame.com/phoenix_notice?sca=update&wr_id=",
   "_notes": "Hymn of Golden Glory is a premium mode exclusive. '* this game does not exist *' has variable BPM (40~240), stored as null. B1G ONE event info is cosmetic only — ignored.",

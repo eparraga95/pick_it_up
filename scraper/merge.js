@@ -181,7 +181,7 @@ db.songs.sort((a, b) => a.title.localeCompare(b.title));
 
 db.totalSongs   = db.songs.length;
 db.totalCharts  = db.songs.reduce((acc, s) => acc + s.charts.length, 0);
-db.lastPatchApplied = patch.version;
+db.lastPatchApplied = patch.version_tag;
 db.lastUpdated  = new Date().toISOString();
 
 writeFileSync(SONGS_PATH, JSON.stringify(db, null, 2), 'utf8');
