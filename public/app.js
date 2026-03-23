@@ -318,21 +318,6 @@ function buildCard(song, matchedCharts) {
 
     badge.appendChild(typeIndicator);
     badge.appendChild(levelEl);
-
-    if (chart.mode && chart.mode !== "arcade") {
-      const modeTag = document.createElement("span");
-      modeTag.className = "mode-tag";
-      modeTag.textContent =
-        chart.mode === "shortcut"
-          ? "SC"
-          : chart.mode === "fullsong"
-            ? "FS"
-            : chart.mode === "remix"
-              ? "RMX"
-              : chart.mode;
-      badge.appendChild(modeTag);
-    }
-
     chartsRow.appendChild(badge);
   }
 
