@@ -92,8 +92,9 @@ function bindEvents() {
 
 function getFilters() {
   return {
-    title:    document.getElementById('f-title').value.trim().toLowerCase(),
-    artist:   document.getElementById('f-artist').value.trim().toLowerCase(),
+    title:      document.getElementById('f-title').value.trim().toLowerCase(),
+    artist:     document.getElementById('f-artist').value.trim().toLowerCase(),
+    stepArtist: document.getElementById('f-step-artist').value.trim().toLowerCase(),
     type:     document.querySelector('input[name="type"]:checked')?.value ?? 'all',
     levelMin: parseInt(document.getElementById('f-level-min').value) || 1,
     levelMax: parseInt(document.getElementById('f-level-max').value) || 28,
@@ -106,7 +107,8 @@ function getFilters() {
 
 function resetFilters() {
   document.getElementById('f-title').value  = '';
-  document.getElementById('f-artist').value = '';
+  document.getElementById('f-artist').value      = '';
+  document.getElementById('f-step-artist').value = '';
   document.getElementById('f-level-min').value = '';
   document.getElementById('f-level-max').value = '';
   document.getElementById('f-mode').value    = '';
@@ -133,11 +135,16 @@ function runSearch() {
     // Title match
     if (f.title && !song.title.toLowerCase().includes(f.title)) continue;
 
-    // Artist match (song artist or step artist)
+    // Song artist match
     if (f.artist) {
       const sa = (song.songArtist ?? '').toLowerCase();
+      if (!sa.includes(f.artist)) continue;
+    }
+
+    // Step artist match
+    if (f.stepArtist) {
       const st = (song.stepArtist ?? '').toLowerCase();
-      if (!sa.includes(f.artist) && !st.includes(f.artist)) continue;
+      if (!st.includes(f.stepArtist)) continue;
     }
 
     // Version match (at song level)
