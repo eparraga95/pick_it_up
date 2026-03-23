@@ -1,8 +1,8 @@
 {
   "generatedAt": "2026-03-22T19:56:38.308Z",
   "source": "piucenter.com",
-  "totalSongs": 581,
-  "totalCharts": 4417,
+  "totalSongs": 640,
+  "totalCharts": 4413,
   "songs": [
     {
       "id": "this-game-does-not-exist",
@@ -341,19 +341,9 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 23,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 12,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 15,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -364,6 +354,26 @@
           "type": "S",
           "level": 20,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "DASU",
+      "stepArtist": null
+    },
+    {
+      "id": "8-6-full-song",
+      "title": "8 6 - FULL SONG -",
+      "bpm": 167,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 23,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 15,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -372,7 +382,7 @@
         }
       ],
       "songArtist": "DASU",
-      "stepArtist": "EXC"
+      "stepArtist": null
     },
     {
       "id": "a-nightmare",
@@ -1052,18 +1062,8 @@
         },
         {
           "type": "D",
-          "level": 21,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
           "level": 23,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 25,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -1087,13 +1087,33 @@
         },
         {
           "type": "S",
-          "level": 18,
+          "level": 22,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "DM Ashura",
+      "stepArtist": null
+    },
+    {
+      "id": "allegro-con-fuoco-full-song",
+      "title": "Allegro Con Fuoco - FULL SONG -",
+      "bpm": 156,
+      "version": "fiestaex",
+      "charts": [
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 25,
           "mode": "fullsong"
         },
         {
           "type": "S",
-          "level": 22,
-          "mode": "arcade"
+          "level": 18,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -1102,7 +1122,7 @@
         }
       ],
       "songArtist": "DM Ashura",
-      "stepArtist": "EXC"
+      "stepArtist": null
     },
     {
       "id": "allegro-furioso",
@@ -2247,16 +2267,6 @@
         },
         {
           "type": "D",
-          "level": 12,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
-          "level": 18,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
           "level": 18,
           "mode": "arcade"
         },
@@ -2264,11 +2274,6 @@
           "type": "D",
           "level": 20,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 22,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -2292,28 +2297,13 @@
         },
         {
           "type": "S",
-          "level": 10,
-          "mode": "fullsong"
-        },
-        {
-          "type": "S",
           "level": 13,
           "mode": "arcade"
         },
         {
           "type": "S",
-          "level": 14,
-          "mode": "fullsong"
-        },
-        {
-          "type": "S",
           "level": 15,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 17,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -2327,7 +2317,47 @@
         }
       ],
       "songArtist": "Masayoshi Minoshima",
-      "stepArtist": "Nimgo"
+      "stepArtist": null
+    },
+    {
+      "id": "bad-apple-feat-nomico-full-song",
+      "title": "Bad Apple!! feat. Nomico - FULL SONG -",
+      "bpm": 138,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 12,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 22,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 10,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 14,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "fullsong"
+        }
+      ],
+      "songArtist": "Masayoshi Minoshima",
+      "stepArtist": null
     },
     {
       "id": "banya-classic-remix",
@@ -2501,16 +2531,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 20,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
-          "level": 23,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 5,
           "mode": "arcade"
@@ -2522,13 +2542,33 @@
         },
         {
           "type": "S",
-          "level": 15,
+          "level": 17,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "Zircon",
+      "stepArtist": null
+    },
+    {
+      "id": "baroque-virus-full-song",
+      "title": "Baroque Virus - FULL SONG -",
+      "bpm": 135,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 20,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 23,
           "mode": "fullsong"
         },
         {
           "type": "S",
-          "level": 17,
-          "mode": "arcade"
+          "level": 15,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -2542,7 +2582,7 @@
         }
       ],
       "songArtist": "Zircon",
-      "stepArtist": "AEVILUX"
+      "stepArtist": null
     },
     {
       "id": "battle-no-1",
@@ -2661,11 +2701,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 21,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 4,
           "mode": "arcade"
@@ -2694,6 +2729,21 @@
           "type": "S",
           "level": 21,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
+    },
+    {
+      "id": "beat-of-the-war-2-full-song",
+      "title": "Beat of The War 2 - FULL SONG -",
+      "bpm": 190,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -2702,7 +2752,7 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "beat-the-ghost",
@@ -3052,23 +3102,38 @@
         },
         {
           "type": "D",
-          "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 26,
           "mode": "remix"
         },
         {
           "type": "S",
-          "level": 15,
+          "level": 17,
+          "mode": "remix"
+        },
+        {
+          "type": "S",
+          "level": 24,
+          "mode": "remix"
+        }
+      ],
+      "songArtist": "YAHPP",
+      "stepArtist": null
+    },
+    {
+      "id": "bemera-short-cut",
+      "title": "BEMERA - SHORT CUT -",
+      "bpm": 210,
+      "version": "nx~nx2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 19,
           "mode": "shortcut"
         },
         {
           "type": "S",
-          "level": 17,
-          "mode": "remix"
+          "level": 15,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -3079,15 +3144,10 @@
           "type": "S",
           "level": 22,
           "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 24,
-          "mode": "remix"
         }
       ],
       "songArtist": "YAHPP",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "betrayer",
@@ -4327,23 +4387,8 @@
         },
         {
           "type": "D",
-          "level": 13,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 15,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 15,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
-          "level": 17,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -4352,28 +4397,8 @@
         },
         {
           "type": "D",
-          "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
-          "level": 21,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
-          "level": 23,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 23,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 25,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -4402,7 +4427,52 @@
         }
       ],
       "songArtist": "Sr. Lan Belmont",
-      "stepArtist": "EXC"
+      "stepArtist": null
+    },
+    {
+      "id": "can-can-orpheus-in-the-party-mix-short-cut",
+      "title": "Can-can Orpheus in The Party Mix - SHORT CUT -",
+      "bpm": 195,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 13,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 15,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 19,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 23,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 25,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "Sr. Lan Belmont",
+      "stepArtist": null
     },
     {
       "id": "cannon-x-1",
@@ -4471,16 +4541,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 23,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
-          "level": 24,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 3,
           "mode": "arcade"
@@ -4494,16 +4554,6 @@
           "type": "S",
           "level": 11,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 15,
-          "mode": "fullsong"
-        },
-        {
-          "type": "S",
-          "level": 17,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -4522,7 +4572,37 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "MaxAngel"
+      "stepArtist": null
+    },
+    {
+      "id": "canon-d-full-song",
+      "title": "Canon D - FULL SONG -",
+      "bpm": 160,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 23,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 24,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 15,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "fullsong"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
     },
     {
       "id": "caprice-of-dj-otada",
@@ -4781,11 +4861,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 25,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 3,
           "mode": "arcade"
@@ -4812,17 +4887,32 @@
         },
         {
           "type": "S",
-          "level": 19,
-          "mode": "fullsong"
-        },
-        {
-          "type": "S",
           "level": 20,
           "mode": "arcade"
         }
       ],
       "songArtist": "Dreamcatcher",
-      "stepArtist": "NIMGO"
+      "stepArtist": null
+    },
+    {
+      "id": "chase-me-full-song",
+      "title": "Chase Me - FULL SONG -",
+      "bpm": 200,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 25,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 19,
+          "mode": "fullsong"
+        }
+      ],
+      "songArtist": "Dreamcatcher",
+      "stepArtist": null
     },
     {
       "id": "chicken-wing",
@@ -4830,11 +4920,6 @@
       "bpm": 100,
       "version": "s.e.~extra",
       "charts": [
-        {
-          "type": "D",
-          "level": 15,
-          "mode": "shortcut"
-        },
         {
           "type": "D",
           "level": 18,
@@ -4873,11 +4958,6 @@
         {
           "type": "S",
           "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 20,
           "mode": "arcade"
         },
         {
@@ -4887,7 +4967,27 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "chicken-wing-short-cut",
+      "title": "Chicken Wing - SHORT CUT -",
+      "bpm": 100,
+      "version": "s.e.~extra",
+      "charts": [
+        {
+          "type": "D",
+          "level": 15,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 20,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
     },
     {
       "id": "chimera",
@@ -5046,11 +5146,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 20,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 6,
           "mode": "arcade"
@@ -5063,16 +5158,31 @@
         {
           "type": "S",
           "level": 17,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "YAHPP",
+      "stepArtist": null
+    },
+    {
+      "id": "chopsticks-challenge-full-song",
+      "title": "Chopsticks Challenge - FULL SONG -",
+      "bpm": 128,
+      "version": "nxabsolute",
+      "charts": [
+        {
+          "type": "D",
+          "level": 20,
           "mode": "fullsong"
         },
         {
           "type": "S",
           "level": 17,
-          "mode": "arcade"
+          "mode": "fullsong"
         }
       ],
       "songArtist": "YAHPP",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "christmas-memories",
@@ -5127,11 +5237,6 @@
         },
         {
           "type": "D",
-          "level": 22,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 25,
           "mode": "arcade"
         },
@@ -5163,11 +5268,6 @@
         {
           "type": "S",
           "level": 21,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 21,
           "mode": "arcade"
         },
         {
@@ -5177,7 +5277,27 @@
         }
       ],
       "songArtist": "Doin",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "cleaner-short-cut",
+      "title": "Cleaner - SHORT CUT -",
+      "bpm": 176,
+      "version": "fiestaex",
+      "charts": [
+        {
+          "type": "D",
+          "level": 22,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 21,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "Doin",
+      "stepArtist": null
     },
     {
       "id": "clematis-rapsodia",
@@ -6532,18 +6652,8 @@
         },
         {
           "type": "D",
-          "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 21,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 23,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -6557,11 +6667,6 @@
         },
         {
           "type": "S",
-          "level": 9,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 12,
           "mode": "arcade"
         },
@@ -6572,11 +6677,6 @@
         },
         {
           "type": "S",
-          "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 17,
           "mode": "arcade"
         },
@@ -6584,6 +6684,36 @@
           "type": "S",
           "level": 19,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
+    },
+    {
+      "id": "death-moon-short-cut",
+      "title": "Death Moon - SHORT CUT -",
+      "bpm": 160,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 19,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 23,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 9,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 16,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -6597,7 +6727,7 @@
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "EXC"
+      "stepArtist": null
     },
     {
       "id": "deca-dance",
@@ -6793,17 +6923,7 @@
         {
           "type": "D",
           "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
-          "level": 20,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 21,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -6817,18 +6937,8 @@
         },
         {
           "type": "S",
-          "level": 11,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 13,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 15,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -6847,7 +6957,37 @@
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "destination-short-cut",
+      "title": "Destination - SHORT CUT -",
+      "bpm": 150,
+      "version": "fiesta",
+      "charts": [
+        {
+          "type": "D",
+          "level": 20,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 11,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 15,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
     },
     {
       "id": "destr0yer",
@@ -6957,18 +7097,8 @@
         },
         {
           "type": "D",
-          "level": 18,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
           "level": 20,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 22,
-          "mode": "fullsong"
         },
         {
           "type": "D",
@@ -6997,18 +7127,8 @@
         },
         {
           "type": "S",
-          "level": 15,
-          "mode": "fullsong"
-        },
-        {
-          "type": "S",
           "level": 17,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 19,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -7022,7 +7142,37 @@
         }
       ],
       "songArtist": "Crash",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "dignity-full-song",
+      "title": "Dignity - FULL SONG -",
+      "bpm": 195,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 22,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 15,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 19,
+          "mode": "fullsong"
+        }
+      ],
+      "songArtist": "Crash",
+      "stepArtist": null
     },
     {
       "id": "discord",
@@ -8377,18 +8527,8 @@
         },
         {
           "type": "D",
-          "level": 12,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 18,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 19,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -8407,28 +8547,13 @@
         },
         {
           "type": "S",
-          "level": 4,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 5,
           "mode": "arcade"
         },
         {
           "type": "S",
-          "level": 7,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 8,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 10,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -8442,17 +8567,52 @@
         },
         {
           "type": "S",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 19,
           "mode": "arcade"
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "CONRAD"
+      "stepArtist": null
+    },
+    {
+      "id": "euphorianic-short-cut",
+      "title": "Euphorianic - SHORT CUT -",
+      "bpm": 140,
+      "version": "phoenix",
+      "charts": [
+        {
+          "type": "D",
+          "level": 12,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 19,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 4,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 7,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 10,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
     },
     {
       "id": "everybody-got-2-know",
@@ -8532,11 +8692,6 @@
         },
         {
           "type": "D",
-          "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 18,
           "mode": "arcade"
         },
@@ -8544,11 +8699,6 @@
           "type": "D",
           "level": 21,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 23,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -8572,11 +8722,6 @@
         },
         {
           "type": "S",
-          "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 19,
           "mode": "arcade"
         },
@@ -8587,7 +8732,32 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "extravaganza-short-cut",
+      "title": "Extravaganza - SHORT CUT -",
+      "bpm": 146,
+      "version": "fiesta",
+      "charts": [
+        {
+          "type": "D",
+          "level": 16,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 23,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 16,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
     },
     {
       "id": "extreme-music-school-1st-period-feat-nanahira",
@@ -8952,11 +9122,6 @@
         },
         {
           "type": "D",
-          "level": 21,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 22,
           "mode": "arcade"
         },
@@ -8977,17 +9142,32 @@
         },
         {
           "type": "S",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 22,
           "mode": "arcade"
         }
       ],
       "songArtist": "Doin",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "fff-short-cut",
+      "title": "FFF - SHORT CUT -",
+      "bpm": 100,
+      "version": "fiesta2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 18,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "Doin",
+      "stepArtist": null
     },
     {
       "id": "final-audition",
@@ -9052,11 +9232,6 @@
         },
         {
           "type": "D",
-          "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 20,
           "mode": "arcade"
         },
@@ -9082,17 +9257,32 @@
         },
         {
           "type": "S",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 18,
           "mode": "arcade"
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "final-audition-2-short-cut",
+      "title": "Final Audition 2 - SHORT CUT -",
+      "bpm": 130,
+      "version": "fiesta",
+      "charts": [
+        {
+          "type": "D",
+          "level": 19,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
     },
     {
       "id": "final-audition-3",
@@ -9104,11 +9294,6 @@
           "type": "D",
           "level": 18,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 18,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -9144,6 +9329,21 @@
           "type": "S",
           "level": 17,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
+    },
+    {
+      "id": "final-audition-3-short-cut",
+      "title": "Final Audition 3 - SHORT CUT -",
+      "bpm": 130,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -9152,7 +9352,7 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "16th notes @ 130 bpm"
+      "stepArtist": null
     },
     {
       "id": "final-audition-ep-2-1",
@@ -9267,11 +9467,6 @@
       "charts": [
         {
           "type": "D",
-          "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 21,
           "mode": "arcade"
         },
@@ -9302,17 +9497,32 @@
         },
         {
           "type": "S",
-          "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 23,
           "mode": "arcade"
         }
       ],
       "songArtist": "YAHPP",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "final-audition-ep-2-x-short-cut",
+      "title": "Final Audition Ep. 2-X - SHORT CUT -",
+      "bpm": 170,
+      "version": "nxabsolute",
+      "charts": [
+        {
+          "type": "D",
+          "level": 20,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 20,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "YAHPP",
+      "stepArtist": null
     },
     {
       "id": "final-audition-ep-1",
@@ -9898,11 +10108,6 @@
         {
           "type": "D",
           "level": 24,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
-          "level": 24,
           "mode": "arcade"
         },
         {
@@ -9928,17 +10133,7 @@
         {
           "type": "S",
           "level": 20,
-          "mode": "fullsong"
-        },
-        {
-          "type": "S",
-          "level": 20,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 22,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -9947,7 +10142,32 @@
         }
       ],
       "songArtist": "Dreamcatcher",
-      "stepArtist": "NIMGO"
+      "stepArtist": null
+    },
+    {
+      "id": "full-moon-full-song",
+      "title": "Full Moon - FULL SONG -",
+      "bpm": 190,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 24,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 20,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 22,
+          "mode": "fullsong"
+        }
+      ],
+      "songArtist": "Dreamcatcher",
+      "stepArtist": null
     },
     {
       "id": "further",
@@ -10082,18 +10302,8 @@
         },
         {
           "type": "D",
-          "level": 22,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
           "level": 23,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 25,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -10117,13 +10327,33 @@
         },
         {
           "type": "S",
-          "level": 21,
+          "level": 22,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "Sanxion7",
+      "stepArtist": null
+    },
+    {
+      "id": "gargoyle-full-song",
+      "title": "Gargoyle - FULL SONG -",
+      "bpm": 150,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 22,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 25,
           "mode": "fullsong"
         },
         {
           "type": "S",
-          "level": 22,
-          "mode": "arcade"
+          "level": 21,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -10132,7 +10362,7 @@
         }
       ],
       "songArtist": "Sanxion7",
-      "stepArtist": "NIMGO"
+      "stepArtist": null
     },
     {
       "id": "get-up-and-go",
@@ -10626,11 +10856,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 26,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 3,
           "mode": "arcade"
@@ -10652,13 +10877,33 @@
         },
         {
           "type": "S",
-          "level": 18,
+          "level": 20,
+          "mode": "arcade"
+        },
+        {
+          "type": "S",
+          "level": 23,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "Dreamcatcher",
+      "stepArtist": null
+    },
+    {
+      "id": "good-night-full-song",
+      "title": "Good Night - FULL SONG -",
+      "bpm": 196,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 26,
           "mode": "fullsong"
         },
         {
           "type": "S",
-          "level": 20,
-          "mode": "arcade"
+          "level": 18,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -10667,17 +10912,12 @@
         },
         {
           "type": "S",
-          "level": 23,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
           "level": 24,
           "mode": "fullsong"
         }
       ],
       "songArtist": "Dreamcatcher",
-      "stepArtist": "NIMGO"
+      "stepArtist": null
     },
     {
       "id": "goodbounce",
@@ -12081,11 +12321,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 16,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 3,
           "mode": "arcade"
@@ -12104,6 +12339,21 @@
           "type": "S",
           "level": 15,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "Yassi Pressman Nadine Lustre",
+      "stepArtist": null
+    },
+    {
+      "id": "hush-full-song",
+      "title": "HUSH - FULL SONG -",
+      "bpm": 81,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 16,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -12112,7 +12362,7 @@
         }
       ],
       "songArtist": "Yassi Pressman Nadine Lustre",
-      "stepArtist": "NIMGO"
+      "stepArtist": null
     },
     {
       "id": "hyacinth",
@@ -12326,11 +12576,6 @@
           "mode": "arcade"
         },
         {
-          "type": "D",
-          "level": 21,
-          "mode": "shortcut"
-        },
-        {
           "type": "S",
           "level": 4,
           "mode": "arcade"
@@ -12347,13 +12592,28 @@
         },
         {
           "type": "S",
-          "level": 16,
+          "level": 17,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "M2U",
+      "stepArtist": null
+    },
+    {
+      "id": "hyperion-short-cut",
+      "title": "Hyperion - SHORT CUT -",
+      "bpm": 145,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 21,
           "mode": "shortcut"
         },
         {
           "type": "S",
-          "level": 17,
-          "mode": "arcade"
+          "level": 16,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -12362,7 +12622,7 @@
         }
       ],
       "songArtist": "M2U",
-      "stepArtist": "OSING"
+      "stepArtist": null
     },
     {
       "id": "hypnosis-synthwulf-mix",
@@ -12427,11 +12687,6 @@
         },
         {
           "type": "D",
-          "level": 13,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 14,
           "mode": "arcade"
         },
@@ -12439,11 +12694,6 @@
           "type": "D",
           "level": 18,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 21,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -12457,23 +12707,8 @@
         },
         {
           "type": "S",
-          "level": 4,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 7,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 7,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 11,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -12487,17 +12722,52 @@
         },
         {
           "type": "S",
-          "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 20,
           "mode": "arcade"
         }
       ],
       "songArtist": "MAX",
-      "stepArtist": "SUNNY"
+      "stepArtist": null
+    },
+    {
+      "id": "i-want-u-short-cut",
+      "title": "I Want U - SHORT CUT -",
+      "bpm": 156,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 13,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 4,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 7,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 11,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 19,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "MAX",
+      "stepArtist": null
     },
     {
       "id": "ice-of-death",
@@ -12617,11 +12887,6 @@
         },
         {
           "type": "D",
-          "level": 21,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 23,
           "mode": "arcade"
         },
@@ -12647,17 +12912,32 @@
         },
         {
           "type": "S",
-          "level": 21,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 22,
           "mode": "arcade"
         }
       ],
       "songArtist": "BanYa DM Ashura",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "ignis-fatuusdm-ashura-mix-short-cut",
+      "title": "Ignis Fatuus(DM Ashura Mix) - SHORT CUT -",
+      "bpm": 175,
+      "version": "fiesta2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 21,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "BanYa DM Ashura",
+      "stepArtist": null
     },
     {
       "id": "imaginarized-city",
@@ -12992,16 +13272,6 @@
         },
         {
           "type": "D",
-          "level": 16,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
-          "level": 18,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
           "level": 19,
           "mode": "arcade"
         },
@@ -13019,6 +13289,26 @@
           "type": "S",
           "level": 18,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "Doin",
+      "stepArtist": null
+    },
+    {
+      "id": "interference-full-song",
+      "title": "Interference - FULL SONG -",
+      "bpm": 180,
+      "version": "fiestaex",
+      "charts": [
+        {
+          "type": "D",
+          "level": 16,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -13027,7 +13317,7 @@
         }
       ],
       "songArtist": "Doin",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "invasion",
@@ -13762,11 +14052,6 @@
         },
         {
           "type": "D",
-          "level": 21,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 24,
           "mode": "arcade"
         },
@@ -13797,17 +14082,32 @@
         },
         {
           "type": "S",
-          "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 21,
           "mode": "arcade"
         }
       ],
       "songArtist": "MAX",
-      "stepArtist": "NIMGO"
+      "stepArtist": null
+    },
+    {
+      "id": "kasou-shinja-short-cut",
+      "title": "Kasou Shinja - SHORT CUT -",
+      "bpm": 170,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 20,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "MAX",
+      "stepArtist": null
     },
     {
       "id": "katkoi",
@@ -15002,11 +15302,6 @@
         },
         {
           "type": "D",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 21,
           "mode": "arcade"
         },
@@ -15027,11 +15322,6 @@
         },
         {
           "type": "S",
-          "level": 13,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 17,
           "mode": "arcade"
         },
@@ -15039,6 +15329,26 @@
           "type": "S",
           "level": 19,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
+    },
+    {
+      "id": "love-is-a-danger-zone-short-cut",
+      "title": "Love is a Danger Zone - SHORT CUT -",
+      "bpm": 140,
+      "version": "fiesta",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 13,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -15047,7 +15357,7 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "love-is-a-danger-zone-cranky-mix",
@@ -15167,11 +15477,6 @@
         },
         {
           "type": "D",
-          "level": 23,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 24,
           "mode": "arcade"
         },
@@ -15187,11 +15492,6 @@
         },
         {
           "type": "S",
-          "level": 9,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 11,
           "mode": "arcade"
         },
@@ -15202,17 +15502,37 @@
         },
         {
           "type": "S",
-          "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 22,
           "mode": "arcade"
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "BPM"
+      "stepArtist": null
+    },
+    {
+      "id": "love-is-a-danger-zone-pt-2-short-cut",
+      "title": "Love is a Danger Zone pt. 2 - SHORT CUT -",
+      "bpm": 162,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 23,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 9,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 19,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
     },
     {
       "id": "love-is-a-danger-zone-pt-2-another",
@@ -16258,11 +16578,6 @@
         {
           "type": "D",
           "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
-          "level": 20,
           "mode": "arcade"
         },
         {
@@ -16292,11 +16607,6 @@
         },
         {
           "type": "S",
-          "level": 15,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 18,
           "mode": "arcade"
         },
@@ -16304,6 +16614,26 @@
           "type": "S",
           "level": 19,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
+    },
+    {
+      "id": "moonlight-short-cut",
+      "title": "Moonlight - SHORT CUT -",
+      "bpm": 180,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 20,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 15,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -16312,7 +16642,7 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "EXC"
+      "stepArtist": null
     },
     {
       "id": "mopemope",
@@ -16371,57 +16701,27 @@
     },
     {
       "id": "move-that-body",
-      "title": "Move That Body",
-      "bpm": 102,
+      "title": "Move That Body!",
+      "bpm": 145,
       "version": "prime",
       "charts": [
         {
           "type": "D",
-          "level": 12,
-          "mode": "arcade"
+          "level": 19,
+          "mode": "fullsong"
         },
         {
-          "type": "D",
+          "type": "S",
           "level": 18,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 3,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 5,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 10,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 12,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 17,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 20,
-          "mode": "arcade"
+          "mode": "fullsong"
         }
       ],
-      "songArtist": null,
-      "stepArtist": "Nimgo"
+      "songArtist": "DM Ashura feat. Skizzo Hanna",
+      "stepArtist": null
     },
     {
-      "id": "move-that-body",
-      "title": "Move That Body!",
+      "id": "move-that-body-short-cut",
+      "title": "Move That Body! - SHORT CUT -",
       "bpm": 145,
       "version": "prime",
       "charts": [
@@ -16431,14 +16731,24 @@
           "mode": "shortcut"
         },
         {
-          "type": "D",
-          "level": 19,
-          "mode": "fullsong"
-        },
-        {
           "type": "S",
           "level": 17,
           "mode": "shortcut"
+        }
+      ],
+      "songArtist": "DM Ashura feat. Skizzo Hanna",
+      "stepArtist": null
+    },
+    {
+      "id": "move-that-body",
+      "title": "Move That Body!",
+      "bpm": 145,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 19,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -16447,7 +16757,27 @@
         }
       ],
       "songArtist": "DM Ashura feat. Skizzo Hanna",
-      "stepArtist": "MIURAARAN"
+      "stepArtist": null
+    },
+    {
+      "id": "move-that-body-short-cut",
+      "title": "Move That Body! - SHORT CUT -",
+      "bpm": 145,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "DM Ashura feat. Skizzo Hanna",
+      "stepArtist": null
     },
     {
       "id": "mr-larpus",
@@ -17532,11 +17862,6 @@
         },
         {
           "type": "D",
-          "level": 24,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 25,
           "mode": "arcade"
         },
@@ -17562,17 +17887,32 @@
         },
         {
           "type": "S",
-          "level": 22,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 23,
           "mode": "arcade"
         }
       ],
       "songArtist": "nato",
-      "stepArtist": "EXC"
+      "stepArtist": null
+    },
+    {
+      "id": "nyarlathotep-short-cut",
+      "title": "Nyarlathotep - SHORT CUT -",
+      "bpm": 200,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 24,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 22,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "nato",
+      "stepArtist": null
     },
     {
       "id": "obelisque",
@@ -17862,11 +18202,6 @@
         },
         {
           "type": "D",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 18,
           "mode": "arcade"
         },
@@ -17902,17 +18237,32 @@
         },
         {
           "type": "S",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 20,
           "mode": "arcade"
         }
       ],
       "songArtist": "MAX",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "overblow-short-cut",
+      "title": "Overblow - SHORT CUT -",
+      "bpm": 176,
+      "version": "fiestaex",
+      "charts": [
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 18,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "MAX",
+      "stepArtist": null
     },
     {
       "id": "overblow2",
@@ -18108,11 +18458,6 @@
         {
           "type": "D",
           "level": 14,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
-          "level": 14,
           "mode": "arcade"
         },
         {
@@ -18132,28 +18477,13 @@
         },
         {
           "type": "D",
-          "level": 20,
-          "mode": "fullsong"
-        },
-        {
-          "type": "D",
           "level": 21,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 23,
-          "mode": "fullsong"
         },
         {
           "type": "S",
           "level": 7,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 12,
-          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -18172,13 +18502,43 @@
         },
         {
           "type": "S",
-          "level": 19,
+          "level": 20,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "Yakikaze Cashew",
+      "stepArtist": null
+    },
+    {
+      "id": "papasito-feat-kutina-full-song",
+      "title": "Papasito (feat. KuTiNA) - FULL SONG -",
+      "bpm": 128,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 14,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 20,
+          "mode": "fullsong"
+        },
+        {
+          "type": "D",
+          "level": 23,
           "mode": "fullsong"
         },
         {
           "type": "S",
-          "level": 20,
-          "mode": "arcade"
+          "level": 12,
+          "mode": "fullsong"
+        },
+        {
+          "type": "S",
+          "level": 19,
+          "mode": "fullsong"
         },
         {
           "type": "S",
@@ -18187,7 +18547,7 @@
         }
       ],
       "songArtist": "Yakikaze Cashew",
-      "stepArtist": "FEFEMZ"
+      "stepArtist": null
     },
     {
       "id": "paradoxx",
@@ -18202,18 +18562,8 @@
         },
         {
           "type": "D",
-          "level": 26,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 28,
           "mode": "remix"
-        },
-        {
-          "type": "S",
-          "level": 21,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -18227,17 +18577,37 @@
         },
         {
           "type": "S",
-          "level": 24,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 26,
           "mode": "remix"
         }
       ],
       "songArtist": "NATO SLAM",
-      "stepArtist": "EXC"
+      "stepArtist": null
+    },
+    {
+      "id": "paradoxx-short-cut",
+      "title": "PARADOXX - SHORT CUT -",
+      "bpm": 218,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 26,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 24,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "NATO SLAM",
+      "stepArtist": null
     },
     {
       "id": "passacaglia",
@@ -18249,11 +18619,6 @@
           "type": "D",
           "level": 14,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 18,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -18297,17 +18662,32 @@
         },
         {
           "type": "S",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 19,
           "mode": "arcade"
         }
       ],
       "songArtist": "SynthWulf",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "passacaglia-short-cut",
+      "title": "Passacaglia - SHORT CUT -",
+      "bpm": 175,
+      "version": "fiesta2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "SynthWulf",
+      "stepArtist": null
     },
     {
       "id": "passing-rider",
@@ -19012,11 +19392,6 @@
         },
         {
           "type": "D",
-          "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 18,
           "mode": "arcade"
         },
@@ -19053,16 +19428,31 @@
         {
           "type": "S",
           "level": 18,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "J-Mi Midi-D Ft. Hanna Stockzell",
+      "stepArtist": null
+    },
+    {
+      "id": "pop-the-track-short-cut",
+      "title": "Pop The Track - SHORT CUT -",
+      "bpm": 136,
+      "version": "fiesta2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 16,
           "mode": "shortcut"
         },
         {
           "type": "S",
           "level": 18,
-          "mode": "arcade"
+          "mode": "shortcut"
         }
       ],
       "songArtist": "J-Mi Midi-D Ft. Hanna Stockzell",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "poppin-shower",
@@ -19122,18 +19512,8 @@
         },
         {
           "type": "D",
-          "level": 14,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 16,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 21,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -19157,6 +19537,36 @@
         },
         {
           "type": "S",
+          "level": 15,
+          "mode": "arcade"
+        },
+        {
+          "type": "S",
+          "level": 21,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "Quree",
+      "stepArtist": null
+    },
+    {
+      "id": "poseidon-short-cut",
+      "title": "Poseidon - SHORT CUT -",
+      "bpm": 160,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 14,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
           "level": 11,
           "mode": "shortcut"
         },
@@ -19167,18 +19577,8 @@
         },
         {
           "type": "S",
-          "level": 15,
-          "mode": "arcade"
-        },
-        {
-          "type": "S",
           "level": 18,
           "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 21,
-          "mode": "arcade"
         },
         {
           "type": "S",
@@ -19187,7 +19587,7 @@
         }
       ],
       "songArtist": "Quree",
-      "stepArtist": "SUNNY"
+      "stepArtist": null
     },
     {
       "id": "prima-materia",
@@ -20682,11 +21082,6 @@
         },
         {
           "type": "D",
-          "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 22,
           "mode": "arcade"
         },
@@ -20702,13 +21097,28 @@
         },
         {
           "type": "S",
-          "level": 15,
+          "level": 16,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "Matduke",
+      "stepArtist": null
+    },
+    {
+      "id": "rock-the-house-short-cut",
+      "title": "Rock the house - SHORT CUT -",
+      "bpm": 175,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 20,
           "mode": "shortcut"
         },
         {
           "type": "S",
-          "level": 16,
-          "mode": "arcade"
+          "level": 15,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -20717,7 +21127,7 @@
         }
       ],
       "songArtist": "Matduke",
-      "stepArtist": "Ayapping"
+      "stepArtist": null
     },
     {
       "id": "rolling-christmas",
@@ -20892,11 +21302,6 @@
         },
         {
           "type": "D",
-          "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 21,
           "mode": "arcade"
         },
@@ -20922,11 +21327,6 @@
         },
         {
           "type": "S",
-          "level": 10,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 12,
           "mode": "arcade"
         },
@@ -20934,16 +21334,6 @@
           "type": "S",
           "level": 16,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 19,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -20957,7 +21347,37 @@
         }
       ],
       "songArtist": "MAX",
-      "stepArtist": "LESEMO"
+      "stepArtist": null
+    },
+    {
+      "id": "sarabande-short-cut",
+      "title": "Sarabande - SHORT CUT -",
+      "bpm": 157,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 19,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 10,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 19,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "MAX",
+      "stepArtist": null
     },
     {
       "id": "scorpion-king",
@@ -21082,11 +21502,6 @@
         },
         {
           "type": "D",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 20,
           "mode": "arcade"
         },
@@ -21109,6 +21524,21 @@
           "type": "S",
           "level": 17,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "SID-SOUND",
+      "stepArtist": null
+    },
+    {
+      "id": "selfishness-short-cut",
+      "title": "Selfishness - SHORT CUT -",
+      "bpm": 160,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -21117,7 +21547,7 @@
         }
       ],
       "songArtist": "SID-SOUND",
-      "stepArtist": "HP"
+      "stepArtist": null
     },
     {
       "id": "set-me-up",
@@ -21287,11 +21717,6 @@
         },
         {
           "type": "D",
-          "level": 23,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 26,
           "mode": "arcade"
         },
@@ -21307,11 +21732,6 @@
         },
         {
           "type": "S",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 19,
           "mode": "arcade"
         },
@@ -21322,17 +21742,37 @@
         },
         {
           "type": "S",
-          "level": 21,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 24,
           "mode": "arcade"
         }
       ],
       "songArtist": "Nato",
-      "stepArtist": "EXC"
+      "stepArtist": null
+    },
+    {
+      "id": "shub-niggurath-short-cut",
+      "title": "Shub Niggurath - SHORT CUT -",
+      "bpm": 220,
+      "version": "prime2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 23,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 18,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 21,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "Nato",
+      "stepArtist": null
     },
     {
       "id": "shub-sothoth",
@@ -21367,11 +21807,6 @@
         },
         {
           "type": "D",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 20,
           "mode": "arcade"
         },
@@ -21393,16 +21828,31 @@
         {
           "type": "S",
           "level": 18,
+          "mode": "arcade"
+        }
+      ],
+      "songArtist": "Nato",
+      "stepArtist": null
+    },
+    {
+      "id": "silhouette-effect-short-cut",
+      "title": "Silhouette Effect - SHORT CUT -",
+      "bpm": 167,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 17,
           "mode": "shortcut"
         },
         {
           "type": "S",
           "level": 18,
-          "mode": "arcade"
+          "mode": "shortcut"
         }
       ],
       "songArtist": "Nato",
-      "stepArtist": "HP"
+      "stepArtist": null
     },
     {
       "id": "silver-beat-feat-chisauezono",
@@ -21947,11 +22397,6 @@
       "charts": [
         {
           "type": "D",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 20,
           "mode": "arcade"
         },
@@ -21979,6 +22424,21 @@
           "type": "S",
           "level": 18,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
+    },
+    {
+      "id": "solitary-2-short-cut",
+      "title": "Solitary 2 - SHORT CUT -",
+      "bpm": 136,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -21987,7 +22447,7 @@
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "solve-my-hurt",
@@ -22597,11 +23057,6 @@
         },
         {
           "type": "D",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 19,
           "mode": "arcade"
         },
@@ -22623,11 +23078,6 @@
         {
           "type": "S",
           "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 16,
           "mode": "arcade"
         },
         {
@@ -22637,7 +23087,27 @@
         }
       ],
       "songArtist": "typeMARS",
-      "stepArtist": "Conrad"
+      "stepArtist": null
+    },
+    {
+      "id": "stardust-overdrive-short-cut",
+      "title": "Stardust Overdrive - SHORT CUT -",
+      "bpm": 175,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 16,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "typeMARS",
+      "stepArtist": null
     },
     {
       "id": "start-on-red",
@@ -23147,11 +23617,6 @@
         },
         {
           "type": "D",
-          "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 18,
           "mode": "arcade"
         },
@@ -23188,11 +23653,6 @@
         {
           "type": "S",
           "level": 19,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 19,
           "mode": "arcade"
         },
         {
@@ -23202,7 +23662,27 @@
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "super-fantasy-short-cut",
+      "title": "Super Fantasy - SHORT CUT -",
+      "bpm": 145,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 19,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
     },
     {
       "id": "super-stylin",
@@ -23322,28 +23802,13 @@
       "charts": [
         {
           "type": "D",
-          "level": 4,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 10,
           "mode": "arcade"
         },
         {
           "type": "D",
-          "level": 11,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 16,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 17,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -23358,11 +23823,6 @@
         {
           "type": "S",
           "level": 3,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 3,
           "mode": "arcade"
         },
         {
@@ -23372,28 +23832,13 @@
         },
         {
           "type": "S",
-          "level": 6,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 8,
           "mode": "arcade"
         },
         {
           "type": "S",
-          "level": 9,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 11,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 14,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -23404,6 +23849,51 @@
           "type": "S",
           "level": 17,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
+    },
+    {
+      "id": "switronic-short-cut",
+      "title": "Switronic - SHORT CUT -",
+      "bpm": 120,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 4,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 11,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 3,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 6,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 9,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 14,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -23412,7 +23902,7 @@
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "CONRAD"
+      "stepArtist": null
     },
     {
       "id": "take-out",
@@ -23429,11 +23919,6 @@
           "type": "D",
           "level": 19,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 19,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -23467,17 +23952,32 @@
         },
         {
           "type": "S",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 20,
           "mode": "arcade"
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "take-out-short-cut",
+      "title": "Take Out - SHORT CUT -",
+      "bpm": 170,
+      "version": "fiestaex",
+      "charts": [
+        {
+          "type": "D",
+          "level": 19,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 18,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
     },
     {
       "id": "tales-of-pumpnia",
@@ -25128,11 +25628,6 @@
         {
           "type": "D",
           "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
-          "level": 17,
           "mode": "arcade"
         },
         {
@@ -25153,11 +25648,6 @@
         {
           "type": "S",
           "level": 17,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 17,
           "mode": "arcade"
         },
         {
@@ -25167,7 +25657,27 @@
         }
       ],
       "songArtist": "MAX",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "u-got-me-rocking-short-cut",
+      "title": "U Got Me Rocking - SHORT CUT -",
+      "bpm": 128,
+      "version": "fiesta2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 17,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "MAX",
+      "stepArtist": null
     },
     {
       "id": "ugly-dee",
@@ -25473,11 +25983,6 @@
         {
           "type": "D",
           "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
-          "level": 16,
           "mode": "arcade"
         },
         {
@@ -25514,6 +26019,21 @@
           "type": "S",
           "level": 16,
           "mode": "arcade"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
+    },
+    {
+      "id": "unique-short-cut",
+      "title": "Unique - SHORT CUT -",
+      "bpm": 145,
+      "version": "fiesta2",
+      "charts": [
+        {
+          "type": "D",
+          "level": 16,
+          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -25522,7 +26042,7 @@
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
     },
     {
       "id": "up-up-produced-by-awal",
@@ -26452,11 +26972,6 @@
       "charts": [
         {
           "type": "D",
-          "level": 6,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 7,
           "mode": "arcade"
         },
@@ -26467,18 +26982,8 @@
         },
         {
           "type": "D",
-          "level": 13,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 19,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 20,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -26488,11 +26993,6 @@
         {
           "type": "S",
           "level": 4,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 4,
           "mode": "arcade"
         },
         {
@@ -26502,33 +27002,13 @@
         },
         {
           "type": "S",
-          "level": 7,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 10,
           "mode": "arcade"
         },
         {
           "type": "S",
-          "level": 11,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 15,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 16,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 18,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -26542,7 +27022,57 @@
         }
       ],
       "songArtist": "SHK",
-      "stepArtist": "SUNNY"
+      "stepArtist": null
+    },
+    {
+      "id": "wedding-crashers-short-cut",
+      "title": "Wedding Crashers - SHORT CUT -",
+      "bpm": 165,
+      "version": "xx",
+      "charts": [
+        {
+          "type": "D",
+          "level": 6,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 13,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 20,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 4,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 7,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 11,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 15,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 18,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "SHK",
+      "stepArtist": null
     },
     {
       "id": "what-are-you-doin",
@@ -26847,11 +27377,6 @@
       "charts": [
         {
           "type": "D",
-          "level": 13,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 14,
           "mode": "arcade"
         },
@@ -26859,11 +27384,6 @@
           "type": "D",
           "level": 17,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 17,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -26877,18 +27397,8 @@
         },
         {
           "type": "S",
-          "level": 6,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 7,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 11,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -26902,17 +27412,47 @@
         },
         {
           "type": "S",
-          "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 20,
           "mode": "arcade"
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "winter-short-cut",
+      "title": "Winter - SHORT CUT -",
+      "bpm": 168,
+      "version": "fiesta",
+      "charts": [
+        {
+          "type": "D",
+          "level": 13,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 6,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 11,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 16,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
     },
     {
       "id": "witch-doctor",
@@ -26920,11 +27460,6 @@
       "bpm": 160,
       "version": "exceed~zero",
       "charts": [
-        {
-          "type": "D",
-          "level": 17,
-          "mode": "shortcut"
-        },
         {
           "type": "D",
           "level": 19,
@@ -26957,11 +27492,6 @@
         },
         {
           "type": "S",
-          "level": 14,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 17,
           "mode": "arcade"
         },
@@ -26972,17 +27502,37 @@
         },
         {
           "type": "S",
-          "level": 20,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 21,
           "mode": "arcade"
         }
       ],
       "songArtist": "BanYa",
-      "stepArtist": "BPM"
+      "stepArtist": null
+    },
+    {
+      "id": "witch-doctor-short-cut",
+      "title": "Witch Doctor - SHORT CUT -",
+      "bpm": 160,
+      "version": "exceed~zero",
+      "charts": [
+        {
+          "type": "D",
+          "level": 17,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 14,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 20,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "BanYa",
+      "stepArtist": null
     },
     {
       "id": "witch-doctor-1",
@@ -27237,11 +27787,6 @@
         },
         {
           "type": "D",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 21,
           "mode": "arcade"
         },
@@ -27262,17 +27807,32 @@
         },
         {
           "type": "S",
-          "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 17,
           "mode": "arcade"
         }
       ],
       "songArtist": "DM Ashura",
-      "stepArtist": "Andamiro"
+      "stepArtist": null
+    },
+    {
+      "id": "x-rave-short-cut",
+      "title": "X-Rave - SHORT CUT -",
+      "bpm": 147,
+      "version": "fiestaex",
+      "charts": [
+        {
+          "type": "D",
+          "level": 18,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 16,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "DM Ashura",
+      "stepArtist": null
     },
     {
       "id": "xenesis",
@@ -27592,18 +28152,8 @@
       "charts": [
         {
           "type": "D",
-          "level": 16,
-          "mode": "shortcut"
-        },
-        {
-          "type": "D",
           "level": 18,
           "mode": "arcade"
-        },
-        {
-          "type": "D",
-          "level": 21,
-          "mode": "shortcut"
         },
         {
           "type": "D",
@@ -27622,11 +28172,6 @@
         },
         {
           "type": "S",
-          "level": 14,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 16,
           "mode": "arcade"
         },
@@ -27637,18 +28182,8 @@
         },
         {
           "type": "S",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
           "level": 21,
           "mode": "arcade"
-        },
-        {
-          "type": "S",
-          "level": 21,
-          "mode": "shortcut"
         },
         {
           "type": "S",
@@ -27657,7 +28192,42 @@
         }
       ],
       "songArtist": "Nato",
-      "stepArtist": "EXC"
+      "stepArtist": null
+    },
+    {
+      "id": "yog-sothoth-short-cut",
+      "title": "Yog-Sothoth - SHORT CUT -",
+      "bpm": 200,
+      "version": "prime",
+      "charts": [
+        {
+          "type": "D",
+          "level": 16,
+          "mode": "shortcut"
+        },
+        {
+          "type": "D",
+          "level": 21,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 14,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 18,
+          "mode": "shortcut"
+        },
+        {
+          "type": "S",
+          "level": 21,
+          "mode": "shortcut"
+        }
+      ],
+      "songArtist": "Nato",
+      "stepArtist": null
     },
     {
       "id": "yoropiku-pikuyoro",
@@ -27901,5 +28471,5 @@
     }
   ],
   "lastPatchApplied": "phoenix",
-  "lastUpdated": "2026-03-23T00:58:03.638Z"
+  "lastUpdated": "2026-03-23T01:46:09.508Z"
 }
