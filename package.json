@@ -11,6 +11,8 @@
     "merge:apply": "node scraper/merge.js --apply",
     "fill-artists": "node scraper/fill-song-artists.js",
     "fill-artists:apply": "node scraper/fill-song-artists.js --apply",
+    "fill-step-artists": "node scraper/fill-step-artists.js",
+    "fill-step-artists:apply": "node scraper/fill-step-artists.js --apply",
     "serve": "npx serve . -l 3000"
   },
   "dependencies": {

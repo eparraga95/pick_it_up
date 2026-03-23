@@ -63,7 +63,7 @@
       "id": "doof-senc",
       "title": "†DOOF†SENC†",
       "songArtist": "Kobaryo",
-      "stepArtist": null,
+      "stepArtist": "CONRAD",
       "bpm": 200,
       "version": "phoenix",
       "charts": [
@@ -113,7 +113,7 @@
       "id": "1948",
       "title": "1948",
       "songArtist": "SLAM",
-      "stepArtist": null,
+      "stepArtist": "EXC",
       "bpm": 240,
       "version": "phoenix",
       "charts": [
@@ -278,7 +278,7 @@
       "id": "4nt",
       "title": "4NT",
       "songArtist": "PODA",
-      "stepArtist": null,
+      "stepArtist": "SUNNY",
       "bpm": 180,
       "version": "phoenix",
       "charts": [
@@ -448,7 +448,7 @@
       "id": "about-the-universe",
       "title": "About The Universe",
       "songArtist": "SOTUI & MIssionary",
-      "stepArtist": null,
+      "stepArtist": "OSING",
       "bpm": 180,
       "version": "phoenix",
       "charts": [
@@ -878,7 +878,7 @@
       "id": "alice-in-misanthrope",
       "title": "Alice in Misanthrope",
       "songArtist": "LeaF",
-      "stepArtist": null,
+      "stepArtist": "CONRAD",
       "bpm": null,
       "version": "phoenix",
       "charts": [
@@ -933,7 +933,7 @@
       "id": "alive",
       "title": "ALiVE",
       "songArtist": "REDALiCE",
-      "stepArtist": null,
+      "stepArtist": "SPHAM",
       "bpm": 170,
       "version": "phoenix",
       "charts": [
@@ -2798,7 +2798,7 @@
       "id": "becouse-of-you",
       "title": "Becouse of You",
       "songArtist": "Srav3R & USAO",
-      "stepArtist": null,
+      "stepArtist": "FEFEMZ",
       "bpm": 175,
       "version": "phoenix",
       "charts": [
@@ -3218,7 +3218,7 @@
       "id": "binary-star",
       "title": "Binary star",
       "songArtist": "SYNTHWULF",
-      "stepArtist": null,
+      "stepArtist": "NIMGO",
       "bpm": 170,
       "version": "phoenix",
       "charts": [
@@ -4188,7 +4188,7 @@
       "id": "burn-out",
       "title": "Burn Out",
       "songArtist": "WyvernP",
-      "stepArtist": null,
+      "stepArtist": "BME",
       "bpm": 190,
       "version": "phoenix",
       "charts": [
@@ -5543,7 +5543,7 @@
       "id": "crimson-hood",
       "title": "Crimson hood",
       "bpm": 190,
-      "version": null,
+      "version": "phoenix",
       "charts": [
         {
           "type": "D",
@@ -5597,7 +5597,7 @@
         }
       ],
       "songArtist": "Springhead",
-      "stepArtist": null
+      "stepArtist": "NIMGO"
     },
     {
       "id": "cross-over-feat-lyuu",
@@ -6473,7 +6473,7 @@
       "id": "dead-end",
       "title": "Dead End",
       "songArtist": "Cosmograph",
-      "stepArtist": null,
+      "stepArtist": "DulKi",
       "bpm": 212,
       "version": "phoenix",
       "charts": [
@@ -6603,7 +6603,7 @@
       "id": "deca-dance",
       "title": "Deca Dance",
       "songArtist": "Yooh",
-      "stepArtist": null,
+      "stepArtist": "FEFEMZ",
       "bpm": 160,
       "version": "phoenix",
       "charts": [
@@ -6698,7 +6698,7 @@
       "id": "demon-of-laplace",
       "title": "Demon of Laplace",
       "songArtist": "Quree",
-      "stepArtist": null,
+      "stepArtist": "NIMGO",
       "bpm": 144,
       "version": "phoenix",
       "charts": [
@@ -7683,7 +7683,7 @@
       "id": "duel-short-cut",
       "title": "DUEL - SHORT CUT -",
       "songArtist": "Cashew & D_AAN",
-      "stepArtist": null,
+      "stepArtist": "GGWANG",
       "bpm": 155,
       "version": "phoenix",
       "charts": [
@@ -8263,7 +8263,7 @@
       "id": "eternal-universe",
       "title": "Eternal Universe",
       "songArtist": "Quree",
-      "stepArtist": null,
+      "stepArtist": "NIMGO",
       "bpm": 200,
       "version": "phoenix",
       "charts": [
@@ -10313,7 +10313,7 @@
       "id": "ghroth-short-cut",
       "title": "Ghroth - SHORT CUT -",
       "songArtist": "nato",
-      "stepArtist": null,
+      "stepArtist": "JUNARE",
       "bpm": 212,
       "version": "phoenix",
       "charts": [
@@ -10403,7 +10403,7 @@
       "id": "glimmer-gleam",
       "title": "Glimmer Gleam",
       "songArtist": "Doin",
-      "stepArtist": null,
+      "stepArtist": "SPHAM",
       "bpm": 85,
       "version": "phoenix",
       "charts": [
@@ -10953,7 +10953,7 @@
       "id": "halloween-party-multiverse-short-cut",
       "title": "Halloween Party ~Multiverse~ - SHORT CUT -",
       "songArtist": "SHK",
-      "stepArtist": null,
+      "stepArtist": "JUNARE",
       "bpm": 160,
       "version": "phoenix",
       "charts": [
@@ -11293,7 +11293,7 @@
       "id": "heliosphere",
       "title": "Heliosphere",
       "songArtist": "BlackY",
-      "stepArtist": null,
+      "stepArtist": "NIMGO",
       "bpm": 182,
       "version": "phoenix",
       "charts": [
@@ -11968,7 +11968,7 @@
       "id": "human-extinction-piu-edit",
       "title": "Human Extinction (PIU Edit.)",
       "songArtist": "MonstDeath",
-      "stepArtist": null,
+      "stepArtist": "OSING",
       "bpm": 199,
       "version": "phoenix",
       "charts": [
@@ -12213,7 +12213,7 @@
       "id": "hymn-of-golden-glory-short-cut",
       "title": "Hymn of Golden Glory - SHORT CUT -",
       "songArtist": "Essbee",
-      "stepArtist": null,
+      "stepArtist": "GGWANG",
       "bpm": 244,
       "version": "phoenix",
       "charts": [
@@ -13503,7 +13503,7 @@
       "id": "jupin-short-cut",
       "title": "Jupin - SHORT CUT -",
       "songArtist": "Sobrem",
-      "stepArtist": null,
+      "stepArtist": "SPHAM",
       "bpm": 173,
       "version": "phoenix",
       "charts": [
@@ -16638,7 +16638,7 @@
       "id": "murdoch-vs-otada-short-cut",
       "title": "Murdoch vs Otada - SHORT CUT -",
       "songArtist": "ESPITZ vs WONDERTRAVELER Project",
-      "stepArtist": null,
+      "stepArtist": "DIESEL",
       "bpm": 180,
       "version": "phoenix",
       "charts": [
@@ -17148,7 +17148,7 @@
       "id": "neo-catharsis-short-cut",
       "title": "Neo Catharsis - SHORT CUT -",
       "songArtist": "TAG underground overlay",
-      "stepArtist": null,
+      "stepArtist": "DIESEL",
       "bpm": null,
       "version": "phoenix",
       "charts": [
@@ -18668,7 +18668,7 @@
       "id": "phoenix-opening-short-cut",
       "title": "Phoenix Opening - SHORT CUT -",
       "songArtist": "MAX",
-      "stepArtist": null,
+      "stepArtist": "JUNARE",
       "bpm": 174,
       "version": "phoenix",
       "charts": [
@@ -19238,7 +19238,7 @@
       "id": "prima-materia-short-cut",
       "title": "PRiMA MATERiA - SHORT CUT -",
       "songArtist": "xi",
-      "stepArtist": null,
+      "stepArtist": "refos",
       "bpm": 187,
       "version": "phoenix",
       "charts": [
@@ -20783,7 +20783,7 @@
       "id": "rush-hour",
       "title": "Rush-Hour",
       "songArtist": "litmus*",
-      "stepArtist": null,
+      "stepArtist": "FEFEMZ",
       "bpm": 112,
       "version": "phoenix",
       "charts": [
@@ -21993,7 +21993,7 @@
       "id": "solve-my-hurt",
       "title": "Solve My Hurt",
       "songArtist": "Doin",
-      "stepArtist": null,
+      "stepArtist": "SPHAM",
       "bpm": 234,
       "version": "phoenix",
       "charts": [
@@ -22038,7 +22038,7 @@
       "id": "solve-my-hurt-short-cut",
       "title": "Solve My Hurt - SHORT CUT -",
       "songArtist": "Doin",
-      "stepArtist": null,
+      "stepArtist": "AbySS",
       "bpm": 234,
       "version": "phoenix",
       "charts": [
@@ -22193,7 +22193,7 @@
       "id": "spooky-macaron",
       "title": "Spooky Macaron",
       "songArtist": "Sobrem",
-      "stepArtist": null,
+      "stepArtist": "CONRAD",
       "bpm": 201,
       "version": "phoenix",
       "charts": [
@@ -22463,7 +22463,7 @@
       "id": "stardream-eurobeat-remix-short-cut",
       "title": "Stardream -Eurobeat Remix- - SHORT CUT -",
       "songArtist": "MAX x Cashew x Dave Rodgers",
-      "stepArtist": null,
+      "stepArtist": "GGWANG",
       "bpm": 160,
       "version": "phoenix",
       "charts": [
@@ -23038,7 +23038,7 @@
       "id": "super-akuma-emperor",
       "title": "Super Akuma Emperor",
       "songArtist": "REDALiCE",
-      "stepArtist": null,
+      "stepArtist": "DIESEL",
       "bpm": 240,
       "version": "phoenix",
       "charts": [
@@ -23258,7 +23258,7 @@
       "id": "sweet-wonderland",
       "title": "SWEET WONDERLAND",
       "songArtist": "MAX feat. ankimo",
-      "stepArtist": null,
+      "stepArtist": "CONRAD",
       "bpm": 170,
       "version": "phoenix",
       "charts": [
@@ -23638,7 +23638,7 @@
       "id": "teddy-bear-full-song",
       "title": "Teddy Bear - FULL SONG -",
       "songArtist": "STAYC",
-      "stepArtist": null,
+      "stepArtist": "SUNNY",
       "bpm": 119,
       "version": "phoenix",
       "charts": [
@@ -23798,7 +23798,7 @@
       "id": "that-kitty-piu-edit",
       "title": "That Kitty (PIU Edit.)",
       "songArtist": "MonstDeath",
-      "stepArtist": null,
+      "stepArtist": "SPHAM",
       "bpm": 190,
       "version": "phoenix",
       "charts": [
@@ -23848,7 +23848,7 @@
       "id": "the-apocalypse",
       "title": "The Apocalypse",
       "songArtist": "HyuN feat. Elika",
-      "stepArtist": null,
+      "stepArtist": "CONRAD",
       "bpm": 171,
       "version": "phoenix",
       "charts": [
@@ -25308,7 +25308,7 @@
       "id": "ultimate-eyes",
       "title": "Ultimate Eyes",
       "songArtist": "HyuN",
-      "stepArtist": null,
+      "stepArtist": "SUNNY",
       "bpm": 185,
       "version": "phoenix",
       "charts": [
@@ -25903,7 +25903,7 @@
       "id": "vanish-2-roar-of-the-invisible-dragon",
       "title": "Vanish 2 - Roar of the invisible dragon",
       "songArtist": "Applesoda",
-      "stepArtist": null,
+      "stepArtist": "SPHAM",
       "bpm": 190,
       "version": "phoenix",
       "charts": [
@@ -27901,5 +27901,5 @@
     }
   ],
   "lastPatchApplied": "phoenix",
-  "lastUpdated": "2026-03-23T00:18:09.567Z"
+  "lastUpdated": "2026-03-23T00:58:03.638Z"
 }
