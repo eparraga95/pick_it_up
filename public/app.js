@@ -42,7 +42,7 @@ async function init() {
   }
 }
 
-// ── Populate version dropdown ────────────────────────────────────────────
+// ── Populate version chips ───────────────────────────────────────────────
 
 const VERSION_LABELS = {
   phoenix: "Phoenix",
@@ -76,12 +76,17 @@ function populateVersionFilter(songs) {
     return av - bv;
   });
 
-  const sel = document.getElementById("f-version");
+  const container = document.getElementById("f-version-chips");
   versions.forEach((v) => {
-    const opt = document.createElement("option");
-    opt.value = v;
-    opt.textContent = labelFor(v);
-    sel.appendChild(opt);
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "version-chip";
+    chip.dataset.version = v;
+    chip.textContent = labelFor(v);
+    chip.addEventListener("click", () => {
+      chip.classList.toggle("active");
+    });
+    container.appendChild(chip);
   });
 }
 
@@ -201,7 +206,10 @@ function getFilters() {
     levelMin: parseInt(document.getElementById("f-level-min").value) || 1,
     levelMax: parseInt(document.getElementById("f-level-max").value) || 29,
     mode: document.getElementById("f-mode").value,
-    version: document.getElementById("f-version").value,
+    version: new Set(
+      [...document.querySelectorAll("#f-version-chips .version-chip.active")]
+        .map(c => c.dataset.version.toLowerCase())
+    ),
     bpmMin: parseInt(document.getElementById("f-bpm-min").value) || null,
     bpmMax: parseInt(document.getElementById("f-bpm-max").value) || null,
   };
@@ -214,7 +222,7 @@ function resetFilters() {
   document.getElementById("f-level-min").value = "";
   document.getElementById("f-level-max").value = "";
   document.getElementById("f-mode").value = "";
-  document.getElementById("f-version").value = "";
+  document.querySelectorAll("#f-version-chips .version-chip").forEach(c => c.classList.remove("active"));
   document.getElementById("f-bpm-min").value = "";
   document.getElementById("f-bpm-max").value = "";
   document.querySelector('input[name="type"][value="all"]').checked = true;
@@ -300,7 +308,7 @@ function runSearch() {
     }
 
     // Version match (at song level)
-    if (f.version && song.version?.toLowerCase() !== f.version.toLowerCase())
+    if (f.version.size > 0 && !f.version.has(song.version?.toLowerCase()))
       continue;
 
     // BPM match (skip songs with null bpm when bpm filter is active)

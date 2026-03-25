@@ -217,6 +217,37 @@ h1 {
   box-shadow: 0 0 0 3px var(--primary-glow);
 }
 
+/* Version chips */
+.version-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.version-chip {
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.version-chip:hover {
+  border-color: var(--text-color);
+  color: var(--text-color);
+}
+
+.version-chip.active {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  color: #fff;
+}
+
 /* Range row (min / max) */
 .range-row {
   display: flex;
