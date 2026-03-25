@@ -11,6 +11,10 @@ let lastResults = [];
 let builderDivisions  = [];
 let builderModeValue  = 'arcade';
 let builderPoolSize   = 3;   // songs per pool slot (min 1)
+let builderVersions   = new Set();  // empty = all versions
+let builderBpmMin     = null;
+let builderBpmMax     = null;
+let builderTypes      = ['S', 'D']; // filtered by chart type toggle
 // builderSelections[`${divIndex}-${type}-${level}`] = { pool: string[], picked: string|null }
 // pool: up to 3 song ids selected for the pre-release pool
 // picked: the one rolled/chosen as the actual round chart
@@ -77,16 +81,17 @@ function populateVersionFilter(songs) {
   });
 
   const container = document.getElementById("f-version-chips");
+  const blContainer = document.getElementById("bl-version-chips");
   versions.forEach((v) => {
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = "version-chip";
-    chip.dataset.version = v;
-    chip.textContent = labelFor(v);
-    chip.addEventListener("click", () => {
-      chip.classList.toggle("active");
-    });
-    container.appendChild(chip);
+    for (const [el, cls] of [[container, "version-chip"], [blContainer, "version-chip"]]) {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = cls;
+      chip.dataset.version = v;
+      chip.textContent = labelFor(v);
+      chip.addEventListener("click", () => chip.classList.toggle("active"));
+      el.appendChild(chip);
+    }
   });
 }
 
@@ -550,13 +555,16 @@ function getDivisionConfigs() {
 }
 
 function getCandidates(level, type, mode) {
-  return allSongs.filter(song =>
-    song.charts.some(c =>
+  return allSongs.filter(song => {
+    if (builderVersions.size > 0 && !builderVersions.has(song.version?.toLowerCase())) return false;
+    if (builderBpmMin !== null && (song.bpm == null || song.bpm < builderBpmMin)) return false;
+    if (builderBpmMax !== null && (song.bpm == null || song.bpm > builderBpmMax)) return false;
+    return song.charts.some(c =>
       c.type === type &&
       c.level === level &&
       (!mode || c.mode === mode)
-    )
-  );
+    );
+  });
 }
 
 function rollSlot(key) {
@@ -568,6 +576,14 @@ function rollSlot(key) {
 function buildRound() {
   builderDivisions  = getDivisionConfigs();
   builderModeValue  = document.getElementById('bl-mode').value;
+  builderVersions   = new Set(
+    [...document.querySelectorAll('#bl-version-chips .version-chip.active')]
+      .map(c => c.dataset.version.toLowerCase())
+  );
+  builderBpmMin     = parseInt(document.getElementById('bl-bpm-min').value) || null;
+  builderBpmMax     = parseInt(document.getElementById('bl-bpm-max').value) || null;
+  const blType      = document.querySelector('input[name="bl-type"]:checked')?.value ?? 'all';
+  builderTypes      = blType === 'S' ? ['S'] : blType === 'D' ? ['D'] : ['S', 'D'];
   builderSelections = {};
   renderBuilderOutput();
 }
@@ -577,8 +593,16 @@ function resetBuilder() {
   document.getElementById('bl-mode').value = 'arcade';
   builderPoolSize = 3;
   document.getElementById('bl-pool-size-display').textContent = '3';
+  document.querySelectorAll('#bl-version-chips .version-chip').forEach(c => c.classList.remove('active'));
+  document.getElementById('bl-bpm-min').value = '';
+  document.getElementById('bl-bpm-max').value = '';
+  document.querySelector('input[name="bl-type"][value="all"]').checked = true;
   builderDivisions  = [];
   builderModeValue  = 'arcade';
+  builderVersions   = new Set();
+  builderBpmMin     = null;
+  builderBpmMax     = null;
+  builderTypes      = ['S', 'D'];
   builderSelections = {};
   showBuilderPlaceholder();
 }
@@ -621,7 +645,7 @@ function renderBuilderOutput() {
   randAllBtn.textContent = 'Randomize All Pools';
   randAllBtn.addEventListener('click', () => {
     for (const div of builderDivisions) {
-      for (const type of ['S', 'D']) {
+      for (const type of builderTypes) {
         for (const level of div.levels) {
           const key  = `${div.index}-${type}-${level}`;
           const slot = getSlot(key);
@@ -645,7 +669,7 @@ function renderBuilderOutput() {
   rollAllBtn.textContent = 'Roll All';
   rollAllBtn.addEventListener('click', () => {
     for (const div of builderDivisions) {
-      for (const type of ['S', 'D']) {
+      for (const type of builderTypes) {
         for (const level of div.levels) {
           rollSlot(`${div.index}-${type}-${level}`);
         }
@@ -671,13 +695,13 @@ function buildBuilderDivCard(div) {
 
   const levelsEl = document.createElement('span');
   levelsEl.className = 'builder-div-levels';
-  levelsEl.textContent =
-    div.levels.map(l => `S${l}`).join(' & ') + '  ·  ' + div.levels.map(l => `D${l}`).join(' & ');
+  levelsEl.textContent = builderTypes
+    .map(t => div.levels.map(l => `${t}${l}`).join(' & ')).join('  ·  ');
 
   header.append(nameEl, levelsEl);
   card.appendChild(header);
 
-  for (const type of ['S', 'D']) {
+  for (const type of builderTypes) {
     for (const level of div.levels) {
       const candidates = getCandidates(level, type, builderModeValue);
       card.appendChild(buildBuilderTypeSection(div.index, type, level, candidates));
@@ -830,7 +854,7 @@ function buildRoundSummary() {
 
   for (const div of builderDivisions) {
     // Check if this division has any pool entries at all
-    const divHasAny = ['S', 'D'].some(type =>
+    const divHasAny = builderTypes.some(type =>
       div.levels.some(level => {
         const slot = builderSelections[`${div.index}-${type}-${level}`];
         return slot && slot.pool.length > 0;
@@ -850,7 +874,7 @@ function buildRoundSummary() {
     const divSlots = document.createElement('div');
     divSlots.className = 'summary-div-slots';
 
-    for (const type of ['S', 'D']) {
+    for (const type of builderTypes) {
       for (const level of div.levels) {
         const slot  = builderSelections[`${div.index}-${type}-${level}`];
         const slotEl = document.createElement('div');

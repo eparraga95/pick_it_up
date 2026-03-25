@@ -172,6 +172,17 @@
 
             <div class="filter-grid">
               <div class="filter-group full-width">
+                <label>Chart type</label>
+                <div class="type-toggle">
+                  <input type="radio" name="bl-type" id="bl-type-all" value="all" checked />
+                  <label for="bl-type-all">All</label>
+                  <input type="radio" name="bl-type" id="bl-type-s" value="S" />
+                  <label for="bl-type-s">Single</label>
+                  <input type="radio" name="bl-type" id="bl-type-d" value="D" />
+                  <label for="bl-type-d">Double</label>
+                </div>
+              </div>
+              <div class="filter-group full-width">
                 <label for="bl-mode">Mode</label>
                 <select id="bl-mode">
                   <option value="arcade">Arcade</option>
@@ -187,6 +198,20 @@
                   <button class="btn-ghost btn-sm" id="bl-pool-dec">−</button>
                   <span id="bl-pool-size-display">3</span>
                   <button class="btn-ghost btn-sm" id="bl-pool-inc">+</button>
+                </div>
+              </div>
+              <div class="filter-group full-width">
+                <label>Version</label>
+                <div id="bl-version-chips" class="version-chips">
+                  <!-- populated by JS -->
+                </div>
+              </div>
+              <div class="filter-group full-width">
+                <label>BPM range</label>
+                <div class="range-row">
+                  <input type="number" id="bl-bpm-min" min="1" step="1" placeholder="min" />
+                  <span class="range-sep">to</span>
+                  <input type="number" id="bl-bpm-max" min="1" step="1" placeholder="max" />
                 </div>
               </div>
             </div>
