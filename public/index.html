@@ -20,6 +20,7 @@
           <div class="panel-tabs">
             <button class="panel-tab active" data-tab="filters">Filters</button>
             <button class="panel-tab" data-tab="overlap">Overlap</button>
+            <button class="panel-tab" data-tab="builder">Builder</button>
           </div>
 
           <!-- ── Filters tab ───────────────────────────── -->
@@ -165,6 +166,45 @@
               <button class="btn-ghost" id="btn-overlap-reset">Reset</button>
             </div>
           </div><!-- /panel-overlap -->
+
+          <!-- ── Builder tab ────────────────────────────── -->
+          <div class="tab-panel" id="panel-builder" style="display:none">
+            <p class="overlap-desc">Configure a CBPIU round to find eligible songs for each division.</p>
+
+            <div class="filter-grid">
+              <div class="filter-group full-width">
+                <label for="bl-mode">Mode</label>
+                <select id="bl-mode">
+                  <option value="arcade">Arcade</option>
+                  <option value="">All modes</option>
+                  <option value="shortcut">Short Cut</option>
+                  <option value="fullsong">Full Song</option>
+                  <option value="remix">Remix</option>
+                </select>
+              </div>
+              <div class="filter-group full-width">
+                <label>Songs per pool</label>
+                <div class="bl-pool-size-row">
+                  <button class="btn-ghost btn-sm" id="bl-pool-dec">−</button>
+                  <span id="bl-pool-size-display">3</span>
+                  <button class="btn-ghost btn-sm" id="bl-pool-inc">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bl-section-label">Divisions</div>
+            <div id="bl-divisions"><!-- populated by JS --></div>
+
+            <div class="bl-div-controls">
+              <button class="btn-ghost btn-sm" id="bl-add-div">+ Div</button>
+              <button class="btn-ghost btn-sm" id="bl-remove-div">− Div</button>
+            </div>
+
+            <div class="filter-actions">
+              <button class="btn-primary" id="btn-build">Build Round</button>
+              <button class="btn-ghost" id="btn-build-reset">Reset</button>
+            </div>
+          </div><!-- /panel-builder -->
         </aside>
 
         <!-- ── Results Panel ──────────────────────────── -->

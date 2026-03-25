@@ -5,21 +5,27 @@
  * "펌프잇업공식 PUMP IT UP Official" YouTube channel, fetches the video
  * description, and parses the "Step Artist:" field from it.
  *
+ * For songs with mode suffixes (" - SHORT CUT -", " - FULL SONG -", " - REMIX -"),
+ * the suffix is stripped from the search query and replaced with a cleaner keyword
+ * (e.g. "Death Moon - SHORT CUT -" → query "Death Moon short cut pump it up").
+ * The returned video is then validated to confirm it matches the expected mode before
+ * any value is applied — preventing arcade videos from silently polluting shortcut entries.
+ *
  * Prerequisites:
  *   export YOUTUBE_API_KEY=your_key_here
  *   (Get a free key at https://console.cloud.google.com → YouTube Data API v3)
  *
  * Usage:
- *   node scraper/fill-step-artists.js                    -- dry run (all missing)
- *   node scraper/fill-step-artists.js --apply            -- apply all missing
- *   node scraper/fill-step-artists.js --apply --limit 90 -- apply first 90 (safe for quota)
+ *   node scraper/fill-step-artists.js                      -- dry run (all null)
+ *   node scraper/fill-step-artists.js --apply              -- fill all null
+ *   node scraper/fill-step-artists.js --apply --limit 90   -- fill first 90 (safe for quota)
+ *   node scraper/fill-step-artists.js --verify             -- compare existing vs YouTube (dry run)
+ *   node scraper/fill-step-artists.js --verify --apply     -- write conflicts to data/review/
  *
  * API cost: 100 units/search. Free tier = 10,000 units/day → max 99 songs/day.
- * With 118 missing, run --limit 90 today and the rest tomorrow.
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { resolve } from 'path';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 
 // Load .env from project root (Node 18 doesn't have --env-file built in)
 const envPath = new URL('../.env', import.meta.url).pathname;
@@ -31,6 +37,7 @@ if (existsSync(envPath)) {
 }
 
 const APPLY   = process.argv.includes('--apply');
+const VERIFY  = process.argv.includes('--verify');
 const DB_PATH = new URL('../data/songs.json', import.meta.url).pathname;
 const API_KEY = process.env.YOUTUBE_API_KEY;
 
@@ -44,6 +51,47 @@ const PIU_CHANNEL_ID = 'UC1zVbfSZSKz9r2AzF50l9sA';
 
 // ms to wait between search calls to stay polite
 const SEARCH_DELAY_MS = 200;
+
+// ── Mode helpers ──────────────────────────────────────────────────────────────
+
+// Known non-arcade mode suffixes added by split-mixed-modes.js
+const MODE_SUFFIXES = [
+  { suffix: ' - SHORT CUT -', keyword: 'short cut', rx: /short\s*cut/i },
+  { suffix: ' - FULL SONG -', keyword: 'full song',  rx: /full\s*song/i },
+  { suffix: ' - REMIX -',     keyword: 'remix',      rx: /remix/i },
+];
+
+/**
+ * Detect mode suffix in a song title.
+ * Returns { baseTitle, keyword, rx } where rx is the validation regex (null for arcade).
+ */
+function parseTitleMode(title) {
+  for (const { suffix, keyword, rx } of MODE_SUFFIXES) {
+    if (title.includes(suffix)) {
+      return { baseTitle: title.slice(0, title.indexOf(suffix)).trim(), keyword, rx };
+    }
+  }
+  return { baseTitle: title, keyword: null, rx: null };
+}
+
+/**
+ * Build a clean YouTube search query.
+ * For mode-specific songs, strips the raw suffix and injects a cleaner keyword so
+ * YouTube understands the intent (e.g. "short cut" instead of "- SHORT CUT -").
+ */
+function buildSearchQuery(title) {
+  const { baseTitle, keyword } = parseTitleMode(title);
+  return keyword ? `${baseTitle} ${keyword} pump it up` : `${baseTitle} pump it up`;
+}
+
+/**
+ * Return true if the video snippet's title+description appear to belong to the
+ * expected mode. Arcade songs (rx === null) always pass — any PIU video is fine.
+ */
+function videoMatchesMode(snippet, rx) {
+  if (!rx) return true;
+  return rx.test(`${snippet.title} ${snippet.description}`);
+}
 
 // ── YouTube API helpers ───────────────────────────────────────────────────────
 
@@ -61,17 +109,14 @@ async function ytGet(endpoint, params) {
 }
 
 /**
- * Search YouTube for a song title and return the first video ID from the
+ * Search YouTube for a song and return the first matching video ID from the
  * official PIU channel, or null if none found.
- *
- * We search broadly (no channelId param — that filter is unreliable) and
- * match against PIU_CHANNEL_ID in the results.
  * Cost: 100 quota units per call.
  */
 async function searchVideo(songTitle) {
   const data = await ytGet('search', {
     part:       'snippet',
-    q:          `${songTitle} pump it up`,
+    q:          buildSearchQuery(songTitle),
     type:       'video',
     maxResults: 10,
   });
@@ -128,8 +173,9 @@ function sleep(ms) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
+  const modeLabel = VERIFY ? '🔎 VERIFY' : (APPLY ? '✏️  APPLY' : '🔍 DRY RUN');
   console.log('=== fill-step-artists ===');
-  console.log(`Mode: ${APPLY ? '✏️  APPLY' : '🔍 DRY RUN'}\n`);
+  console.log(`Mode: ${modeLabel}\n`);
 
   if (!API_KEY) {
     console.error('Error: YOUTUBE_API_KEY environment variable is not set.');
@@ -141,10 +187,14 @@ async function main() {
   const db    = JSON.parse(readFileSync(DB_PATH, 'utf8'));
   const songs = db.songs;
 
-  const allTargets = songs.filter(s => !s.stepArtist);
+  // --verify: check songs that already have a value; else: fill songs that don't
+  const allTargets = VERIFY ? songs.filter(s => s.stepArtist) : songs.filter(s => !s.stepArtist);
   const targets    = allTargets.slice(0, LIMIT);
 
-  console.log(`Songs missing stepArtist: ${allTargets.length} / ${songs.length}`);
+  const banner = VERIFY
+    ? `Songs with stepArtist to verify: ${allTargets.length} / ${songs.length}`
+    : `Songs missing stepArtist: ${allTargets.length} / ${songs.length}`;
+  console.log(banner);
   if (LIMIT < Infinity) console.log(`Processing: first ${targets.length} (--limit ${LIMIT})`);
   console.log();
 
@@ -156,20 +206,20 @@ async function main() {
   console.log(`Targeting channel: ${PIU_CHANNEL_ID} (펌프잇업공식 PUMP IT UP Official)\n`);
 
   // ── Phase 1: search for each song ────────────────────────────────────────
-  // songTitle → videoId  (null if not found)
+  // song.id → videoId | null
   const videoIdBySong = new Map();
 
   for (let i = 0; i < targets.length; i++) {
     const song = targets[i];
-    process.stdout.write(`  [${String(i + 1).padStart(2)}/${targets.length}] Searching: "${song.title}"... `);
+    process.stdout.write(`  [${String(i + 1).padStart(3)}/${targets.length}] Searching: "${song.title}"... `);
 
     try {
       const videoId = await searchVideo(song.title);
-      videoIdBySong.set(song.title, videoId);
+      videoIdBySong.set(song.id, videoId);
       console.log(videoId ? `→ ${videoId}` : '→ ⚠ not found');
     } catch (err) {
       console.log(`→ ✗ ERROR: ${err.message}`);
-      videoIdBySong.set(song.title, null);
+      videoIdBySong.set(song.id, null);
     }
 
     if (i < targets.length - 1) await sleep(SEARCH_DELAY_MS);
@@ -192,11 +242,12 @@ async function main() {
   }
 
   // ── Phase 3: parse step artists & build changeset ────────────────────────
-  const changes = [];  // { song, stepArtist, videoId, videoTitle }
-  const skipped = [];  // { song, reason }
+  const changes   = [];  // (fill)   { song, stepArtist, videoId, videoTitle }
+  const conflicts = [];  // (verify) { song, stored, fromYoutube, videoId, videoTitle }
+  const skipped   = [];  // { song, reason }
 
   for (const song of targets) {
-    const videoId = videoIdBySong.get(song.title);
+    const videoId = videoIdBySong.get(song.id);
 
     if (!videoId) {
       skipped.push({ song, reason: 'no video found on channel' });
@@ -209,6 +260,17 @@ async function main() {
       continue;
     }
 
+    // Validate that the video belongs to the expected mode (shortcut/fullsong/remix/arcade).
+    // This prevents, e.g., an arcade gameplay video supplying the stepArtist of a shortcut entry.
+    const { rx } = parseTitleMode(song.title);
+    if (!videoMatchesMode(snippet, rx)) {
+      skipped.push({
+        song,
+        reason: `video "${snippet.title}" (${videoId}) does not match expected mode — needs manual lookup`,
+      });
+      continue;
+    }
+
     const stepArtist = parseStepArtist(snippet.description);
     if (!stepArtist) {
       skipped.push({
@@ -218,17 +280,40 @@ async function main() {
       continue;
     }
 
-    changes.push({ song, stepArtist, videoId, videoTitle: snippet.title });
+    if (VERIFY) {
+      if (song.stepArtist !== stepArtist) {
+        conflicts.push({ song, stored: song.stepArtist, fromYoutube: stepArtist, videoId, videoTitle: snippet.title });
+      }
+      // no conflict: silently ok
+    } else {
+      changes.push({ song, stepArtist, videoId, videoTitle: snippet.title });
+    }
   }
 
   // ── Report ────────────────────────────────────────────────────────────────
-  console.log(`\n── Results ────────────────────────────────────────────────`);
-  console.log(`Changes: ${changes.length}  |  Skipped: ${skipped.length}\n`);
+  console.log(`\n── Results ─────────────────────────────────────────────────`);
 
-  for (const { song, stepArtist, videoId, videoTitle } of changes) {
-    console.log(`  ✦ "${song.title}"`);
-    console.log(`    stepArtist → "${stepArtist}"`);
-    console.log(`    video: "${videoTitle}" (${videoId})`);
+  if (VERIFY) {
+    const verified = targets.length - skipped.length - conflicts.length;
+    console.log(`Verified OK: ${verified}  |  Conflicts: ${conflicts.length}  |  Skipped: ${skipped.length}\n`);
+
+    if (conflicts.length) {
+      console.log('Conflicts (stored → YouTube):');
+      for (const { song, stored, fromYoutube, videoId, videoTitle } of conflicts) {
+        console.log(`  ⚡ "${song.title}"`);
+        console.log(`     stored  : "${stored}"`);
+        console.log(`     youtube : "${fromYoutube}"`);
+        console.log(`     video   : "${videoTitle}" (${videoId})`);
+      }
+    }
+  } else {
+    console.log(`Changes: ${changes.length}  |  Skipped: ${skipped.length}\n`);
+
+    for (const { song, stepArtist, videoId, videoTitle } of changes) {
+      console.log(`  ✦ "${song.title}"`);
+      console.log(`    stepArtist → "${stepArtist}"`);
+      console.log(`    video: "${videoTitle}" (${videoId})`);
+    }
   }
 
   if (skipped.length) {
@@ -239,18 +324,52 @@ async function main() {
   }
 
   if (!APPLY) {
-    console.log('\nRun with --apply to write changes to songs.json');
+    const hint = VERIFY
+      ? '\nRun with --verify --apply to write conflicts to data/review/step-artist-conflicts.json'
+      : '\nRun with --apply to write changes to songs.json';
+    console.log(hint);
     return;
   }
 
   // ── Apply ─────────────────────────────────────────────────────────────────
-  for (const { song, stepArtist } of changes) {
-    song.stepArtist = stepArtist;
-  }
+  if (VERIFY) {
+    if (conflicts.length === 0) {
+      console.log('\n✓ No conflicts — nothing to write.');
+      return;
+    }
 
-  db.lastUpdated = new Date().toISOString();
-  writeFileSync(DB_PATH, JSON.stringify(db, null, 2), 'utf8');
-  console.log(`\n✓ songs.json updated — ${changes.length} step artist(s) filled.`);
+    const reviewDir  = new URL('../data/review', import.meta.url).pathname;
+    const reviewPath = `${reviewDir}/step-artist-conflicts.json`;
+    if (!existsSync(reviewDir)) mkdirSync(reviewDir, { recursive: true });
+
+    const output = {
+      generatedAt: new Date().toISOString(),
+      source:      'fill-step-artists.js --verify',
+      conflicts: conflicts.map(({ song, stored, fromYoutube, videoId, videoTitle }) => ({
+        id:         song.id,
+        title:      song.title,
+        stored,
+        fromYoutube,
+        videoId,
+        videoTitle,
+        // Fill in "keep", "youtube", or a custom artist name, then apply via merge.js
+        resolution: null,
+      })),
+    };
+
+    writeFileSync(reviewPath, JSON.stringify(output, null, 2), 'utf8');
+    console.log(`\n✓ ${conflicts.length} conflict(s) written to data/review/step-artist-conflicts.json`);
+    console.log('  Set "resolution" for each entry (keep | youtube | <custom>), then correct via merge.js.');
+  } else {
+    for (const { song, stepArtist } of changes) {
+      song.stepArtist       = stepArtist;
+      song.stepArtistSource = 'youtube';
+    }
+
+    db.lastUpdated = new Date().toISOString();
+    writeFileSync(DB_PATH, JSON.stringify(db, null, 2), 'utf8');
+    console.log(`\n✓ songs.json updated — ${changes.length} step artist(s) filled.`);
+  }
 }
 
 main().catch(err => {
