@@ -15,6 +15,7 @@ let builderVersions   = new Set();  // empty = all versions
 let builderBpmMin     = null;
 let builderBpmMax     = null;
 let builderTypes      = ['S', 'D']; // filtered by chart type toggle
+let builderUniqueOnly = false;      // each song can appear in at most one pool
 // builderSelections[`${divIndex}-${type}-${level}`] = { pool: string[], picked: string|null }
 // pool: up to 3 song ids selected for the pre-release pool
 // picked: the one rolled/chosen as the actual round chart
@@ -567,6 +568,15 @@ function getCandidates(level, type, mode) {
   });
 }
 
+function getUsedSongIds(excludeKey) {
+  const used = new Set();
+  for (const [k, slot] of Object.entries(builderSelections)) {
+    if (k === excludeKey) continue;
+    for (const id of slot.pool) used.add(id);
+  }
+  return used;
+}
+
 function rollSlot(key) {
   const slot = builderSelections[key];
   if (!slot || slot.pool.length === 0) return;
@@ -584,6 +594,7 @@ function buildRound() {
   builderBpmMax     = parseInt(document.getElementById('bl-bpm-max').value) || null;
   const blType      = document.querySelector('input[name="bl-type"]:checked')?.value ?? 'all';
   builderTypes      = blType === 'S' ? ['S'] : blType === 'D' ? ['D'] : ['S', 'D'];
+  builderUniqueOnly = document.getElementById('bl-unique').checked;
   builderSelections = {};
   renderBuilderOutput();
 }
@@ -597,12 +608,14 @@ function resetBuilder() {
   document.getElementById('bl-bpm-min').value = '';
   document.getElementById('bl-bpm-max').value = '';
   document.querySelector('input[name="bl-type"][value="all"]').checked = true;
+  document.getElementById('bl-unique').checked = false;
   builderDivisions  = [];
   builderModeValue  = 'arcade';
   builderVersions   = new Set();
   builderBpmMin     = null;
   builderBpmMax     = null;
   builderTypes      = ['S', 'D'];
+  builderUniqueOnly = false;
   builderSelections = {};
   showBuilderPlaceholder();
 }
@@ -644,20 +657,25 @@ function renderBuilderOutput() {
   randAllBtn.className = 'btn-ghost';
   randAllBtn.textContent = 'Randomize All Pools';
   randAllBtn.addEventListener('click', () => {
+    const usedInRound = new Set();
     for (const div of builderDivisions) {
       for (const type of builderTypes) {
         for (const level of div.levels) {
           const key  = `${div.index}-${type}-${level}`;
           const slot = getSlot(key);
           const candidates = getCandidates(level, type, builderModeValue);
-          if (candidates.length === 0) continue;
-          const shuffled = [...candidates];
+          const eligible = builderUniqueOnly
+            ? candidates.filter(s => !usedInRound.has(s.id))
+            : candidates;
+          if (eligible.length === 0) continue;
+          const shuffled = [...eligible];
           for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
           }
           slot.pool   = shuffled.slice(0, builderPoolSize).map(s => s.id);
           slot.picked = null;
+          if (builderUniqueOnly) slot.pool.forEach(id => usedInRound.add(id));
         }
       }
     }
@@ -751,8 +769,9 @@ function buildBuilderTypeSection(divIndex, type, level, candidates) {
   randomPoolBtn.disabled = candidates.length === 0;
   randomPoolBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    // Fisher-Yates shuffle on a copy, take first 3
-    const shuffled = [...candidates];
+    const excludeIds = builderUniqueOnly ? getUsedSongIds(key) : new Set();
+    const eligible = candidates.filter(s => !excludeIds.has(s.id));
+    const shuffled = [...eligible];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -787,21 +806,25 @@ function buildBuilderTypeSection(divIndex, type, level, candidates) {
   // ── Candidate list ───────────────────────────────────
   const list = document.createElement('div');
   list.className = 'builder-candidate-list';
+  const usedElsewhereIds = builderUniqueOnly ? getUsedSongIds(key) : new Set();
 
   for (const song of candidates) {
-    const poolIdx  = slot.pool.indexOf(song.id);
-    const inPool   = poolIdx >= 0;
-    const isPicked = slot.picked === song.id;
-    const isFull   = slot.pool.length >= builderPoolSize && !inPool;
+    const poolIdx      = slot.pool.indexOf(song.id);
+    const inPool       = poolIdx >= 0;
+    const isPicked     = slot.picked === song.id;
+    const isFull       = slot.pool.length >= builderPoolSize && !inPool;
+    const usedElsewhere = !inPool && usedElsewhereIds.has(song.id);
 
     const row = document.createElement('div');
     row.className = 'builder-candidate'
       + (isPicked ? ' picked' : inPool ? ' in-pool' : '')
-      + (isFull ? ' pool-full' : '');
+      + (isFull ? ' pool-full' : '')
+      + (usedElsewhere ? ' used-elsewhere' : '');
+    if (usedElsewhere) row.title = 'Already in another pool';
 
     const check = document.createElement('span');
     check.className = 'builder-candidate-check';
-    check.textContent = isPicked ? '★' : inPool ? String(poolIdx + 1) : '○';
+    check.textContent = isPicked ? '★' : inPool ? String(poolIdx + 1) : usedElsewhere ? '×' : '○';
 
     const title = document.createElement('span');
     title.className = 'builder-candidate-title';
@@ -828,7 +851,7 @@ function buildBuilderTypeSection(divIndex, type, level, candidates) {
       if (inPool) {
         slot.pool.splice(poolIdx, 1);
         if (slot.picked === song.id) slot.picked = null;
-      } else if (!isFull) {
+      } else if (!isFull && !usedElsewhere) {
         slot.pool.push(song.id);
       }
       rerender();
@@ -914,9 +937,13 @@ function buildRoundSummary() {
           slotRandBtn.className = 'btn-ghost btn-sm';
           slotRandBtn.textContent = 'Random Pool';
           slotRandBtn.addEventListener('click', () => {
+            const slotKey    = `${div.index}-${type}-${level}`;
             const candidates = getCandidates(level, type, builderModeValue);
             if (candidates.length === 0) return;
-            const shuffled = [...candidates];
+            const excludeIds = builderUniqueOnly ? getUsedSongIds(slotKey) : new Set();
+            const eligible   = candidates.filter(s => !excludeIds.has(s.id));
+            if (eligible.length === 0) return;
+            const shuffled = [...eligible];
             for (let i = shuffled.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
               [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
