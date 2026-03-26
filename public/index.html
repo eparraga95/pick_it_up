@@ -25,123 +25,160 @@
 
           <!-- ── Filters tab ───────────────────────────── -->
           <div class="tab-panel" id="panel-filters">
-          <div class="filter-grid">
-            <div class="filter-group full-width">
-              <label for="f-title">Song title</label>
-              <input
-                type="text"
-                id="f-title"
-                placeholder="e.g. Ignis Fatuus"
-                autocomplete="off"
-              />
-            </div>
-
-            <div class="filter-group full-width">
-              <label for="f-artist">Song artist</label>
-              <input
-                type="text"
-                id="f-artist"
-                placeholder="e.g. SHK"
-                autocomplete="off"
-              />
-            </div>
-
-            <div class="filter-group full-width">
-              <label for="f-step-artist">Step artist</label>
-              <input
-                type="text"
-                id="f-step-artist"
-                placeholder="e.g. EUNHU"
-                autocomplete="off"
-              />
-            </div>
-
-            <div class="filter-group full-width">
-              <label>Chart type</label>
-              <div class="type-toggle">
+            <div class="filter-grid">
+              <div class="filter-group full-width">
+                <label for="f-title">Song title</label>
                 <input
-                  type="radio"
-                  name="type"
-                  id="type-all"
-                  value="all"
-                  checked
-                />
-                <label for="type-all">All</label>
-
-                <input type="radio" name="type" id="type-s" value="S" />
-                <label for="type-s">Single</label>
-
-                <input type="radio" name="type" id="type-d" value="D" />
-                <label for="type-d">Double</label>
-              </div>
-            </div>
-
-            <div class="filter-group full-width">
-              <label>Level range</label>
-              <div class="range-row">
-                <input
-                  type="number"
-                  id="f-level-min"
-                  min="1"
-                  max="29"
-                  step="1"
-                  placeholder="1"
-                />
-                <span class="range-sep">to</span>
-                <input
-                  type="number"
-                  id="f-level-max"
-                  min="1"
-                  max="29"
-                  step="1"
-                  placeholder="29"
+                  type="text"
+                  id="f-title"
+                  placeholder="e.g. Ignis Fatuus"
+                  autocomplete="off"
                 />
               </div>
-            </div>
 
-            <div class="filter-group full-width">
-              <label for="f-mode">Mode</label>
-              <select id="f-mode">
-                <option value="">All modes</option>
-                <option value="arcade">Arcade</option>
-                <option value="shortcut">Shortcut</option>
-                <option value="remix">Remix</option>
-                <option value="fullsong">Fullsong</option>
-              </select>
-            </div>
+              <div class="filter-group full-width">
+                <label for="f-artist">Song artist</label>
+                <input
+                  type="text"
+                  id="f-artist"
+                  placeholder="e.g. SHK"
+                  autocomplete="off"
+                />
+              </div>
 
-            <div class="filter-group full-width">
-              <label>Version</label>
-              <div id="f-version-chips" class="version-chips">
-                <!-- populated by JS -->
+              <div class="filter-group full-width">
+                <label for="f-step-artist">Step artist</label>
+                <input
+                  type="text"
+                  id="f-step-artist"
+                  placeholder="e.g. EUNHU"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="filter-group full-width">
+                <label>Chart type</label>
+                <div class="type-toggle">
+                  <input
+                    type="radio"
+                    name="type"
+                    id="type-all"
+                    value="all"
+                    checked
+                  />
+                  <label for="type-all">All</label>
+
+                  <input type="radio" name="type" id="type-s" value="S" />
+                  <label for="type-s">Single</label>
+
+                  <input type="radio" name="type" id="type-d" value="D" />
+                  <label for="type-d">Double</label>
+                </div>
+              </div>
+
+              <div class="filter-group full-width">
+                <label>Level range</label>
+                <div class="range-row">
+                  <input
+                    type="number"
+                    id="f-level-min"
+                    min="1"
+                    max="29"
+                    step="1"
+                    placeholder="1"
+                  />
+                  <span class="range-sep">to</span>
+                  <input
+                    type="number"
+                    id="f-level-max"
+                    min="1"
+                    max="29"
+                    step="1"
+                    placeholder="29"
+                  />
+                </div>
+              </div>
+
+              <div class="filter-group full-width">
+                <label>Mode</label>
+                <div id="f-mode-chips" class="version-chips">
+                  <button type="button" class="version-chip" data-mode="arcade">
+                    Arcade
+                  </button>
+                  <button
+                    type="button"
+                    class="version-chip"
+                    data-mode="shortcut"
+                  >
+                    Shortcut
+                  </button>
+                  <button
+                    type="button"
+                    class="version-chip"
+                    data-mode="fullsong"
+                  >
+                    Full Song
+                  </button>
+                  <button type="button" class="version-chip" data-mode="remix">
+                    Remix
+                  </button>
+                </div>
+              </div>
+
+              <div class="filter-group full-width">
+                <label>Version</label>
+                <div id="f-version-chips" class="version-chips">
+                  <!-- populated by JS -->
+                </div>
+              </div>
+
+              <div class="filter-group full-width">
+                <label>BPM range</label>
+                <div class="range-row">
+                  <input
+                    type="number"
+                    id="f-bpm-min"
+                    min="1"
+                    step="1"
+                    placeholder="min"
+                  />
+                  <span class="range-sep">to</span>
+                  <input
+                    type="number"
+                    id="f-bpm-max"
+                    min="1"
+                    step="1"
+                    placeholder="max"
+                  />
+                </div>
               </div>
             </div>
 
-            <div class="filter-group full-width">
-              <label>BPM range</label>
-              <div class="range-row">
-                <input type="number" id="f-bpm-min" min="1" step="1" placeholder="min" />
-                <span class="range-sep">to</span>
-                <input type="number" id="f-bpm-max" min="1" step="1" placeholder="max" />
-              </div>
+            <div class="filter-actions">
+              <button class="btn-primary" id="btn-search">Search</button>
+              <button class="btn-ghost" id="btn-reset">Reset</button>
             </div>
           </div>
-
-          <div class="filter-actions">
-            <button class="btn-primary" id="btn-search">Search</button>
-            <button class="btn-ghost" id="btn-reset">Reset</button>
-          </div>
-          </div><!-- /panel-filters -->
+          <!-- /panel-filters -->
 
           <!-- ── Overlap tab ────────────────────────────── -->
-          <div class="tab-panel" id="panel-overlap" style="display:none">
-            <p class="overlap-desc">Find songs that have charts at <em>both</em> levels simultaneously.</p>
+          <div class="tab-panel" id="panel-overlap" style="display: none">
+            <p class="overlap-desc">
+              Find songs that have charts at <em>both</em> levels
+              simultaneously.
+            </p>
 
             <div class="filter-grid">
               <div class="filter-group full-width">
                 <label>Chart type</label>
                 <div class="type-toggle">
-                  <input type="radio" name="ov-type" id="ov-type-all" value="all" checked />
+                  <input
+                    type="radio"
+                    name="ov-type"
+                    id="ov-type-all"
+                    value="all"
+                    checked
+                  />
                   <label for="ov-type-all">All</label>
                   <input type="radio" name="ov-type" id="ov-type-s" value="S" />
                   <label for="ov-type-s">Single</label>
@@ -153,28 +190,53 @@
               <div class="filter-group full-width">
                 <label>Both levels present</label>
                 <div class="range-row">
-                  <input type="number" id="ov-level-a" min="1" max="29" step="1" placeholder="e.g. 18" />
+                  <input
+                    type="number"
+                    id="ov-level-a"
+                    min="1"
+                    max="29"
+                    step="1"
+                    placeholder="e.g. 18"
+                  />
                   <span class="range-sep">&amp;</span>
-                  <input type="number" id="ov-level-b" min="1" max="29" step="1" placeholder="e.g. 21" />
+                  <input
+                    type="number"
+                    id="ov-level-b"
+                    min="1"
+                    max="29"
+                    step="1"
+                    placeholder="e.g. 21"
+                  />
                 </div>
               </div>
             </div>
 
             <div class="filter-actions">
-              <button class="btn-primary" id="btn-overlap-search">Search</button>
+              <button class="btn-primary" id="btn-overlap-search">
+                Search
+              </button>
               <button class="btn-ghost" id="btn-overlap-reset">Reset</button>
             </div>
-          </div><!-- /panel-overlap -->
+          </div>
+          <!-- /panel-overlap -->
 
           <!-- ── Builder tab ────────────────────────────── -->
-          <div class="tab-panel" id="panel-builder" style="display:none">
-            <p class="overlap-desc">Configure a CBPIU round to find eligible songs for each division.</p>
+          <div class="tab-panel" id="panel-builder" style="display: none">
+            <p class="overlap-desc">
+              Configure a round to find eligible songs for each division.
+            </p>
 
             <div class="filter-grid">
               <div class="filter-group full-width">
                 <label>Chart type</label>
                 <div class="type-toggle">
-                  <input type="radio" name="bl-type" id="bl-type-all" value="all" checked />
+                  <input
+                    type="radio"
+                    name="bl-type"
+                    id="bl-type-all"
+                    value="all"
+                    checked
+                  />
                   <label for="bl-type-all">All</label>
                   <input type="radio" name="bl-type" id="bl-type-s" value="S" />
                   <label for="bl-type-s">Single</label>
@@ -183,14 +245,29 @@
                 </div>
               </div>
               <div class="filter-group full-width">
-                <label for="bl-mode">Mode</label>
-                <select id="bl-mode">
-                  <option value="arcade">Arcade</option>
-                  <option value="">All modes</option>
-                  <option value="shortcut">Short Cut</option>
-                  <option value="fullsong">Full Song</option>
-                  <option value="remix">Remix</option>
-                </select>
+                <label>Mode</label>
+                <div id="bl-mode-chips" class="version-chips">
+                  <button type="button" class="version-chip" data-mode="arcade">
+                    Arcade
+                  </button>
+                  <button
+                    type="button"
+                    class="version-chip"
+                    data-mode="shortcut"
+                  >
+                    Shortcut
+                  </button>
+                  <button
+                    type="button"
+                    class="version-chip"
+                    data-mode="fullsong"
+                  >
+                    Full Song
+                  </button>
+                  <button type="button" class="version-chip" data-mode="remix">
+                    Remix
+                  </button>
+                </div>
               </div>
               <div class="filter-group full-width">
                 <label>Songs per pool</label>
@@ -209,15 +286,33 @@
               <div class="filter-group full-width">
                 <label>BPM range</label>
                 <div class="range-row">
-                  <input type="number" id="bl-bpm-min" min="1" step="1" placeholder="min" />
+                  <input
+                    type="number"
+                    id="bl-bpm-min"
+                    min="1"
+                    step="1"
+                    placeholder="min"
+                  />
                   <span class="range-sep">to</span>
-                  <input type="number" id="bl-bpm-max" min="1" step="1" placeholder="max" />
+                  <input
+                    type="number"
+                    id="bl-bpm-max"
+                    min="1"
+                    step="1"
+                    placeholder="max"
+                  />
                 </div>
               </div>
               <div class="filter-group full-width">
                 <label class="bl-checkbox-label">
                   <input type="checkbox" id="bl-unique" />
                   Unique songs (each song once per round)
+                </label>
+              </div>
+              <div class="filter-group full-width">
+                <label class="bl-checkbox-label" id="bl-no-repeat-rolls-label">
+                  <input type="checkbox" id="bl-no-repeat-rolls" />
+                  No repeat rolls (rolled songs cannot be rolled again)
                 </label>
               </div>
             </div>
@@ -234,7 +329,8 @@
               <button class="btn-primary" id="btn-build">Build Round</button>
               <button class="btn-ghost" id="btn-build-reset">Reset</button>
             </div>
-          </div><!-- /panel-builder -->
+          </div>
+          <!-- /panel-builder -->
         </aside>
 
         <!-- ── Results Panel ──────────────────────────── -->

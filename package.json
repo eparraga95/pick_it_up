@@ -16,6 +16,7 @@
     "fill-step-artists:batch": "node scraper/fill-step-artists.js --apply --limit 90",
     "split-modes": "node scraper/split-mixed-modes.js",
     "split-modes:apply": "node scraper/split-mixed-modes.js --apply",
+    "find-duplicates": "node scraper/find-duplicates.js",
     "serve": "npx serve . -l 3000"
   },
   "dependencies": {

@@ -9,13 +9,14 @@ let lastResults = [];
 
 // Builder state
 let builderDivisions  = [];
-let builderModeValue  = 'arcade';
+let builderModeValue  = new Set();
 let builderPoolSize   = 3;   // songs per pool slot (min 1)
 let builderVersions   = new Set();  // empty = all versions
 let builderBpmMin     = null;
 let builderBpmMax     = null;
 let builderTypes      = ['S', 'D']; // filtered by chart type toggle
-let builderUniqueOnly = false;      // each song can appear in at most one pool
+let builderUniqueOnly    = false;      // each song can appear in at most one pool
+let builderNoRepeatRolls = false;      // a rolled song cannot be rolled again in another slot
 // builderSelections[`${divIndex}-${type}-${level}`] = { pool: string[], picked: string|null }
 // pool: up to 3 song ids selected for the pre-release pool
 // picked: the one rolled/chosen as the actual round chart
@@ -116,6 +117,11 @@ function bindEvents() {
     .getElementById("sort-select")
     .addEventListener("change", () => renderResults(lastResults));
 
+  // Mode chips toggle
+  document.querySelectorAll('#f-mode-chips .version-chip, #bl-mode-chips .version-chip').forEach(chip => {
+    chip.addEventListener('click', () => chip.classList.toggle('active'));
+  });
+
   // Overlap tab
   document.getElementById("btn-overlap-search").addEventListener("click", runOverlapSearch);
   document.getElementById("btn-overlap-reset").addEventListener("click", resetOverlap);
@@ -211,7 +217,10 @@ function getFilters() {
     type: document.querySelector('input[name="type"]:checked')?.value ?? "all",
     levelMin: parseInt(document.getElementById("f-level-min").value) || 1,
     levelMax: parseInt(document.getElementById("f-level-max").value) || 29,
-    mode: document.getElementById("f-mode").value,
+    mode: new Set(
+      [...document.querySelectorAll("#f-mode-chips .version-chip.active")]
+        .map(c => c.dataset.mode)
+    ),
     version: new Set(
       [...document.querySelectorAll("#f-version-chips .version-chip.active")]
         .map(c => c.dataset.version.toLowerCase())
@@ -227,7 +236,7 @@ function resetFilters() {
   document.getElementById("f-step-artist").value = "";
   document.getElementById("f-level-min").value = "";
   document.getElementById("f-level-max").value = "";
-  document.getElementById("f-mode").value = "";
+  document.querySelectorAll('#f-mode-chips .version-chip').forEach(c => c.classList.remove('active'));
   document.querySelectorAll("#f-version-chips .version-chip").forEach(c => c.classList.remove("active"));
   document.getElementById("f-bpm-min").value = "";
   document.getElementById("f-bpm-max").value = "";
@@ -328,7 +337,7 @@ function runSearch() {
     const matchedCharts = song.charts.filter((c) => {
       if (f.type !== "all" && c.type !== f.type) return false;
       if (c.level < f.levelMin || c.level > f.levelMax) return false;
-      if (f.mode && c.mode !== f.mode) return false;
+      if (f.mode.size > 0 && !f.mode.has(c.mode)) return false;
       return true;
     });
 
@@ -446,7 +455,8 @@ function buildCard(song, matchedCharts) {
   if (infoRow.children.length) meta.appendChild(infoRow);
 
   meta.appendChild(metaRow("Song", song.songArtist));
-  meta.appendChild(metaRow("Steps", song.stepArtist));
+  // meta.appendChild(metaRow("Steps", song.stepArtist));
+  // not dealing with stepArtist rn, same song charts can have different stepArtitst so...
 
   card.appendChild(meta);
 
@@ -563,7 +573,7 @@ function getCandidates(level, type, mode) {
     return song.charts.some(c =>
       c.type === type &&
       c.level === level &&
-      (!mode || c.mode === mode)
+      (mode.size === 0 || mode.has(c.mode))
     );
   });
 }
@@ -577,15 +587,35 @@ function getUsedSongIds(excludeKey) {
   return used;
 }
 
+function getPickedSongIds(excludeKey) {
+  const picked = new Set();
+  for (const [k, s] of Object.entries(builderSelections)) {
+    if (k === excludeKey) continue;
+    if (s.picked) picked.add(s.picked);
+  }
+  return picked;
+}
+
 function rollSlot(key) {
   const slot = builderSelections[key];
   if (!slot || slot.pool.length === 0) return;
-  slot.picked = slot.pool[Math.floor(Math.random() * slot.pool.length)];
+  if (builderNoRepeatRolls && !builderUniqueOnly) {
+    const alreadyPicked = getPickedSongIds(key);
+    const eligible = slot.pool.filter(id => !alreadyPicked.has(id));
+    slot.picked = eligible.length > 0
+      ? eligible[Math.floor(Math.random() * eligible.length)]
+      : null;
+  } else {
+    slot.picked = slot.pool[Math.floor(Math.random() * slot.pool.length)];
+  }
 }
 
 function buildRound() {
   builderDivisions  = getDivisionConfigs();
-  builderModeValue  = document.getElementById('bl-mode').value;
+  builderModeValue  = new Set(
+    [...document.querySelectorAll('#bl-mode-chips .version-chip.active')]
+      .map(c => c.dataset.mode)
+  );
   builderVersions   = new Set(
     [...document.querySelectorAll('#bl-version-chips .version-chip.active')]
       .map(c => c.dataset.version.toLowerCase())
@@ -594,14 +624,15 @@ function buildRound() {
   builderBpmMax     = parseInt(document.getElementById('bl-bpm-max').value) || null;
   const blType      = document.querySelector('input[name="bl-type"]:checked')?.value ?? 'all';
   builderTypes      = blType === 'S' ? ['S'] : blType === 'D' ? ['D'] : ['S', 'D'];
-  builderUniqueOnly = document.getElementById('bl-unique').checked;
+  builderUniqueOnly    = document.getElementById('bl-unique').checked;
+  builderNoRepeatRolls = document.getElementById('bl-no-repeat-rolls').checked;
   builderSelections = {};
   renderBuilderOutput();
 }
 
 function resetBuilder() {
   renderBuilderDivRows(BUILDER_DEFAULTS);
-  document.getElementById('bl-mode').value = 'arcade';
+  document.querySelectorAll('#bl-mode-chips .version-chip').forEach(c => c.classList.remove('active'));
   builderPoolSize = 3;
   document.getElementById('bl-pool-size-display').textContent = '3';
   document.querySelectorAll('#bl-version-chips .version-chip').forEach(c => c.classList.remove('active'));
@@ -609,14 +640,16 @@ function resetBuilder() {
   document.getElementById('bl-bpm-max').value = '';
   document.querySelector('input[name="bl-type"][value="all"]').checked = true;
   document.getElementById('bl-unique').checked = false;
-  builderDivisions  = [];
-  builderModeValue  = 'arcade';
-  builderVersions   = new Set();
-  builderBpmMin     = null;
-  builderBpmMax     = null;
-  builderTypes      = ['S', 'D'];
-  builderUniqueOnly = false;
-  builderSelections = {};
+  document.getElementById('bl-no-repeat-rolls').checked = false;
+  builderDivisions     = [];
+  builderModeValue     = new Set();
+  builderVersions      = new Set();
+  builderBpmMin        = null;
+  builderBpmMax        = null;
+  builderTypes         = ['S', 'D'];
+  builderUniqueOnly    = false;
+  builderNoRepeatRolls = false;
+  builderSelections    = {};
   showBuilderPlaceholder();
 }
 

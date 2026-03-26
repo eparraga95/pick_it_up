@@ -1,8 +1,8 @@
 {
   "generatedAt": "2026-03-22T19:56:38.308Z",
   "source": "piucenter.com",
-  "totalSongs": 640,
-  "totalCharts": 4413,
+  "totalSongs": 638,
+  "totalCharts": 4409,
   "songs": [
     {
       "id": "this-game-does-not-exist",
@@ -13910,8 +13910,8 @@
       "stepArtist": "Nimgo"
     },
     {
-      "id": "k-o-a-alice-in-wonderworld",
-      "title": "K.O.A Alice in Wonderworld",
+      "id": "k-o-a-alice-in-wonderworld-shortcut",
+      "title": "K.O.A Alice in Wonderworld - SHORT CUT -",
       "bpm": 156,
       "version": "fiesta",
       "charts": [
@@ -16698,46 +16698,6 @@
       ],
       "songArtist": "LeaF",
       "stepArtist": "EXC"
-    },
-    {
-      "id": "move-that-body",
-      "title": "Move That Body!",
-      "bpm": 145,
-      "version": "prime",
-      "charts": [
-        {
-          "type": "D",
-          "level": 19,
-          "mode": "fullsong"
-        },
-        {
-          "type": "S",
-          "level": 18,
-          "mode": "fullsong"
-        }
-      ],
-      "songArtist": "DM Ashura feat. Skizzo Hanna",
-      "stepArtist": null
-    },
-    {
-      "id": "move-that-body-short-cut",
-      "title": "Move That Body! - SHORT CUT -",
-      "bpm": 145,
-      "version": "prime",
-      "charts": [
-        {
-          "type": "D",
-          "level": 18,
-          "mode": "shortcut"
-        },
-        {
-          "type": "S",
-          "level": 17,
-          "mode": "shortcut"
-        }
-      ],
-      "songArtist": "DM Ashura feat. Skizzo Hanna",
-      "stepArtist": null
     },
     {
       "id": "move-that-body",
