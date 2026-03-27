@@ -23,8 +23,10 @@ let builderNoRepeatRolls = false;      // a rolled song cannot be rolled again i
 let builderSelections = {};
 
 function getSlot(key) {
-  if (!builderSelections[key]) builderSelections[key] = { pool: [], picked: null };
-  return builderSelections[key];
+  if (!builderSelections[key]) builderSelections[key] = { pool: [], picked: null, banned: new Set() };
+  const slot = builderSelections[key];
+  if (!slot.banned) slot.banned = new Set();
+  return slot;
 }
 
 // ── Init ────────────────────────────────────────────────────────────────
@@ -610,6 +612,44 @@ function rollSlot(key) {
   }
 }
 
+function randomizeAllPools() {
+  const usedInRound = new Set();
+  for (const div of builderDivisions) {
+    for (const type of builderTypes) {
+      for (const level of div.levels) {
+        const key  = `${div.index}-${type}-${level}`;
+        const slot = getSlot(key);
+        const candidates = getCandidates(level, type, builderModeValue);
+        const eligible = (builderUniqueOnly
+          ? candidates.filter(s => !usedInRound.has(s.id))
+          : candidates
+        ).filter(s => !slot.banned.has(s.id));
+        if (eligible.length === 0) continue;
+        const shuffled = [...eligible];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        slot.pool   = shuffled.slice(0, builderPoolSize).map(s => s.id);
+        slot.picked = null;
+        if (builderUniqueOnly) slot.pool.forEach(id => usedInRound.add(id));
+      }
+    }
+  }
+  renderBuilderOutput();
+}
+
+function rollAll() {
+  for (const div of builderDivisions) {
+    for (const type of builderTypes) {
+      for (const level of div.levels) {
+        rollSlot(`${div.index}-${type}-${level}`);
+      }
+    }
+  }
+  renderBuilderOutput();
+}
+
 function buildRound() {
   builderDivisions  = getDivisionConfigs();
   builderModeValue  = new Set(
@@ -689,45 +729,12 @@ function renderBuilderOutput() {
   const randAllBtn = document.createElement('button');
   randAllBtn.className = 'btn-ghost';
   randAllBtn.textContent = 'Randomize All Pools';
-  randAllBtn.addEventListener('click', () => {
-    const usedInRound = new Set();
-    for (const div of builderDivisions) {
-      for (const type of builderTypes) {
-        for (const level of div.levels) {
-          const key  = `${div.index}-${type}-${level}`;
-          const slot = getSlot(key);
-          const candidates = getCandidates(level, type, builderModeValue);
-          const eligible = builderUniqueOnly
-            ? candidates.filter(s => !usedInRound.has(s.id))
-            : candidates;
-          if (eligible.length === 0) continue;
-          const shuffled = [...eligible];
-          for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-          }
-          slot.pool   = shuffled.slice(0, builderPoolSize).map(s => s.id);
-          slot.picked = null;
-          if (builderUniqueOnly) slot.pool.forEach(id => usedInRound.add(id));
-        }
-      }
-    }
-    renderBuilderOutput();
-  });
+  randAllBtn.addEventListener('click', randomizeAllPools);
 
   const rollAllBtn = document.createElement('button');
   rollAllBtn.className = 'btn-ghost builder-roll-btn';
   rollAllBtn.textContent = 'Roll All';
-  rollAllBtn.addEventListener('click', () => {
-    for (const div of builderDivisions) {
-      for (const type of builderTypes) {
-        for (const level of div.levels) {
-          rollSlot(`${div.index}-${type}-${level}`);
-        }
-      }
-    }
-    renderBuilderOutput();
-  });
+  rollAllBtn.addEventListener('click', rollAll);
 
   actionBar.append(randAllBtn, rollAllBtn);
   body.appendChild(actionBar);
@@ -803,6 +810,7 @@ function buildBuilderTypeSection(divIndex, type, level, candidates) {
   randomPoolBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     const excludeIds = builderUniqueOnly ? getUsedSongIds(key) : new Set();
+    slot.banned.forEach(id => excludeIds.add(id));
     const eligible = candidates.filter(s => !excludeIds.has(s.id));
     const shuffled = [...eligible];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -842,22 +850,24 @@ function buildBuilderTypeSection(divIndex, type, level, candidates) {
   const usedElsewhereIds = builderUniqueOnly ? getUsedSongIds(key) : new Set();
 
   for (const song of candidates) {
-    const poolIdx      = slot.pool.indexOf(song.id);
-    const inPool       = poolIdx >= 0;
-    const isPicked     = slot.picked === song.id;
-    const isFull       = slot.pool.length >= builderPoolSize && !inPool;
-    const usedElsewhere = !inPool && usedElsewhereIds.has(song.id);
+    const poolIdx       = slot.pool.indexOf(song.id);
+    const inPool        = poolIdx >= 0;
+    const isPicked      = slot.picked === song.id;
+    const isBanned      = slot.banned.has(song.id);
+    const isFull        = slot.pool.length >= builderPoolSize && !inPool && !isBanned;
+    const usedElsewhere = !inPool && !isBanned && usedElsewhereIds.has(song.id);
 
     const row = document.createElement('div');
     row.className = 'builder-candidate'
-      + (isPicked ? ' picked' : inPool ? ' in-pool' : '')
+      + (isPicked ? ' picked' : inPool ? ' in-pool' : isBanned ? ' banned' : '')
       + (isFull ? ' pool-full' : '')
       + (usedElsewhere ? ' used-elsewhere' : '');
-    if (usedElsewhere) row.title = 'Already in another pool';
+    if (isBanned) row.title = 'Banned — click to unban';
+    else if (usedElsewhere) row.title = 'Already in another pool';
 
     const check = document.createElement('span');
     check.className = 'builder-candidate-check';
-    check.textContent = isPicked ? '★' : inPool ? String(poolIdx + 1) : usedElsewhere ? '×' : '○';
+    check.textContent = isPicked ? '★' : inPool ? String(poolIdx + 1) : isBanned ? '✕' : usedElsewhere ? '×' : '○';
 
     const title = document.createElement('span');
     title.className = 'builder-candidate-title';
@@ -879,9 +889,29 @@ function buildBuilderTypeSection(divIndex, type, level, candidates) {
         chartsWrap.appendChild(badge);
       });
 
-    row.append(check, title, chartsWrap);
+    if (inPool) {
+      const banBtn = document.createElement('button');
+      banBtn.className = 'btn-icon candidate-ban-btn';
+      banBtn.textContent = '✕';
+      banBtn.title = 'Ban this song from this slot';
+      banBtn.disabled = slot.pool.filter(id => !slot.banned.has(id)).length <= 1;
+      banBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        slot.banned.add(song.id);
+        if (slot.picked === song.id) slot.picked = null;
+        const nonBanned = slot.pool.filter(id => !slot.banned.has(id));
+        if (nonBanned.length === 1) slot.picked = nonBanned[0];
+        rerender();
+      });
+      row.append(check, title, chartsWrap, banBtn);
+    } else {
+      row.append(check, title, chartsWrap);
+    }
+
     row.addEventListener('click', () => {
-      if (inPool) {
+      if (isBanned) {
+        slot.banned.delete(song.id);
+      } else if (inPool) {
         slot.pool.splice(poolIdx, 1);
         if (slot.picked === song.id) slot.picked = null;
       } else if (!isFull && !usedElsewhere) {
@@ -901,15 +931,39 @@ function buildRoundSummary() {
   const summary = document.createElement('div');
   summary.className = 'round-summary';
 
+  // ── Title row with top-level action buttons ──────────
+  const titleRow = document.createElement('div');
+  titleRow.className = 'round-summary-title-row';
+
   const titleEl = document.createElement('h3');
   titleEl.className = 'round-summary-title';
   titleEl.textContent = 'Round Summary';
-  summary.appendChild(titleEl);
+
+  const topActions = document.createElement('div');
+  topActions.className = 'summary-top-actions';
+
+  const topRandBtn = document.createElement('button');
+  topRandBtn.className = 'btn-ghost btn-sm';
+  topRandBtn.textContent = 'Randomize All';
+  topRandBtn.addEventListener('click', randomizeAllPools);
+
+  const topRollBtn = document.createElement('button');
+  topRollBtn.className = 'btn-ghost btn-sm builder-roll-btn';
+  topRollBtn.textContent = 'Roll All';
+  topRollBtn.addEventListener('click', rollAll);
+
+  topActions.append(topRandBtn, topRollBtn);
+  titleRow.append(titleEl, topActions);
+  summary.appendChild(titleRow);
+
+  const rerenderSummary = () => {
+    const summaryEl = document.querySelector('.round-summary');
+    if (summaryEl) summaryEl.replaceWith(buildRoundSummary());
+  };
 
   let hasAny = false;
 
   for (const div of builderDivisions) {
-    // Check if this division has any pool entries at all
     const divHasAny = builderTypes.some(type =>
       div.levels.some(level => {
         const slot = builderSelections[`${div.index}-${type}-${level}`];
@@ -932,7 +986,7 @@ function buildRoundSummary() {
 
     for (const type of builderTypes) {
       for (const level of div.levels) {
-        const slot  = builderSelections[`${div.index}-${type}-${level}`];
+        const slot   = builderSelections[`${div.index}-${type}-${level}`];
         const slotEl = document.createElement('div');
         slotEl.className = 'summary-slot';
 
@@ -949,18 +1003,84 @@ function buildRoundSummary() {
         } else {
           const poolEl = document.createElement('div');
           poolEl.className = 'summary-pool';
-          for (const songId of slot.pool) {
-            const song = allSongs.find(s => s.id === songId);
+
+          for (const songId of [...slot.pool]) {
+            const song      = allSongs.find(s => s.id === songId);
+            const isPicked  = slot.picked === songId;
+            const isBanned  = slot.banned.has(songId);
+            const nonBannedCount = slot.pool.filter(id => !slot.banned.has(id)).length;
+
             const item = document.createElement('div');
-            item.className = 'summary-pool-item' + (slot.picked === songId ? ' picked' : '');
+            item.className = 'summary-pool-item'
+              + (isPicked ? ' picked' : '')
+              + (isBanned ? ' banned' : '');
+
+            // Ban / Unban button
+            const banBtn = document.createElement('button');
+            banBtn.className = 'btn-icon summary-ban-btn';
+            banBtn.textContent = '✕';
+            if (isBanned) {
+              banBtn.title = 'Unban this song';
+              banBtn.disabled = false;
+              banBtn.addEventListener('click', () => {
+                slot.banned.delete(songId);
+                rerenderSummary();
+              });
+            } else {
+              banBtn.title = 'Ban this song from the roll';
+              banBtn.disabled = nonBannedCount <= 1;
+              banBtn.addEventListener('click', () => {
+                slot.banned.add(songId);
+                if (slot.picked === songId) slot.picked = null;
+                const nonBanned = slot.pool.filter(id => !slot.banned.has(id));
+                if (nonBanned.length === 1) slot.picked = nonBanned[0];
+                rerenderSummary();
+              });
+            }
+
+            // Reroll button — only for non-banned pool entries
+            if (!isBanned) {
+            const rerollBtn = document.createElement('button');
+            rerollBtn.className = 'btn-icon summary-reroll-btn';
+            rerollBtn.textContent = '↻';
+            rerollBtn.title = 'Replace this song with a random different one';
+            rerollBtn.addEventListener('click', () => {
+              const slotKey    = `${div.index}-${type}-${level}`;
+              const candidates = getCandidates(level, type, builderModeValue);
+              const excludeIds = builderUniqueOnly ? getUsedSongIds(slotKey) : new Set();
+              slot.banned.forEach(id => excludeIds.add(id));
+              // exclude all pool members except the one being replaced
+              slot.pool.filter(id => id !== songId).forEach(id => excludeIds.add(id));
+              const eligible = candidates.filter(s => !excludeIds.has(s.id) && s.id !== songId);
+              if (eligible.length === 0) return;
+              const replacement = eligible[Math.floor(Math.random() * eligible.length)];
+              const idx = slot.pool.indexOf(songId);
+              if (idx !== -1) slot.pool[idx] = replacement.id;
+              if (slot.picked === songId) slot.picked = null;
+              rerenderSummary();
+            });
+
             const mark = document.createElement('span');
             mark.className = 'summary-pick-mark';
-            mark.textContent = slot.picked === songId ? '★' : '·';
+            mark.textContent = isPicked ? '★' : isBanned ? '⊘' : '·';
+
             const nameEl = document.createElement('span');
             nameEl.textContent = song?.title ?? songId;
-            item.append(mark, nameEl);
+
+            item.append(banBtn, rerollBtn, mark, nameEl);
+            } else {
+            const mark = document.createElement('span');
+            mark.className = 'summary-pick-mark';
+            mark.textContent = '⊘';
+
+            const nameEl = document.createElement('span');
+            nameEl.textContent = song?.title ?? songId;
+
+            item.append(banBtn, mark, nameEl);
+            }
             poolEl.appendChild(item);
           }
+
           slotEl.appendChild(poolEl);
 
           const slotBtnRow = document.createElement('div');
@@ -974,7 +1094,8 @@ function buildRoundSummary() {
             const candidates = getCandidates(level, type, builderModeValue);
             if (candidates.length === 0) return;
             const excludeIds = builderUniqueOnly ? getUsedSongIds(slotKey) : new Set();
-            const eligible   = candidates.filter(s => !excludeIds.has(s.id));
+            slot.banned.forEach(id => excludeIds.add(id));
+            const eligible = candidates.filter(s => !excludeIds.has(s.id));
             if (eligible.length === 0) return;
             const shuffled = [...eligible];
             for (let i = shuffled.length - 1; i > 0; i--) {
@@ -983,8 +1104,7 @@ function buildRoundSummary() {
             }
             slot.pool   = shuffled.slice(0, builderPoolSize).map(s => s.id);
             slot.picked = null;
-            const summaryEl = document.querySelector('.round-summary');
-            if (summaryEl) summaryEl.replaceWith(buildRoundSummary());
+            rerenderSummary();
           });
 
           const slotRollBtn = document.createElement('button');
@@ -992,8 +1112,7 @@ function buildRoundSummary() {
           slotRollBtn.textContent = slot.picked ? 'Re-roll' : 'Roll';
           slotRollBtn.addEventListener('click', () => {
             rollSlot(`${div.index}-${type}-${level}`);
-            const summaryEl = document.querySelector('.round-summary');
-            if (summaryEl) summaryEl.replaceWith(buildRoundSummary());
+            rerenderSummary();
           });
 
           slotBtnRow.append(slotRandBtn, slotRollBtn);

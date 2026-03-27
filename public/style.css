@@ -807,6 +807,37 @@ h1 {
   text-decoration: line-through;
 }
 
+/* Banned song */
+.builder-candidate.banned {
+  opacity: 0.4;
+  cursor: pointer;
+  text-decoration: line-through;
+  border-color: rgba(255, 80, 80, 0.2);
+  background: rgba(255, 60, 60, 0.05);
+}
+.builder-candidate.banned .builder-candidate-check {
+  color: #ff5555;
+}
+
+.candidate-ban-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  color: #888;
+  opacity: 0;
+  transition: opacity 0.1s, color 0.1s;
+}
+.builder-candidate:hover .candidate-ban-btn {
+  opacity: 1;
+}
+.candidate-ban-btn:hover {
+  color: #ff5555 !important;
+}
+.candidate-ban-btn:disabled {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
 .bl-checkbox-label {
   display: flex;
   align-items: center;
@@ -864,21 +895,39 @@ h1 {
   padding: 14px 16px;
 }
 
+.round-summary-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
 .round-summary-title {
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-muted);
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-color);
+  margin: 0;
+}
+
+.summary-top-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .summary-slot-btn-row {
   display: flex;
   gap: 6px;
   margin-top: 5px;
+}
+.summary-slot-btn-row .btn-ghost {
+  flex: 1;
+  text-align: center;
 }
 
 .summary-div-row {
@@ -944,18 +993,58 @@ h1 {
 
 .summary-pool-item {
   display: flex;
-  align-items: baseline;
-  gap: 5px;
+  align-items: center;
+  gap: 4px;
   font-size: 0.78rem;
   color: var(--text-muted);
   padding: 1px 4px;
   border-radius: 4px;
 }
 
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1px 3px;
+  border-radius: 3px;
+  line-height: 1;
+  flex-shrink: 0;
+  font-size: 0.68rem;
+}
+.btn-icon:disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.summary-ban-btn {
+  color: #777;
+  transition: color 0.1s;
+}
+.summary-ban-btn:hover {
+  color: #ff5555;
+}
+.summary-ban-btn:disabled {
+  opacity: 0.2 !important;
+  pointer-events: none;
+}
+
+.summary-reroll-btn {
+  color: #777;
+  transition: color 0.1s;
+}
+.summary-reroll-btn:hover {
+  color: #64a0ff;
+}
+
 .summary-pool-item.picked {
   color: #ffd23c;
   background: rgba(255, 210, 60, 0.07);
   font-weight: 600;
+}
+
+.summary-pool-item.banned {
+  color: #555;
+  text-decoration: line-through;
 }
 
 .summary-pick-mark {
