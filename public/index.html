@@ -368,6 +368,26 @@
       </footer>
     </div>
 
+    <!-- ── Share Modal ─────────────────────────────── -->
+    <div id="share-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Share round">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2 class="modal-title">Share Round</h2>
+          <button class="modal-close" id="share-modal-close" aria-label="Close">&times;</button>
+        </div>
+        <p class="modal-desc">Choose a format, then copy the text.</p>
+        <div class="share-format-row">
+          <button class="btn-ghost share-format-btn" id="share-fmt-csv">CSV</button>
+          <button class="btn-ghost share-format-btn" id="share-fmt-wa">WhatsApp</button>
+        </div>
+        <textarea id="share-output" class="share-output" readonly placeholder="Select a format above…"></textarea>
+        <div class="modal-actions">
+          <button class="btn-primary" id="share-copy-btn">Copy to clipboard</button>
+          <button class="btn-ghost" id="share-modal-close2" onclick="document.getElementById('share-modal').classList.remove('open')">Close</button>
+        </div>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

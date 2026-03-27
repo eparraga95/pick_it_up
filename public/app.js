@@ -952,7 +952,12 @@ function buildRoundSummary() {
   topRollBtn.textContent = 'Roll All';
   topRollBtn.addEventListener('click', rollAll);
 
-  topActions.append(topRandBtn, topRollBtn);
+  const topShareBtn = document.createElement('button');
+  topShareBtn.className = 'btn-ghost btn-sm summary-share-btn';
+  topShareBtn.textContent = '⬆ Share';
+  topShareBtn.addEventListener('click', openShareModal);
+
+  topActions.append(topRandBtn, topRollBtn, topShareBtn);
   titleRow.append(titleEl, topActions);
   summary.appendChild(titleRow);
 
@@ -1140,11 +1145,118 @@ function buildRoundSummary() {
     empty.style.padding = '16px 0 4px';
     empty.textContent = 'Add up to 3 songs per type to build each pool, then roll.';
     summary.appendChild(empty);
+  } else {
+    const bottomBar = document.createElement('div');
+    bottomBar.className = 'summary-bottom-bar';
+    const bottomShareBtn = document.createElement('button');
+    bottomShareBtn.className = 'btn-ghost summary-share-btn';
+    bottomShareBtn.textContent = '⬆ Share Round';
+    bottomShareBtn.addEventListener('click', openShareModal);
+    bottomBar.appendChild(bottomShareBtn);
+    summary.appendChild(bottomBar);
   }
 
   return summary;
 }
 
+// ── Share modal ───────────────────────────────────────────────────────────────
+
+function buildShareData() {
+  const rows = [];
+  for (const div of builderDivisions) {
+    for (const type of builderTypes) {
+      for (const level of div.levels) {
+        const slot = builderSelections[`${div.index}-${type}-${level}`];
+        if (!slot || slot.pool.length === 0) continue;
+        const poolSongs  = slot.pool.map(id => allSongs.find(s => s.id === id));
+        const pickedSong = slot.picked ? allSongs.find(s => s.id === slot.picked) : null;
+        rows.push({ div, type, level, poolSongs, pickedSong, slot });
+      }
+    }
+  }
+  return rows;
+}
+
+function formatCsv(rows) {
+  const lines = ['Division,Chart,Pool,Rolled'];
+  for (const { div, type, level, poolSongs, pickedSong, slot } of rows) {
+    const chart = `${type}${level}`;
+    const pool  = poolSongs
+      .filter(s => s && !slot.banned.has(s.id))
+      .map(s => s?.title ?? '?')
+      .join(' | ');
+    const rolled = pickedSong?.title ?? '';
+    lines.push(`"${div.label}","${chart}","${pool}","${rolled}"`);
+  }
+  return lines.join('\n');
+}
+
+function formatWhatsApp(rows) {
+  const divMap = new Map();
+  for (const row of rows) {
+    if (!divMap.has(row.div.label)) divMap.set(row.div.label, []);
+    divMap.get(row.div.label).push(row);
+  }
+  const lines = ['*🎮 Round Summary*', ''];
+  for (const [divLabel, divRows] of divMap) {
+    lines.push(`*${divLabel}*`);
+    for (const { type, level, poolSongs, pickedSong, slot } of divRows) {
+      const chart = `${type}${level}`;
+      const pool  = poolSongs
+        .filter(s => s && !slot.banned.has(s.id))
+        .map(s => (slot.picked === s.id ? `★ ${s.title}` : s.title))
+        .join(' / ');
+      const suffix = pickedSong ? ` → _${pickedSong.title}_` : '';
+      lines.push(`  ${chart}: ${pool}${suffix}`);
+    }
+    lines.push('');
+  }
+  return lines.join('\n').trimEnd();
+}
+
+function openShareModal() {
+  document.getElementById('share-modal').classList.add('open');
+  document.getElementById('share-output').value = '';
+  document.querySelectorAll('.share-format-btn').forEach(b => b.classList.remove('active'));
+}
+
+function closeShareModal() {
+  document.getElementById('share-modal').classList.remove('open');
+}
+
+function initShareModal() {
+  document.getElementById('share-modal-close').addEventListener('click', closeShareModal);
+  document.getElementById('share-modal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeShareModal();
+  });
+
+  document.getElementById('share-fmt-csv').addEventListener('click', () => {
+    const rows = buildShareData();
+    document.getElementById('share-output').value = formatCsv(rows);
+    document.querySelectorAll('.share-format-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('share-fmt-csv').classList.add('active');
+  });
+
+  document.getElementById('share-fmt-wa').addEventListener('click', () => {
+    const rows = buildShareData();
+    document.getElementById('share-output').value = formatWhatsApp(rows);
+    document.querySelectorAll('.share-format-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('share-fmt-wa').classList.add('active');
+  });
+
+  document.getElementById('share-copy-btn').addEventListener('click', () => {
+    const ta = document.getElementById('share-output');
+    if (!ta.value) return;
+    navigator.clipboard.writeText(ta.value).then(() => {
+      const btn = document.getElementById('share-copy-btn');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = orig; }, 1500);
+    });
+  });
+}
+
 // ── Boot ─────────────────────────────────────────────────────────────────
 
 init();
+initShareModal();
