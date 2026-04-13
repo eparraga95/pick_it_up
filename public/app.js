@@ -17,6 +17,7 @@ let builderBpmMax     = null;
 let builderTypes      = ['S', 'D']; // filtered by chart type toggle
 let builderUniqueOnly    = false;      // each song can appear in at most one pool
 let builderNoRepeatRolls = false;      // a rolled song cannot be rolled again in another slot
+let builderCollapsedDivs = new Set();  // div indices that are collapsed
 // builderSelections[`${divIndex}-${type}-${level}`] = { pool: string[], picked: string|null }
 // pool: up to 3 song ids selected for the pre-release pool
 // picked: the one rolled/chosen as the actual round chart
@@ -666,7 +667,8 @@ function buildRound() {
   builderTypes      = blType === 'S' ? ['S'] : blType === 'D' ? ['D'] : ['S', 'D'];
   builderUniqueOnly    = document.getElementById('bl-unique').checked;
   builderNoRepeatRolls = document.getElementById('bl-no-repeat-rolls').checked;
-  builderSelections = {};
+  builderSelections    = {};
+  builderCollapsedDivs = new Set(getDivisionConfigs().map(d => d.index));
   renderBuilderOutput();
 }
 
@@ -689,6 +691,7 @@ function resetBuilder() {
   builderTypes         = ['S', 'D'];
   builderUniqueOnly    = false;
   builderNoRepeatRolls = false;
+  builderCollapsedDivs = new Set();
   builderSelections    = {};
   showBuilderPlaceholder();
 }
@@ -716,10 +719,10 @@ function renderBuilderOutput() {
   const grid = document.createElement('div');
   grid.className = 'builder-grid';
 
+  grid.appendChild(buildRoundSummary());
   for (const div of builderDivisions) {
     grid.appendChild(buildBuilderDivCard(div));
   }
-  grid.appendChild(buildRoundSummary());
   body.appendChild(grid);
 
   // ── Bottom action bar ────────────────────────────────
@@ -741,11 +744,17 @@ function renderBuilderOutput() {
 }
 
 function buildBuilderDivCard(div) {
+  const isCollapsed = builderCollapsedDivs.has(div.index);
   const card = document.createElement('div');
   card.className = 'builder-div-card';
 
   const header = document.createElement('div');
-  header.className = 'builder-div-header';
+  header.className = 'builder-div-header collapsible';
+  header.title = isCollapsed ? 'Click to expand' : 'Click to collapse';
+
+  const chevron = document.createElement('span');
+  chevron.className = 'div-chevron';
+  chevron.textContent = isCollapsed ? '▸' : '▾';
 
   const nameEl = document.createElement('span');
   nameEl.className = 'builder-div-name';
@@ -756,13 +765,23 @@ function buildBuilderDivCard(div) {
   levelsEl.textContent = builderTypes
     .map(t => div.levels.map(l => `${t}${l}`).join(' & ')).join('  ·  ');
 
-  header.append(nameEl, levelsEl);
+  header.append(chevron, nameEl, levelsEl);
+  header.addEventListener('click', () => {
+    if (builderCollapsedDivs.has(div.index)) {
+      builderCollapsedDivs.delete(div.index);
+    } else {
+      builderCollapsedDivs.add(div.index);
+    }
+    card.replaceWith(buildBuilderDivCard(div));
+  });
   card.appendChild(header);
 
-  for (const type of builderTypes) {
-    for (const level of div.levels) {
-      const candidates = getCandidates(level, type, builderModeValue);
-      card.appendChild(buildBuilderTypeSection(div.index, type, level, candidates));
+  if (!isCollapsed) {
+    for (const type of builderTypes) {
+      for (const level of div.levels) {
+        const candidates = getCandidates(level, type, builderModeValue);
+        card.appendChild(buildBuilderTypeSection(div.index, type, level, candidates));
+      }
     }
   }
 
