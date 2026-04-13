@@ -19,6 +19,13 @@ let builderUniqueOnly    = false;      // each song can appear in at most one po
 let builderNoRepeatRolls = false;      // a rolled song cannot be rolled again in another slot
 let builderCollapsedDivs = new Set();  // div indices that are collapsed
 // builderSelections[`${divIndex}-${type}-${level}`] = { pool: string[], picked: string|null }
+
+// Saved lists (import from CSV) & builder exclusion
+const SAVED_LISTS_KEY = 'piu_saved_lists';
+let savedLists             = [];
+let builderExcludedListIds = new Set(); // list IDs checked for exclusion
+let builderExcludedSongIds = new Set(); // song IDs — from "song" mode lists (entire song gone)
+let builderExcludedCharts  = new Set(); // "songId:type:level" — from "chart" mode lists
 // pool: up to 3 song ids selected for the pre-release pool
 // picked: the one rolled/chosen as the actual round chart
 let builderSelections = {};
@@ -44,6 +51,7 @@ async function init() {
     updateDbMeta(db);
     bindEvents();
     initBuilder();
+    initSavedListsSection();
   } catch (err) {
     document.getElementById("results-body").innerHTML =
       `<p class="state-msg">⚠️ Could not load songs.json: ${err.message}<br>
@@ -491,6 +499,205 @@ function buildCard(song, matchedCharts) {
   return card;
 }
 
+// ── Saved Lists ───────────────────────────────────────────────────────────────
+
+function loadSavedLists() {
+  try {
+    const raw = localStorage.getItem(SAVED_LISTS_KEY);
+    savedLists = raw ? JSON.parse(raw) : [];
+  } catch {
+    savedLists = [];
+  }
+}
+
+function saveSavedLists() {
+  localStorage.setItem(SAVED_LISTS_KEY, JSON.stringify(savedLists));
+}
+
+/**
+ * Parses a single CSV line respecting double-quoted fields.
+ * Returns an array of field strings (quotes stripped).
+ */
+function parseCsvRow(line) {
+  const cols = [];
+  let inQuote = false;
+  let cur = '';
+  for (const ch of line) {
+    if (ch === '"') {
+      inQuote = !inQuote;
+    } else if (ch === ',' && !inQuote) {
+      cols.push(cur);
+      cur = '';
+    } else {
+      cur += ch;
+    }
+  }
+  cols.push(cur);
+  return cols;
+}
+
+/**
+ * Parses the exported pick-it-up CSV.
+ * Only rows whose Rolled column is non-empty are considered (i.e. actually played songs).
+ * Returns:
+ *   rolledSongIds — unique song IDs of every rolled song (for "exclude song" mode)
+ *   rolledCharts  — { songId, type, level } for each rolled chart (for "exclude chart" mode)
+ */
+function parseCsvData(csvText) {
+  const lines = csvText.trim().split('\n');
+  const rolledSongIds = [];
+  const rolledCharts  = [];
+
+  for (const line of lines.slice(1)) { // skip header row
+    if (!line.trim()) continue;
+    const cols = parseCsvRow(line);
+
+    const chartStr    = (cols[1] ?? '').trim(); // e.g. "S21"
+    const rolledTitle = (cols[3] ?? '').trim();
+    if (!rolledTitle) continue;
+
+    const song = allSongs.find(s => s.title.toLowerCase() === rolledTitle.toLowerCase());
+    if (!song) continue;
+
+    if (!rolledSongIds.includes(song.id)) rolledSongIds.push(song.id);
+
+    // Parse "S21" / "D18" from the Chart column
+    const chartMatch = chartStr.match(/^([SD])(\d+)$/i);
+    if (chartMatch) {
+      const type  = chartMatch[1].toUpperCase();
+      const level = parseInt(chartMatch[2], 10);
+      if (!rolledCharts.some(c => c.songId === song.id && c.type === type && c.level === level)) {
+        rolledCharts.push({ songId: song.id, type, level });
+      }
+    }
+  }
+
+  return { rolledSongIds, rolledCharts };
+}
+
+function renderSavedListsSection() {
+  const container = document.getElementById('bl-saved-lists');
+  if (!container) return;
+  container.innerHTML = '';
+
+  if (savedLists.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'saved-lists-empty';
+    empty.textContent = 'No lists imported yet.';
+    container.appendChild(empty);
+    return;
+  }
+
+  for (const list of savedLists) {
+    const row = document.createElement('div');
+    row.className = 'saved-list-row';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `bl-list-${list.id}`;
+    checkbox.checked = builderExcludedListIds.has(list.id);
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        builderExcludedListIds.add(list.id);
+      } else {
+        builderExcludedListIds.delete(list.id);
+      }
+    });
+
+    const label = document.createElement('label');
+    label.htmlFor = `bl-list-${list.id}`;
+    label.className = 'saved-list-label';
+    label.title = list.name;
+    label.textContent = list.name;
+
+    const songCount  = (list.rolledSongIds ?? list.songIds ?? []).length;
+    const chartCount = (list.rolledCharts ?? []).length;
+
+    const count = document.createElement('span');
+    count.className = 'saved-list-count';
+    const updateCount = () => {
+      count.textContent = (list.excludeMode ?? 'song') === 'chart'
+        ? `${chartCount} charts`
+        : `${songCount} songs`;
+    };
+    updateCount();
+
+    const modeSelect = document.createElement('select');
+    modeSelect.className = 'saved-list-mode';
+    [['song', 'Excl. song'], ['chart', 'Excl. chart']].forEach(([val, txt]) => {
+      const opt = document.createElement('option');
+      opt.value = val; opt.textContent = txt;
+      modeSelect.appendChild(opt);
+    });
+    modeSelect.value = list.excludeMode ?? 'song';
+    modeSelect.addEventListener('change', () => {
+      list.excludeMode = modeSelect.value;
+      saveSavedLists();
+      updateCount();
+    });
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'btn-icon saved-list-del-btn';
+    delBtn.textContent = '✕';
+    delBtn.title = 'Remove this list';
+    delBtn.addEventListener('click', () => {
+      savedLists = savedLists.filter(l => l.id !== list.id);
+      builderExcludedListIds.delete(list.id);
+      saveSavedLists();
+      renderSavedListsSection();
+    });
+
+    const subRow = document.createElement('div');
+    subRow.className = 'saved-list-sub-row';
+    subRow.append(count, modeSelect, delBtn);
+
+    const nameRow = document.createElement('div');
+    nameRow.className = 'saved-list-name-row';
+    nameRow.append(checkbox, label);
+
+    row.append(nameRow, subRow);
+    container.appendChild(row);
+  }
+}
+
+function initSavedListsSection() {
+  loadSavedLists();
+  renderSavedListsSection();
+
+  document.getElementById('bl-import-csv-btn').addEventListener('click', () => {
+    document.getElementById('bl-import-csv-input').click();
+  });
+
+  document.getElementById('bl-import-csv-input').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const text = ev.target.result;
+      const { rolledSongIds, rolledCharts } = parseCsvData(text);
+      if (rolledSongIds.length === 0) {
+        alert('No rolled songs found in this CSV.\nMake sure songs were rolled before exporting.');
+        e.target.value = '';
+        return;
+      }
+      const name = file.name.replace(/\.csv$/i, '');
+      const list = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+        name,
+        importedAt: new Date().toISOString(),
+        excludeMode: 'song',
+        rolledSongIds,
+        rolledCharts,
+      };
+      savedLists.push(list);
+      saveSavedLists();
+      renderSavedListsSection();
+      e.target.value = '';
+    };
+    reader.readAsText(file);
+  });
+}
+
 // ── Builder ───────────────────────────────────────────────────────────────────
 
 // CBPIU 2025 defaults: Div 1 is the highest division (21&22), descending
@@ -570,6 +777,24 @@ function getDivisionConfigs() {
 
 function getCandidates(level, type, mode) {
   return allSongs.filter(song => {
+    if (builderExcludedSongIds.has(song.id)) return false;
+    if (builderExcludedCharts.has(`${song.id}:${type}:${level}`)) return false;
+    if (builderVersions.size > 0 && !builderVersions.has(song.version?.toLowerCase())) return false;
+    if (builderBpmMin !== null && (song.bpm == null || song.bpm < builderBpmMin)) return false;
+    if (builderBpmMax !== null && (song.bpm == null || song.bpm > builderBpmMax)) return false;
+    return song.charts.some(c =>
+      c.type === type &&
+      c.level === level &&
+      (mode.size === 0 || mode.has(c.mode))
+    );
+  });
+}
+
+function getExcludedCandidates(level, type, mode) {
+  return allSongs.filter(song => {
+    const isExcluded = builderExcludedSongIds.has(song.id) ||
+      builderExcludedCharts.has(`${song.id}:${type}:${level}`);
+    if (!isExcluded) return false;
     if (builderVersions.size > 0 && !builderVersions.has(song.version?.toLowerCase())) return false;
     if (builderBpmMin !== null && (song.bpm == null || song.bpm < builderBpmMin)) return false;
     if (builderBpmMax !== null && (song.bpm == null || song.bpm > builderBpmMax)) return false;
@@ -669,6 +894,22 @@ function buildRound() {
   builderNoRepeatRolls = document.getElementById('bl-no-repeat-rolls').checked;
   builderSelections    = {};
   builderCollapsedDivs = new Set(getDivisionConfigs().map(d => d.index));
+
+  // Compute excluded IDs from selected lists
+  builderExcludedSongIds = new Set();
+  builderExcludedCharts  = new Set();
+  for (const listId of builderExcludedListIds) {
+    const list = savedLists.find(l => l.id === listId);
+    if (!list) continue;
+    if (list.excludeMode === 'chart') {
+      (list.rolledCharts ?? []).forEach(c =>
+        builderExcludedCharts.add(`${c.songId}:${c.type}:${c.level}`)
+      );
+    } else {
+      (list.rolledSongIds ?? list.songIds ?? []).forEach(id => builderExcludedSongIds.add(id));
+    }
+  }
+
   renderBuilderOutput();
 }
 
@@ -693,6 +934,10 @@ function resetBuilder() {
   builderNoRepeatRolls = false;
   builderCollapsedDivs = new Set();
   builderSelections    = {};
+  builderExcludedListIds = new Set();
+  builderExcludedSongIds = new Set();
+  builderExcludedCharts  = new Set();
+  renderSavedListsSection();
   showBuilderPlaceholder();
 }
 
@@ -943,6 +1188,75 @@ function buildBuilderTypeSection(divIndex, type, level, candidates) {
   }
 
   section.appendChild(list);
+
+  // ── Excluded songs ───────────────────────────────────
+  const excluded = (builderExcludedSongIds.size > 0 || builderExcludedCharts.size > 0)
+    ? getExcludedCandidates(level, type, builderModeValue)
+    : [];
+
+  if (excluded.length > 0) {
+    const excGroup = document.createElement('div');
+    excGroup.className = 'builder-excluded-group';
+
+    const excHeader = document.createElement('button');
+    excHeader.className = 'builder-excluded-toggle';
+    const isExcCollapsed = !excHeader.dataset.open;
+    excHeader.textContent = `▸ ${excluded.length} excluded song${excluded.length !== 1 ? 's' : ''}`;
+    excHeader.addEventListener('click', () => {
+      const body = excGroup.querySelector('.builder-excluded-list');
+      const collapsed = body.style.display === 'none';
+      body.style.display = collapsed ? '' : 'none';
+      excHeader.textContent = (collapsed ? '▾ ' : '▸ ') +
+        `${excluded.length} excluded song${excluded.length !== 1 ? 's' : ''}`;
+    });
+
+    const excList = document.createElement('div');
+    excList.className = 'builder-excluded-list';
+    excList.style.display = 'none';
+
+    for (const song of excluded) {
+      const isSongExcl = builderExcludedSongIds.has(song.id);
+      const reason     = isSongExcl ? 'song' : 'chart';
+
+      // Find which list(s) caused the exclusion
+      const sourceNames = [];
+      for (const listId of builderExcludedListIds) {
+        const list = savedLists.find(l => l.id === listId);
+        if (!list) continue;
+        if (list.excludeMode === 'chart') {
+          if ((list.rolledCharts ?? []).some(c => c.songId === song.id && c.type === type && c.level === level))
+            sourceNames.push(list.name);
+        } else {
+          if ((list.rolledSongIds ?? list.songIds ?? []).includes(song.id))
+            sourceNames.push(list.name);
+        }
+      }
+
+      const row = document.createElement('div');
+      row.className = 'builder-candidate excluded-candidate';
+      row.title = `Excluded (${reason})${sourceNames.length ? ': ' + sourceNames.join(', ') : ''}`;
+
+      const check = document.createElement('span');
+      check.className = 'builder-candidate-check';
+      check.textContent = '⊘';
+
+      const titleEl = document.createElement('span');
+      titleEl.className = 'builder-candidate-title';
+      titleEl.textContent = song.title;
+
+      const tag = document.createElement('span');
+      tag.className = 'excluded-reason-tag';
+      tag.textContent = sourceNames.length === 1 ? sourceNames[0] : reason;
+      if (sourceNames.length > 1) tag.title = sourceNames.join('\n');
+
+      row.append(check, titleEl, tag);
+      excList.appendChild(row);
+    }
+
+    excGroup.append(excHeader, excList);
+    section.appendChild(excGroup);
+  }
+
   return section;
 }
 
@@ -1237,6 +1551,7 @@ function openShareModal() {
   document.getElementById('share-modal').classList.add('open');
   document.getElementById('share-output').value = '';
   document.querySelectorAll('.share-format-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('share-download-btn').style.display = 'none';
 }
 
 function closeShareModal() {
@@ -1254,6 +1569,7 @@ function initShareModal() {
     document.getElementById('share-output').value = formatCsv(rows);
     document.querySelectorAll('.share-format-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('share-fmt-csv').classList.add('active');
+    document.getElementById('share-download-btn').style.display = '';
   });
 
   document.getElementById('share-fmt-wa').addEventListener('click', () => {
@@ -1261,6 +1577,7 @@ function initShareModal() {
     document.getElementById('share-output').value = formatWhatsApp(rows);
     document.querySelectorAll('.share-format-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('share-fmt-wa').classList.add('active');
+    document.getElementById('share-download-btn').style.display = 'none';
   });
 
   document.getElementById('share-copy-btn').addEventListener('click', () => {
@@ -1272,6 +1589,18 @@ function initShareModal() {
       btn.textContent = 'Copied!';
       setTimeout(() => { btn.textContent = orig; }, 1500);
     });
+  });
+
+  document.getElementById('share-download-btn').addEventListener('click', () => {
+    const content = document.getElementById('share-output').value;
+    if (!content) return;
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `round-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
   });
 }
 

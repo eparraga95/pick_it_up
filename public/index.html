@@ -317,6 +317,13 @@
               </div>
             </div>
 
+            <div class="bl-section-label">Exclude Past Rounds <span class="info-icon" tabindex="0" aria-label="How exclusion works" data-tooltip="Import a CSV exported from this tool. Check lists to activate them before pressing Build Round. &bull; Excl. song: removes the entire song from all pools. &bull; Excl. chart: only hides that specific type+level combo, the song can still appear at other levels.">ℹ</span></div>
+            <div id="bl-saved-lists"><!-- populated by JS --></div>
+            <div class="bl-saved-lists-actions">
+              <input type="file" id="bl-import-csv-input" accept=".csv" style="display:none" />
+              <button class="btn-ghost btn-sm" id="bl-import-csv-btn">⬇ Import CSV</button>
+            </div>
+
             <div class="bl-section-label">Divisions</div>
             <div id="bl-divisions"><!-- populated by JS --></div>
 
@@ -383,6 +390,7 @@
         <textarea id="share-output" class="share-output" readonly placeholder="Select a format above…"></textarea>
         <div class="modal-actions">
           <button class="btn-primary" id="share-copy-btn">Copy to clipboard</button>
+          <button class="btn-ghost" id="share-download-btn" style="display:none">⬇ Download CSV</button>
           <button class="btn-ghost" id="share-modal-close2" onclick="document.getElementById('share-modal').classList.remove('open')">Close</button>
         </div>
       </div>
